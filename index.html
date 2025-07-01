@@ -107,6 +107,26 @@
 
   gtag('config', 'AW-17293885740');
 </script>
+
+  <!-- Event snippet for Outbound click conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-17293885740/ExMeCP2N5OcaEKyCr7ZA',
+      'value': 1.0,
+      'currency': 'USD',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
+
   
 </head>
 
@@ -130,7 +150,7 @@
     <p>Seeking a <strong>Godel Terminal discount</strong>? Apply promo code <strong>TAKE30</strong> at checkout to enjoy a 30%
       reduction on the first month of your subscription! Trusted by financial professionals worldwide, Godel Terminal
       offers top-tier <strong>stock market analysis</strong> and <strong>real-time trading tools</strong>.</p>
-    <p><u><a href="https://app.godelterminal.com/?via=take30">Claim your discount now!</a></u></p>
+    <p><u><a href="https://app.godelterminal.com/?via=take30" onclick="return gtag_report_conversion('https://app.godelterminal.com/?via=take30');">Claim your discount now!</a></u></p>
 
     <div class="image-container">
       <img src="godelpromo.png" alt="Godel Terminal Promo - Financial Trading Software">
@@ -147,16 +167,16 @@
       <li>Cheaper alternative to other terminals such as Bloomberg</li>
     </ul>
 
-    <a href="https://app.godelterminal.com/?via=take30" class="cta-button">Start with 30% Off Now</a>
+    <a href="https://app.godelterminal.com/?via=take30" onclick="return gtag_report_conversion('https://app.godelterminal.com/?via=take30');" class="cta-button">Start with 30% Off Now</a>
 
     <h2>How to Redeem Your Godel Terminal Promotion Code</h2>
     <ol>
-      <li>Visit <a href="https://app.godelterminal.com/?via=take30">Godel Terminal</a></li>
+      <li>Visit <a href="https://app.godelterminal.com/?via=take30" onclick="return gtag_report_conversion('https://app.godelterminal.com/?via=take30');">Godel Terminal</a></li>
       <li>Select your preferred <strong>stock market analysis plan</strong></li>
       <li>Enter coupon code <strong>TAKE30</strong> at checkout</li>
     </ol>
 
-    <a href="https://app.godelterminal.com/?via=take30" class="cta-button">Claim Your Discount Now</a>
+    <a href="https://app.godelterminal.com/?via=take30" onclick="return gtag_report_conversion('https://app.godelterminal.com/?via=take30');" class="cta-button">Claim Your Discount Now</a>
   </div>
 
 

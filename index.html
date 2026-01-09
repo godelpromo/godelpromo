@@ -1,272 +1,754 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Godel Terminal Discount: TAKE30 - Save 30% on Stock Market Trading Software</title>
-  <meta name="description"
-    content="Get 30% off Godel Terminal financial trading software with promo code TAKE30. Access real-time stock market data, Nasdaq quotes, crypto tracking, and more!">
-  <meta name="keywords"
-    content="Godel Terminal, promotion, promo code, coupon code, stock market software, financial trading platform, real-time stock prices, Nasdaq data, crypto tracking, market analysis, SEC filings, forex trading">
-  <meta name="author" content="Godel Terminal">
-  <link rel="shortcut icon" href="favicon.ico" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#0b1220" />
+
+  <title>TAKE30 — 30% off your first month of Godel Terminal</title>
+  <meta name="description" content="Copy promo code TAKE30 and get 30% off your first month of Godel Terminal. Fast, browser-based financial terminal with real-time charts, news, quotes, and filings." />
+  <link rel="canonical" href="https://www.godelpromo.com/" />
+  <link rel="icon" href="favicon.ico" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="TAKE30 — 30% off your first month of Godel Terminal" />
+  <meta property="og:description" content="Copy promo code TAKE30 and get 30% off your first month of Godel Terminal." />
+  <meta property="og:url" content="https://www.godelpromo.com/" />
+  <meta property="og:image" content="https://www.godelpromo.com/godelpromo.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
   <style>
-    body {
-      font-family: "Arial", sans-serif;
-      line-height: 1.8;
+    :root{
+      --bg: #070b14;
+      --panel: rgba(255,255,255,.06);
+      --panel-2: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.55);
+      --border: rgba(255,255,255,.12);
+      --accent: #4ea1ff;
+      --accent-2: #2dd4bf;
+      --danger: #ff6b6b;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius: 14px;
+      --max: 1100px;
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ height: 100%; }
+    body{
       margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-      color: #333;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      line-height: 1.55;
+      color: var(--text);
+      background:
+        radial-gradient(900px 450px at 15% 0%, rgba(78,161,255,.25), rgba(0,0,0,0) 60%),
+        radial-gradient(800px 420px at 95% 10%, rgba(45,212,191,.18), rgba(0,0,0,0) 55%),
+        linear-gradient(180deg, #050814 0%, var(--bg) 40%, #050814 100%);
     }
 
-    header {
-      background: #1e272e;
-      color: white;
-      padding: 20px;
-      text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-    }
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: underline; text-underline-offset: 3px; }
 
-    .container {
-      max-width: 900px;
-      margin: 20px auto;
-      padding: 20px;
-      background: white;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
+    .skip-link{
+      position:absolute; left:-999px; top:8px;
+      background:#111b33; color:var(--text);
+      padding:10px 12px; border-radius:10px;
+      border:1px solid var(--border);
+      z-index: 9999;
     }
+    .skip-link:focus{ left: 12px; }
 
-    h1,
-    h2 {
-      color: #1e272e;
+    /* Top bar */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      background: rgba(7,11,20,.55);
+      border-bottom: 1px solid var(--border);
     }
-
-    ul {
-      list-style-type: none;
-      padding: 0;
+    .topbar{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      justify-content: space-between;
     }
-
-    ul li::before {
-      content: "✔";
-      color: #27ae60;
-      margin-right: 10px;
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight: 700;
+      letter-spacing: .2px;
+      white-space: nowrap;
     }
-
-    a {
-      color: #2980b9;
+    .logo{
+      width: 34px; height: 34px;
+      border-radius: 10px;
+      background:
+        radial-gradient(16px 16px at 30% 35%, rgba(78,161,255,.9), rgba(78,161,255,0) 70%),
+        radial-gradient(18px 18px at 70% 70%, rgba(45,212,191,.85), rgba(45,212,191,0) 70%),
+        linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: 0 10px 30px rgba(0,0,0,.30);
+      flex: 0 0 auto;
+    }
+    nav{
+      display:flex; gap: 14px;
+      align-items:center;
+      color: var(--muted);
+      font-size: 14px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    nav a{
+      opacity: .95;
+    }
+    nav a:hover{
+      opacity: 1;
       text-decoration: none;
-      font-weight: bold;
     }
 
-    a:hover {
-      text-decoration: underline;
+    /* Promo pill */
+    .promo-pill{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      padding: 8px 10px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      white-space: nowrap;
+      max-width: 100%;
+    }
+    .promo-pill strong{
+      font-size: 13px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(78,161,255,.35);
+      background: rgba(78,161,255,.10);
+      letter-spacing: .4px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-weight: 650;
+      font-size: 15px;
+      line-height: 1;
+      cursor: pointer;
+      transition: transform .08s ease, background .15s ease, border-color .15s ease;
+      user-select: none;
+    }
+    .btn:hover{
+      background: rgba(255,255,255,.10);
+      text-decoration:none;
+    }
+    .btn:active{ transform: translateY(1px); }
+    .btn.primary{
+      border-color: rgba(78,161,255,.45);
+      background: linear-gradient(180deg, rgba(78,161,255,.24), rgba(78,161,255,.10));
+    }
+    .btn.primary:hover{
+      background: linear-gradient(180deg, rgba(78,161,255,.28), rgba(78,161,255,.12));
+    }
+    .btn.small{
+      padding: 10px 12px;
+      font-size: 14px;
+      border-radius: 999px;
     }
 
-    .cta-button {
-      display: block;
-      text-align: center;
+    .container{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 22px 18px 70px;
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-top: 20px;
+    }
+    .card{
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-left{
+      padding: 26px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-left:before{
+      content:"";
+      position:absolute;
+      inset: -120px -120px auto auto;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle at 30% 30%, rgba(78,161,255,.35), rgba(78,161,255,0) 70%);
+      filter: blur(0px);
+      pointer-events:none;
+    }
+    .kicker{
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0 0 10px 0;
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items:center;
+    }
+    .kicker span{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+    }
+    h1{
+      margin: 0 0 10px 0;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height: 1.1;
+      letter-spacing: -.5px;
+    }
+    .subhead{
+      margin: 0 0 18px 0;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 62ch;
+    }
+
+    .code-box{
+      display:flex;
+      align-items: stretch;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(78,161,255,.40);
+      background: rgba(78,161,255,.08);
+      margin: 16px 0 8px;
+    }
+    .code-meta{
+      min-width: 220px;
+      display:flex;
+      flex-direction: column;
+      gap: 2px;
+      justify-content: center;
+    }
+    .code-meta .label{
+      color: var(--faint);
+      font-size: 12px;
+      letter-spacing: .35px;
+      text-transform: uppercase;
+    }
+    .code-meta .code{
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+    }
+    .code-meta .note{
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 2px;
+    }
+
+    .actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+      align-items:center;
+    }
+    .fineprint{
+      margin-top: 12px;
+      color: var(--faint);
+      font-size: 13px;
+    }
+
+    .hero-right{
+      padding: 16px;
+      display:flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .shot{
+      border-radius: 14px;
+      overflow:hidden;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+    }
+    .shot img{
+      display:block;
       width: 100%;
-      max-width: 300px;
-      padding: 12px;
-      margin: 20px auto;
-      font-size: 18px;
-      color: white;
-      background-color: #2980b9;
-      border: none;
-      border-radius: 5px;
-      text-decoration: none;
-    }
-
-    .cta-button:hover {
-      background-color: #1e5a85;
-    }
-
-    .image-container {
-      text-align: center;
-      margin: 20px 0;
-    }
-
-    .image-container img {
-      width: 100%;
-      max-width: 500px;
       height: auto;
-      border-radius: 5px;
+    }
+    .mini{
+      padding: 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+    }
+    .mini h3{
+      margin: 0 0 6px 0;
+      font-size: 14px;
+      letter-spacing: .2px;
+    }
+    .mini p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 13.5px;
+    }
+
+    /* Sections */
+    section{ margin-top: 22px; }
+    .section-title{
+      display:flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 28px 0 12px;
+    }
+    .section-title h2{
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: -.2px;
+    }
+    .section-title p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .feature{
+      padding: 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      min-height: 120px;
+    }
+    .feature strong{
+      display:block;
+      margin: 0 0 6px 0;
+      font-size: 15px;
+      letter-spacing: .1px;
+    }
+    .feature p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .step{
+      padding: 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+    }
+    .step .n{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      border: 1px solid rgba(45,212,191,.45);
+      background: rgba(45,212,191,.10);
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .step h3{
+      margin: 0 0 6px 0;
+      font-size: 15px;
+    }
+    .step p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    details{
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 14px;
+    }
+    details + details{ margin-top: 10px; }
+    summary{
+      cursor: pointer;
+      font-weight: 700;
+      letter-spacing: .1px;
+    }
+    details p{
+      margin: 10px 0 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    footer{
+      margin-top: 30px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      color: var(--faint);
+      font-size: 13px;
+      display:flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    footer .links{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+    }
+
+    /* Toast */
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(17,27,51,.92);
+      border: 1px solid rgba(255,255,255,.15);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 999px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.55);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .18s ease, transform .18s ease;
+      z-index: 9999;
+      font-size: 14px;
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      white-space: nowrap;
+      max-width: calc(100vw - 26px);
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .toast.show{
+      opacity: 1;
+      transform: translateX(-50%) translateY(-2px);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .hero{ grid-template-columns: 1fr; }
+      .grid{ grid-template-columns: 1fr; }
+      .steps{ grid-template-columns: 1fr; }
+      nav{ display:none; } /* keep it simple on mobile */
+      .promo-pill{ display:none; } /* reduce clutter */
+      .topbar{ justify-content: space-between; }
+    }
+
+    /* Focus */
+    :focus-visible{
+      outline: 2px solid rgba(78,161,255,.75);
+      outline-offset: 2px;
+      border-radius: 12px;
     }
   </style>
 
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17293885740">
-</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google tag (gtag.js) — keep one loader, then config additional IDs if needed -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17293885740"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17293885740');
 
-  gtag('config', 'AW-17293885740');
-</script>
+    // Optional: if you intentionally use a second Ads ID, uncomment:
+    // gtag('config', 'AW-17513390270');
 
-  <!-- Event snippet for Outbound click conversion page
-In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
-<script>
-function gtag_report_conversion(url) {
-  var callback = function () {
-    if (typeof(url) != 'undefined') {
-      window.location = url;
+    function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof(url) !== 'undefined') {
+          window.location = url;
+        }
+      };
+      try {
+        gtag('event', 'conversion', {
+          'send_to': 'AW-17293885740/ExMeCP2N5OcaEKyCr7ZA',
+          'value': 1.0,
+          'currency': 'USD',
+          'event_callback': callback
+        });
+      } catch(e) {
+        callback();
+      }
+      return false;
     }
-  };
-  gtag('event', 'conversion', {
-      'send_to': 'AW-17293885740/ExMeCP2N5OcaEKyCr7ZA',
-      'value': 1.0,
-      'currency': 'USD',
-      'event_callback': callback
-  });
-  return false;
-}
-</script>
-  
+  </script>
 </head>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17513390270"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-17513390270');
-</script>
-
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <header>Godel Terminal - Exclusive Discount</header>
+  <header>
+    <div class="topbar">
+      <div class="brand" aria-label="Godel promo code page">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <div style="font-size:14px; color: var(--muted); font-weight: 650;">Godel Terminal</div>
+          <div style="font-size:16px;">Exclusive discount</div>
+        </div>
+      </div>
 
-  <div class="container">
-    <h1>TAKE30 - Save 30% on Godel Terminal Trading Software</h1>
+      <div class="promo-pill" role="note" aria-label="Promo code pill">
+        <span style="color: var(--muted); font-size: 13px;">Promo code</span>
+        <strong id="code-pill">TAKE30</strong>
+        <button class="btn small" type="button" id="copy-pill">Copy</button>
+      </div>
 
-    <p>Seeking a <strong>Godel Terminal discount</strong>? Apply promo code <strong>TAKE30</strong> at checkout to enjoy a 30%
-      reduction on the first month of your subscription! Trusted by financial professionals worldwide, Godel Terminal
-      offers top-tier <strong>stock market analysis</strong> and <strong>real-time trading tools</strong>.</p>
-    <p><u><a href="https://app.godelterminal.com/?via=take30" onclick="return gtag_report_conversion('https://app.godelterminal.com/?via=take30');">Claim your discount now!</a></u></p>
+      <nav aria-label="Page navigation">
+        <a href="#how">How to redeem</a>
+        <a href="#features">Features</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn small primary" href="https://app.godelterminal.com/?via=take30" data-outbound="true">Open Terminal</a>
+      </nav>
+    </div>
+  </header>
 
-    <div class="image-container">
-      <img src="godelpromo.png" alt="Godel Terminal Promo - Financial Trading Software">
+  <main class="container" id="main">
+    <div class="hero">
+      <div class="card hero-left">
+        <p class="kicker">
+          <span>✅ Copy code, paste at checkout</span>
+          <span>⚡ Fast, browser-based terminal</span>
+          <span>🔒 Official signup happens on Godel Terminal</span>
+        </p>
+
+        <h1>Save <span style="color: var(--accent);">30%</span> on your first month of Godel Terminal</h1>
+        <p class="subhead">
+          Use promo code <strong>TAKE30</strong> at checkout. This page makes it easy to copy the code, understand what Godel Terminal is, and head to the official signup flow.
+        </p>
+
+        <div class="code-box" aria-label="Promo code box">
+          <div class="code-meta">
+            <div class="label">Promo code</div>
+            <div class="code" id="promo-code">TAKE30</div>
+            <div class="note">30% off the first month (terms can change).</div>
+          </div>
+          <div class="actions" style="margin:0; align-items: stretch;">
+            <button class="btn primary" type="button" id="copy-main">Copy code</button>
+            <a class="btn" href="#how">How to redeem</a>
+          </div>
+        </div>
+
+        <div class="actions">
+          <a class="btn primary" href="https://app.godelterminal.com/?via=take30" data-outbound="true">Start on Godel Terminal</a>
+          <a class="btn" href="#features">See key features</a>
+        </div>
+
+        <p class="fineprint">
+          Disclosure: this is an independent promo page that uses a referral link parameter (<code>via=take30</code>) for attribution. Pricing, plans, and promo availability are set by Godel Terminal.
+        </p>
+      </div>
+
+      <aside class="card hero-right" aria-label="Promo preview and quick facts">
+        <div class="shot">
+          <img src="godelpromo.png" alt="Screenshot or promo image for Godel Terminal" loading="eager" />
+        </div>
+
+        <div class="mini">
+          <h3>What is Godel Terminal?</h3>
+          <p>
+            A professional, web-based financial terminal focused on real-time charts, market data, and news in a fast, command-driven workflow.
+          </p>
+        </div>
+
+        <div class="mini">
+          <h3>Tip</h3>
+          <p>
+            Copy the code now. When you reach checkout, paste <strong>TAKE30</strong> to apply the discount.
+          </p>
+        </div>
+      </aside>
     </div>
 
-    <h2>Why Choose Godel Terminal for Stock Trading?</h2>
-    <ul>
-      <li>Real-time stock prices & unlimited historical data</li>
-      <li>Market quotes under 100ms from Nasdaq</li>
-      <li>Comprehensive financial analysis & SEC filings</li>
-      <li>Live global financial news and voice updates</li>
-      <li>Forex and cryptocurrency tracking</li>
-      <li>Interactive chat and trader networking</li>
-      <li>Cheaper alternative to other terminals such as Bloomberg</li>
-    </ul>
+    <section id="features" class="card" style="padding: 20px;">
+      <div class="section-title">
+        <h2>What you get with Godel Terminal</h2>
+        <p>Highlights pulled from the product’s own positioning.</p>
+      </div>
 
-    <a href="https://app.godelterminal.com/?via=take30" onclick="return gtag_report_conversion('https://app.godelterminal.com/?via=take30');" class="cta-button">Start with 30% Off Now</a>
+      <div class="grid" role="list">
+        <div class="feature" role="listitem">
+          <strong>Real-time market data</strong>
+          <p>Fast quotes and market information designed to load in under a tenth of a second.</p>
+        </div>
+        <div class="feature" role="listitem">
+          <strong>Real-time charts</strong>
+          <p>Charts built on Nasdaq data with unlimited history and intraday views.</p>
+        </div>
+        <div class="feature" role="listitem">
+          <strong>Global news search</strong>
+          <p>Search across news wires and press releases using filters like ticker, keywords, source, and date.</p>
+        </div>
+        <div class="feature" role="listitem">
+          <strong>Command-driven workflow</strong>
+          <p>Use short commands to pull company descriptions, live quotes, time &amp; sales, holders, and most-active lists.</p>
+        </div>
+        <div class="feature" role="listitem">
+          <strong>Watchlists &amp; quote monitor</strong>
+          <p>Build watchlists and monitor markets across regions, including U.S. and global equities.</p>
+        </div>
+        <div class="feature" role="listitem">
+          <strong>Filings &amp; fundamentals</strong>
+          <p>Access company financials and SEC filings (with direct EDGAR links) for research workflows.</p>
+        </div>
+      </div>
 
-    <h2>How to Redeem Your Godel Terminal Promotion Code</h2>
-    <ol>
-      <li>Visit <a href="https://app.godelterminal.com/?via=take30" onclick="return gtag_report_conversion('https://app.godelterminal.com/?via=take30');">Godel Terminal</a></li>
-      <li>Select your preferred <strong>stock market analysis plan</strong></li>
-      <li>Enter coupon code <strong>TAKE30</strong> at checkout</li>
-    </ol>
+      <div style="margin-top: 14px; display:flex; gap:10px; flex-wrap: wrap;">
+        <a class="btn primary" href="https://app.godelterminal.com/?via=take30" data-outbound="true">Open Godel Terminal</a>
+        <a class="btn" href="https://docs.godelterminal.com/" target="_blank" rel="noopener">Read the docs</a>
+      </div>
+    </section>
 
-    <a href="https://app.godelterminal.com/?via=take30" onclick="return gtag_report_conversion('https://app.godelterminal.com/?via=take30');" class="cta-button">Claim Your Discount Now</a>
-  </div>
+    <section id="how" class="card" style="padding: 20px;">
+      <div class="section-title">
+        <h2>How to redeem TAKE30</h2>
+        <p>Three quick steps.</p>
+      </div>
 
+      <div class="steps">
+        <div class="step">
+          <div class="n">1</div>
+          <h3>Copy the code</h3>
+          <p>Click “Copy code” and keep it ready for checkout: <strong>TAKE30</strong>.</p>
+        </div>
+        <div class="step">
+          <div class="n">2</div>
+          <h3>Open the official signup</h3>
+          <p>Use the button below to go to the official Godel Terminal app.</p>
+        </div>
+        <div class="step">
+          <div class="n">3</div>
+          <h3>Paste at checkout</h3>
+          <p>When prompted for a promo/coupon code, paste <strong>TAKE30</strong> to apply 30% off the first month.</p>
+        </div>
+      </div>
 
-  <div class="container">
-    <h2>🔍 Core Features</h2>
-    <ul>
-      <li><strong>Real-Time Market Data</strong></li>
-      <ul>
-        <li>Access live stock prices, options data, and times & sales directly from Nasdaq.</li>
-        <li>Experience ultra-low latency with data delivered in under 100 milliseconds.</li>
-      </ul>
-      <li><strong>Advanced Charting Tools</strong></li>
-      <ul>
-        <li>Utilize powerful charting capabilities powered by Nasdaq data.</li>
-        <li>Explore unlimited historical and intraday charts for comprehensive analysis.</li>
-      </ul>
-      <li><strong>Global News Integration</strong></li>
-      <ul>
-        <li>Stay informed with real-time global news from a wide array of sources.</li>
-        <li>Benefit from live voice reading of news for hands-free updates.</li>
-      </ul>
-      <li><strong>Comprehensive Financial Analysis</strong></li>
-      <ul>
-        <li>Access up-to-date financial statements for in-depth company analysis.</li>
-        <li>Track SEC filings with direct EDGAR links from a company’s inception, all updated in real-time.</li>
-      </ul>
-      <li><strong>Institutional Ownership Insights</strong></li>
-      <ul>
-        <li>Gain visibility into institutional ownership data to inform investment decisions.</li>
-      </ul>
-    </ul>
+      <div class="actions" style="margin-top: 14px;">
+        <button class="btn primary" type="button" id="copy-secondary">Copy TAKE30</button>
+        <a class="btn primary" href="https://app.godelterminal.com/?via=take30" data-outbound="true">Go to Godel Terminal</a>
+      </div>
+    </section>
 
-    <h2>💬 Interactive Communication</h2>
-    <ul>
-      <li><strong>User Chat Functionality</strong></li>
-      <ul>
-        <li>Engage with other users through integrated chat features.</li>
-        <li>Collaborate and share insights within the platform.</li>
-      </ul>
-    </ul>
+    <section id="faq" class="card" style="padding: 20px;">
+      <div class="section-title">
+        <h2>FAQ</h2>
+        <p>Common questions before you click out.</p>
+      </div>
 
-    <h2>🌐 Broad Market Coverage</h2>
-    <ul>
-      <li><strong>Indices Monitoring</strong></li>
-      <ul>
-        <li>Track major market indices to stay abreast of market movements.</li>
-      </ul>
-      <li><strong>Equity Screener</strong></li>
-      <ul>
-        <li>Utilize the equity screener to identify investment opportunities based on specific criteria.</li>
-      </ul>
-      <li><strong>Forex and Cryptocurrency Data</strong></li>
-      <ul>
-        <li>Access real-time data for foreign exchange markets and cryptocurrencies.</li>
-      </ul>
-    </ul>
+      <details>
+        <summary>Does the promo apply automatically?</summary>
+        <p>No—plan on entering <strong>TAKE30</strong> during checkout inside the official Godel Terminal signup/payment flow.</p>
+      </details>
 
-    <h2>🖥️ User-Friendly Interface</h2>
-    <ul>
-      <li><strong>Multi-Panel Workspace</strong></li>
-      <ul>
-        <li>Work with up to six independent panels simultaneously for multitasking efficiency.</li>
-        <li>Customize panel layout by moving and resizing to suit your workflow.</li>
-      </ul>
-      <li><strong>Shortcut Links</strong></li>
-      <ul>
-        <li>Pin frequently used functions to the top for quick and easy access.</li>
-      </ul>
-      <li><strong>Keyboard Navigation</strong></li>
-      <ul>
-        <li>Navigate between panels using the Tab key or by clicking on the desired panel.</li>
-      </ul>
-    </ul>
+      <details>
+        <summary>Is this page the official Godel Terminal website?</summary>
+        <p>No. This is an independent promo page for convenience. The official product pages are on <a href="https://godelterminal.com/" target="_blank" rel="noopener">godelterminal.com</a> and <a href="https://app.godelterminal.com/" target="_blank" rel="noopener">app.godelterminal.com</a>.</p>
+      </details>
 
-    <h2>🚀 Getting Started</h2>
-    <ul>
-      <li><strong>Easy Registration</strong></li>
-      <ul>
-        <li>Sign up via email, Google, X, or GitHub at <a
-            href="https://app.godelterminal.com/?via=take30">app.godelterminal.com</a>.</li>
-        <li>Optimized for use on Chrome for the best reliability.</li>
-      </ul>
-      <li><strong>Subscription Plan</strong></li>
-      <ul>
-        <li>Godel Retail: $80/month for full access to all features.</li>
-        <li>Godel Terminal offers a comprehensive suite of tools and data for financial professionals seeking real-time
-          insights and efficient workflows.</li>
-      </ul>
-    </ul>
-  </div>
+      <details>
+        <summary>Is trading risky?</summary>
+        <p>Yes. Trading and investing involve risk, and nothing on this page is financial advice. Do your own research or consult a qualified professional.</p>
+      </details>
+    </section>
 
+    <footer>
+      <div class="links">
+        <a href="https://godelterminal.com/" target="_blank" rel="noopener">Official site</a>
+        <a href="https://docs.godelterminal.com/" target="_blank" rel="noopener">Documentation</a>
+        <a href="https://godelterminal.com/terms" target="_blank" rel="noopener">Terms</a>
+        <a href="https://godelterminal.com/privacypolicy" target="_blank" rel="noopener">Privacy</a>
+        <a href="https://godelterminal.com/cookies" target="_blank" rel="noopener">Cookie policy</a>
+      </div>
+
+      <div>
+        <strong style="color: var(--text);">Risk &amp; informational disclaimer:</strong>
+        This site is for informational/promotional purposes only and should not be construed as an offer to sell, a solicitation to buy, or a recommendation for any security or strategy.
+      </div>
+
+      <div>© <span id="year"></span> godelpromo.com</div>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <noscript>
+    <div style="max-width: var(--max); margin: 18px auto; padding: 12px 18px; color: var(--muted);">
+      JavaScript is disabled. You can still use the promo code <strong>TAKE30</strong> at checkout.
+    </div>
+  </noscript>
+
+  <script>
+    (function(){
+      var CODE = "TAKE30";
+      var toast = document.getElementById("toast");
+
+      function showToast(message){
+        toast.textContent = message;
+        toast.classList.add("show");
+        window.clearTimeout(showToast._t);
+        showToast._t = window.setTimeout(function(){
+          toast.classList.remove("show");
+        }, 1800);
+      }
+
+      async function copyCode(){
+        try{
+          await navigator.clipboard.writeText(CODE);
+          showToast("Copied " + CODE + " to clipboard");
+          try{ gtag('event', 'copy_promo_code', { 'event_category': 'engagement', 'event_label': CODE }); }catch(e){}
+        } catch(e){
+          // Fallback for older browsers
+          window.prompt("Copy this code:", CODE);
+        }
+      }
+
+      ["copy-main", "copy-secondary", "copy-pill"].forEach(function(id){
+        var el = document.getElementById(id);
+        if(el){ el.addEventListener("click", copyCode); }
+      });
+
+      // Outbound conversion tracking (only for main CTAs)
+      document.querySelectorAll('a[data-outbound="true"]').forEach(function(a){
+        a.addEventListener("click", function(e){
+          e.preventDefault();
+          gtag_report_conversion(a.href);
+        });
+      });
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+    })();
+  </script>
 </body>
-
 </html>

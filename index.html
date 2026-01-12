@@ -34,6 +34,11 @@
       --shadow: 0 18px 60px rgba(0,0,0,.45);
       --radius: 14px;
       --max: 1100px;
+
+      /* Safe areas (iOS notch) */
+      --safe-l: env(safe-area-inset-left, 0px);
+      --safe-r: env(safe-area-inset-right, 0px);
+      --safe-b: env(safe-area-inset-bottom, 0px);
     }
 
     *{ box-sizing: border-box; }
@@ -47,6 +52,7 @@
         radial-gradient(900px 450px at 15% 0%, rgba(78,161,255,.25), rgba(0,0,0,0) 60%),
         radial-gradient(800px 420px at 95% 10%, rgba(45,212,191,.18), rgba(0,0,0,0) 55%),
         linear-gradient(180deg, #050814 0%, var(--bg) 40%, #050814 100%);
+      overflow-x: hidden;
     }
 
     a{ color: inherit; text-decoration: none; }
@@ -59,9 +65,8 @@
       border:1px solid var(--border);
       z-index: 9999;
     }
-    .skip-link:focus{ left: 12px; }
+    .skip-link:focus{ left: calc(12px + var(--safe-l)); }
 
-    /* Top bar */
     header{
       position: sticky;
       top: 0;
@@ -74,17 +79,19 @@
     .topbar{
       max-width: var(--max);
       margin: 0 auto;
-      padding: 14px 18px;
+      padding: 14px calc(18px + var(--safe-r)) 14px calc(18px + var(--safe-l));
       display: flex;
       align-items: center;
       gap: 14px;
       justify-content: space-between;
+      flex-wrap: wrap; /* helps on mobile widths */
     }
     .brand{
       display:flex; align-items:center; gap:10px;
       font-weight: 700;
       letter-spacing: .2px;
       white-space: nowrap;
+      min-width: 220px;
     }
     .logo{
       width: 34px; height: 34px;
@@ -98,22 +105,14 @@
       flex: 0 0 auto;
     }
     nav{
-      display:flex; gap: 14px;
+      display:flex; gap: 12px;
       align-items:center;
       color: var(--muted);
       font-size: 14px;
       flex-wrap: wrap;
       justify-content: flex-end;
     }
-    nav a{
-      opacity: .95;
-    }
-    nav a:hover{
-      opacity: 1;
-      text-decoration: none;
-    }
 
-    /* Promo pill */
     .promo-pill{
       display:flex;
       align-items:center;
@@ -149,6 +148,7 @@
       cursor: pointer;
       transition: transform .08s ease, background .15s ease, border-color .15s ease;
       user-select: none;
+      -webkit-tap-highlight-color: transparent;
     }
     .btn:hover{
       background: rgba(255,255,255,.10);
@@ -171,7 +171,7 @@
     .container{
       max-width: var(--max);
       margin: 0 auto;
-      padding: 22px 18px 70px;
+      padding: 22px calc(18px + var(--safe-r)) 70px calc(18px + var(--safe-l));
     }
 
     .hero{
@@ -199,7 +199,6 @@
       width: 300px;
       height: 300px;
       background: radial-gradient(circle at 30% 30%, rgba(78,161,255,.35), rgba(78,161,255,0) 70%);
-      filter: blur(0px);
       pointer-events:none;
     }
     .kicker{
@@ -267,6 +266,14 @@
       font-size: 13px;
       margin-top: 2px;
     }
+    .code-actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 0;
+      align-items: stretch;
+      justify-content: flex-end;
+    }
 
     .actions{
       display:flex;
@@ -315,7 +322,6 @@
       font-size: 13.5px;
     }
 
-    /* Sections */
     section{ margin-top: 22px; }
     .section-title{
       display:flex;
@@ -323,6 +329,7 @@
       justify-content: space-between;
       gap: 12px;
       margin: 28px 0 12px;
+      flex-wrap: wrap;
     }
     .section-title h2{
       margin: 0;
@@ -427,7 +434,6 @@
       color: var(--muted);
     }
 
-    /* Toast */
     .toast{
       position: fixed;
       left: 50%;
@@ -457,17 +463,69 @@
       transform: translateX(-50%) translateY(-2px);
     }
 
-    /* Responsive */
+    /* Mobile bottom action bar (polish) */
+    .mobile-bar{
+      display: none;
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      padding: 12px calc(12px + var(--safe-r)) calc(12px + var(--safe-b)) calc(12px + var(--safe-l));
+      background: rgba(7,11,20,.82);
+      border-top: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 60;
+      gap: 10px;
+    }
+    .mobile-bar .btn{
+      flex: 1;
+      padding: 14px 14px;
+      border-radius: 14px;
+      justify-content: center;
+    }
+
+    /* Breakpoints */
     @media (max-width: 900px){
       .hero{ grid-template-columns: 1fr; }
       .grid{ grid-template-columns: 1fr; }
       .steps{ grid-template-columns: 1fr; }
-      nav{ display:none; } /* keep it simple on mobile */
-      .promo-pill{ display:none; } /* reduce clutter */
-      .topbar{ justify-content: space-between; }
+
+      /* Keep primary actions visible in header on mobile; hide text links */
+      nav a:not(.btn){ display: none; }
+
+      /* Keep promo pill visible but compact */
+      .promo-pill{ gap: 8px; padding: 6px 8px; }
+      .promo-pill span{ display: none; }
+      .promo-pill strong{ font-size: 12px; padding: 4px 8px; }
+      .promo-pill .btn.small{ padding: 9px 10px; font-size: 13px; }
+
+      .container{ padding-top: 16px; padding-bottom: 140px; } /* room for mobile bar */
+      .hero-left{ padding: 18px; }
+      .hero-right{ padding: 14px; }
+
+      .mobile-bar{ display: flex; }
+
+      /* Toast above bottom bar */
+      .toast{ bottom: calc(76px + var(--safe-b)); }
     }
 
-    /* Focus */
+    @media (max-width: 520px){
+      .topbar{ padding-top: 10px; padding-bottom: 10px; gap: 10px; }
+      .brand{ min-width: 0; }
+      .brand .line1{ font-size: 13px !important; }
+      .brand .line2{ font-size: 14px !important; }
+      h1{ letter-spacing: -.3px; }
+      .subhead{ font-size: 15px; }
+
+      /* Stack code box content cleanly */
+      .code-box{ flex-direction: column; }
+      .code-meta{ min-width: 0; }
+      .code-actions{ width: 100%; justify-content: stretch; }
+      .code-actions .btn{ flex: 1; justify-content: center; }
+
+      /* Make primary hero actions full width */
+      .actions .btn{ flex: 1; justify-content: center; }
+    }
+
     :focus-visible{
       outline: 2px solid rgba(78,161,255,.75);
       outline-offset: 2px;
@@ -475,7 +533,7 @@
     }
   </style>
 
-  <!-- Google tag (gtag.js) — keep one loader, then config additional IDs if needed -->
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17293885740"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -507,7 +565,7 @@
   </script>
 </head>
 
-  <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SC6EQMNYXP"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -525,8 +583,8 @@
       <div class="brand" aria-label="Godel promo code page">
         <div class="logo" aria-hidden="true"></div>
         <div>
-          <div style="font-size:14px; color: var(--muted); font-weight: 650;">Godel Terminal</div>
-          <div style="font-size:16px;">Exclusive discount</div>
+          <div class="line1" style="font-size:14px; color: var(--muted); font-weight: 650;">Godel Terminal</div>
+          <div class="line2" style="font-size:16px;">Exclusive discount</div>
         </div>
       </div>
 
@@ -565,7 +623,7 @@
             <div class="code" id="promo-code">TAKE30</div>
             <div class="note">30% off the first month (terms can change).</div>
           </div>
-          <div class="actions" style="margin:0; align-items: stretch;">
+          <div class="code-actions">
             <button class="btn primary" type="button" id="copy-main">Copy code</button>
             <a class="btn" href="#how">How to redeem</a>
           </div>
@@ -711,6 +769,12 @@
     </footer>
   </main>
 
+  <!-- Mobile bottom action bar -->
+  <div class="mobile-bar" aria-label="Quick actions">
+    <button class="btn" type="button" id="copy-mobile">Copy TAKE30</button>
+    <a class="btn primary" href="https://app.godelterminal.com/?via=take30" data-outbound="true">Open Terminal</a>
+  </div>
+
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <noscript>
@@ -739,17 +803,15 @@
           showToast("Copied " + CODE + " to clipboard");
           try{ gtag('event', 'copy_promo_code', { 'event_category': 'engagement', 'event_label': CODE }); }catch(e){}
         } catch(e){
-          // Fallback for older browsers
           window.prompt("Copy this code:", CODE);
         }
       }
 
-      ["copy-main", "copy-secondary", "copy-pill"].forEach(function(id){
+      ["copy-main", "copy-secondary", "copy-pill", "copy-mobile"].forEach(function(id){
         var el = document.getElementById(id);
         if(el){ el.addEventListener("click", copyCode); }
       });
 
-      // Outbound conversion tracking (only for main CTAs)
       document.querySelectorAll('a[data-outbound="true"]').forEach(function(a){
         a.addEventListener("click", function(e){
           e.preventDefault();

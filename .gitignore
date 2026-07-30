@@ -1,0 +1,6 @@
+# Build output — Cloudflare Pages builds from source on deploy.
+dist/
+
+node_modules/
+.DS_Store
+*.log

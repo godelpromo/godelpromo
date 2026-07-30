@@ -1,0 +1,74 @@
+name: Build, validate and notify search engines
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # dateModified is derived from git history, so a shallow clone would
+          # silently stamp every page with the build date instead.
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build
+        run: node build.mjs
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+
+      - name: Validate
+        run: node scripts/check.mjs
+
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+          retention-days: 7
+
+  notify:
+    # Cloudflare Pages builds and deploys from the repo connection. This job
+    # only tells the search engines about it, so it waits for a green build and
+    # runs on main pushes only.
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Rebuild sitemap
+        run: node build.mjs
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+
+      - name: Wait for Cloudflare Pages to publish
+        # IndexNow returns 403 if the key file is not yet reachable, so give the
+        # deploy a moment to go live before announcing it.
+        run: sleep 90
+
+      - name: Submit to IndexNow (Bing, Yandex, Seznam, Naver)
+        if: env.INDEXNOW_KEY != ''
+        run: node scripts/indexnow.mjs
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+
+      - name: Ping Google with sitemap
+        # Google retired the ping endpoint; the sitemap in Search Console is the
+        # supported path. Left here as a no-op reminder rather than a fake step.
+        run: echo "Google discovers changes via the sitemap registered in Search Console."

@@ -60,59 +60,26 @@ differentiator — don't promote a claim between tiers without a primary source.
 
 ## Deployment — Cloudflare Pages
 
-### Cutover sequence (do it in this order)
-
-The old `.html` files are still in the repo root on purpose, so GitHub Pages keeps serving the
-current site until Cloudflare is verified. Do not delete them until step 5.
-
-**1. Create the Pages project**
-
-Cloudflare dashboard → Workers & Pages → Create → Pages → Connect to Git → select this repo.
-
-| Setting | Value |
-|---|---|
-| Production branch | `main` |
-| Build command | `node build.mjs` |
-| Build output directory | `dist` |
-| Node version | `20` (set env var `NODE_VERSION=20`) |
-
-**2. Add the IndexNow secret**
-
-Generate a key:
-
 ```bash
-node -e "console.log(require('crypto').randomBytes(16).toString('hex'))"
+export CLOUDFLARE_API_TOKEN=<token>      # personal account, Pages:Edit
+export CLOUDFLARE_ACCOUNT_ID=<account-id>
+./scripts/setup-cloudflare.sh
 ```
 
-Add it as `INDEXNOW_KEY` in **both** Cloudflare Pages environment variables (so the build writes the
-verification file) and GitHub Actions secrets (so the deploy workflow can submit URLs).
+Builds, validates, creates the Pages project and deploys. Safe to re-run.
 
-**3. Verify on the `*.pages.dev` URL**
+`CLOUDFLARE_ACCOUNT_ID` is required rather than optional on purpose — `wrangler whoami` can
+resolve several accounts, and an unqualified Pages deploy will silently pick one.
 
-Check before touching DNS:
-- `/` renders and the copy button works
-- `/llms.txt` and `/robots.txt` return correct content
-- `/index.html` 301s to `/`
-- `/<INDEXNOW_KEY>.txt` returns the key
+**Full cutover — DNS, CI secrets, rollback: [`docs/cloudflare-cutover.md`](docs/cloudflare-cutover.md).**
+Read it before changing DNS; the domain currently runs on GoDaddy nameservers and its apex is
+misconfigured.
 
-**4. Move the domain**
+Once `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` and `INDEXNOW_KEY` are set as GitHub Actions
+secrets, every push to `main` builds, validates, deploys and submits URLs to Bing.
 
-Pages project → Custom domains → add `www.godelpromo.com` and `godelpromo.com`.
-Cloudflare updates DNS automatically if the zone is already there; otherwise point the CNAME at the
-Pages project. Set a redirect rule from apex to `www` to match the canonical.
-
-**5. Clean up**
-
-Once the domain resolves to Pages and pages render correctly:
-
-```bash
-git rm index.html about.html alternatives.html commands-cheatsheet.html faq.html \
-       pricing.html privacy.html redeem.html starter-guide.html terms.html \
-       robots.txt sitemap.xml README_DEPLOY.md godelpromo.png
-```
-
-`_redirects` already maps every one of those old URLs to its new home, so nothing 404s.
-Disable GitHub Pages in repo settings.
+The legacy `.html` files remain in the repo root deliberately, so GitHub Pages keeps serving the
+live site until Cloudflare is verified. Removal is the last step of the cutover doc.
 
 ### What the build generates
 

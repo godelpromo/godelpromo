@@ -1,4 +1,4 @@
-name: Build, validate and notify search engines
+name: Build, deploy and notify search engines
 
 on:
   push:
@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -36,13 +40,13 @@ jobs:
           path: dist
           retention-days: 7
 
-  notify:
-    # Cloudflare Pages builds and deploys from the repo connection. This job
-    # only tells the search engines about it, so it waits for a green build and
-    # runs on main pushes only.
+  deploy:
     needs: build
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -52,15 +56,21 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Rebuild sitemap
+      - name: Build
         run: node build.mjs
         env:
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
 
-      - name: Wait for Cloudflare Pages to publish
-        # IndexNow returns 403 if the key file is not yet reachable, so give the
-        # deploy a moment to go live before announcing it.
-        run: sleep 90
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=godelpromo --branch=main
+
+      - name: Wait for the deployment to go live
+        # IndexNow 403s if the key file is not yet reachable at the domain.
+        run: sleep 45
 
       - name: Submit to IndexNow (Bing, Yandex, Seznam, Naver)
         if: env.INDEXNOW_KEY != ''
@@ -68,7 +78,7 @@ jobs:
         env:
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
 
-      - name: Ping Google with sitemap
-        # Google retired the ping endpoint; the sitemap in Search Console is the
-        # supported path. Left here as a no-op reminder rather than a fake step.
-        run: echo "Google discovers changes via the sitemap registered in Search Console."
+      - name: Google
+        # Google retired the sitemap ping endpoint. Discovery happens via the
+        # sitemap registered in Search Console — no automated step exists.
+        run: echo "Google discovers changes via the sitemap in Search Console."

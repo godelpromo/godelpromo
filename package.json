@@ -9,7 +9,8 @@
     "serve": "node build.mjs && node --run serve:only",
     "serve:only": "npx --yes serve dist -l 4321",
     "check": "node scripts/check.mjs",
-    "ping": "node scripts/indexnow.mjs"
+    "ping": "node scripts/indexnow.mjs",
+    "bing": "node scripts/bing.mjs"
   },
   "engines": {
     "node": ">=20"

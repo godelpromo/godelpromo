@@ -294,6 +294,18 @@ async function main() {
     await writeFile(path.join(dist, `${key}.txt`), key, 'utf8');
   }
 
+  // Bing Webmaster Tools file verification. Only needed as a fallback —
+  // importing from Google Search Console auto-verifies, and GSC verification
+  // already exists via the google-site-verification TXT record on the apex.
+  const bing = process.env.BING_VERIFY_TOKEN;
+  if (bing) {
+    await writeFile(
+      path.join(dist, 'BingSiteAuth.xml'),
+      `<?xml version="1.0"?>\n<users>\n  <user>${bing}</user>\n</users>\n`,
+      'utf8',
+    );
+  }
+
   let bytes = 0;
   for (const p of pages) { bytes += (await stat(outputPathFor(p.path))).size; }
 

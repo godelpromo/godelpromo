@@ -220,13 +220,10 @@ function buildHeaders() {
   X-Frame-Options: SAMEORIGIN
   Permissions-Policy: geolocation=(), microphone=(), camera=()
 
+# Every CSS/JS/image lives under /assets, so this one rule covers them all.
+# Adding /*.css and /*.js as well made both rules match the same file and
+# Cloudflare concatenated the values into a doubled Cache-Control header.
 /assets/*
-  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
-
-/*.css
-  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
-
-/*.js
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 
 /llms.txt

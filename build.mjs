@@ -199,7 +199,16 @@ function buildRedirects() {
   const lines = Object.entries(LEGACY_REDIRECTS)
     .map(([from, to]) => `${from}  ${to}  301`)
     .join('\n');
-  return `# Legacy .html URLs from the pre-clean-URL build.
+  // Apex -> www, first because _redirects is first-match-wins.
+  //
+  // Pages supports absolute URLs on the left-hand side, which lets a
+  // host-level redirect live in the repo instead of as a Cloudflare Redirect
+  // Rule. Every canonical tag on the site points at www, so apex must 301
+  // rather than serve a duplicate copy.
+  return `# Apex to www. Must stay above the path rules — first match wins.
+https://godelpromo.com/*  https://www.godelpromo.com/:splat  301
+
+# Legacy .html URLs from the pre-clean-URL build.
 ${lines}
 
 # Trailing-slash normalisation for the old flat paths.

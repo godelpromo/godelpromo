@@ -1,0 +1,84 @@
+name: Build, deploy and notify search engines
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # dateModified is derived from git history, so a shallow clone would
+          # silently stamp every page with the build date instead.
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build
+        run: node build.mjs
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+
+      - name: Validate
+        run: node scripts/check.mjs
+
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+          retention-days: 7
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build
+        run: node build.mjs
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=godelpromo --branch=main
+
+      - name: Wait for the deployment to go live
+        # IndexNow 403s if the key file is not yet reachable at the domain.
+        run: sleep 45
+
+      - name: Submit to IndexNow (Bing, Yandex, Seznam, Naver)
+        if: env.INDEXNOW_KEY != ''
+        run: node scripts/indexnow.mjs
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+
+      - name: Google
+        # Google retired the sitemap ping endpoint. Discovery happens via the
+        # sitemap registered in Search Console — no automated step exists.
+        run: echo "Google discovers changes via the sitemap in Search Console."

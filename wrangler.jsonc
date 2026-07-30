@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "godelpromo",
+  "compatibility_date": "2026-07-30",
+
+  // Pages serves the generated build, not the repo root. `node build.mjs`
+  // produces this directory along with _headers, _redirects, sitemap.xml,
+  // robots.txt and llms.txt.
+  "pages_build_output_dir": "dist"
+}

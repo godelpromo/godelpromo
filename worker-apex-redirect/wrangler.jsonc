@@ -1,0 +1,14 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "godelpromo-apex-redirect",
+  "main": "index.js",
+  "compatibility_date": "2026-07-30",
+
+  // Apex only. www must never route here or requests would redirect to
+  // themselves forever.
+  "routes": [
+    { "pattern": "godelpromo.com/*", "zone_name": "godelpromo.com" }
+  ],
+
+  "observability": { "enabled": true }
+}

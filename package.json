@@ -1,0 +1,17 @@
+{
+  "name": "godelpromo",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Static site for godelpromo.com — independent Godel Terminal promo code and reference.",
+  "scripts": {
+    "build": "node build.mjs",
+    "serve": "node build.mjs && node --run serve:only",
+    "serve:only": "npx --yes serve dist -l 4321",
+    "check": "node scripts/check.mjs",
+    "ping": "node scripts/indexnow.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

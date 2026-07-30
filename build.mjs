@@ -199,14 +199,13 @@ function buildRedirects() {
   const lines = Object.entries(LEGACY_REDIRECTS)
     .map(([from, to]) => `${from}  ${to}  301`)
     .join('\n');
-  // Apex -> www, first because _redirects is first-match-wins.
-  //
-  // Pages supports absolute URLs on the left-hand side, which lets a
-  // host-level redirect live in the repo instead of as a Cloudflare Redirect
-  // Rule. Every canonical tag on the site points at www, so apex must 301
-  // rather than serve a duplicate copy.
-  return `# Apex to www. Must stay above the path rules — first match wins.
-https://godelpromo.com/*  https://www.godelpromo.com/:splat  301
+  // No apex -> www rule here on purpose. Pages only matches relative paths in
+  // _redirects; an absolute URL on the left-hand side is silently ignored
+  // (that syntax is a Netlify extension, and it fails open as a 200 rather
+  // than erroring). The apex redirect is handled by the Worker in
+  // worker-apex-redirect/ instead.
+  return `# Path redirects only — host-level redirects are not supported here.
+# Apex -> www is handled by the godelpromo-apex-redirect Worker.
 
 # Legacy .html URLs from the pre-clean-URL build.
 ${lines}

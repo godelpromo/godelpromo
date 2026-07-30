@@ -136,25 +136,30 @@ GitHub repo → Settings → Secrets and variables → Actions:
 
 After that, every push to `main` builds, validates, deploys and submits URLs to Bing.
 
-## Step 6 — Clean up (only after the domain resolves to Pages)
+## Step 6 — Clean up — DONE 2026-07-30
 
-```bash
-git rm index.html about.html alternatives.html commands-cheatsheet.html faq.html \
-       pricing.html privacy.html redeem.html starter-guide.html terms.html \
-       robots.txt sitemap.xml README_DEPLOY.md godelpromo.png
-git commit -m "Remove legacy static files superseded by the generated build"
-```
-
-`_redirects` maps every one of those URLs to its new home. Then disable GitHub Pages in
-repo settings so it can't serve a stale copy.
+The legacy flat `.html` files, the hand-maintained `robots.txt` / `sitemap.xml`,
+`README_DEPLOY.md`, `godelpromo.png` and `CNAME` were removed once the domain was verified
+on Pages. `_redirects` maps every old URL to its new home. GitHub Pages is disabled.
 
 ---
 
 ## Rollback
 
-Nothing is destructive until step 4.
+**GitHub Pages is no longer a rollback path** — it is disabled and the legacy files are
+deleted. Recovery now runs through Cloudflare:
 
-- **Before the nameserver change:** delete the Pages project. Nothing else changed.
-- **After:** point GoDaddy nameservers back to `ns65.domaincontrol.com` /
-  `ns66.domaincontrol.com`. The original `www` CNAME → `godelpromo.github.io` still works
-  as long as GitHub Pages remains enabled — which is why step 6 comes last.
+- **Bad deploy:** roll back to a previous deployment in the Pages dashboard
+  (Workers & Pages → godelpromo → Deployments → … → Rollback), or redeploy an earlier
+  commit with `npx wrangler pages deploy dist --project-name godelpromo --branch main`.
+- **Need the old site back:** it is in git history at `d5a721d` (the last commit before the
+  rebuild).
+- **DNS emergency:** the zone is on Cloudflare, so records are editable directly. Pointing
+  nameservers back to GoDaddy would also require recreating the `www` CNAME and the
+  `google-site-verification` TXT by hand.
+
+### What must not be deleted
+
+The `TXT` record `google-site-verification=I2vAN0jgu…` on the apex is what keeps Google
+Search Console verified. It survived the GoDaddy → Cloudflare migration; do not remove it
+while cleaning up DNS.

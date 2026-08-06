@@ -13,7 +13,7 @@ const faqs = [
   },
   {
     q: `Is ${PROMO.code} better than NEWUSER, GET30, SHKRELI or GUIDE?`,
-    a: `They are all the same offer. Every one of these codes is a referral token in ${PRODUCT.name}'s affiliate programme, and every one delivers ${PROMO.percent}% off the ${PROMO.appliesTo}. No code in circulation gives more — even <a href="/godel-terminal-official-promo-code/">X25, the code from ${PRODUCT.name}'s own X account</a>, is smaller at 25% — and anyone advertising 40%, 75% or "up to 80% off" is describing a discount that does not exist. One genuine exception: students with a .edu email get an official <a href="/godel-terminal-student-discount/">$5/month rate</a> that beats every code.`,
+    a: `They are all the same offer. Every one of these codes is a referral token in ${PRODUCT.name}'s affiliate programme, and every one delivers ${PROMO.percent}% off the ${PROMO.appliesTo}. No code in circulation gives more — even <a href="/godel-terminal-official-promo-code/">X25, the code from ${PRODUCT.name}'s own X account</a>, is smaller at 25% — and anyone advertising 40%, 75% or "up to 80% off" is describing a discount that does not exist. One genuine exception: ${PRODUCT.name} announced an official <a href="/godel-terminal-student-discount/">$5/month student rate</a> (.edu signup) that beats every code — confirm it is still live before counting on it.`,
   },
   {
     q: `How much does ${PRODUCT.name} cost?`,
@@ -116,8 +116,8 @@ export const page = {
 
   <p class="prose faint">We list our competitors' codes because it is simply true that the referral codes work
   identically, and you deserve to know that before you spend time hunting for a better one. If ${esc(PROMO.code)}
-  ever stops applying, any other referral code in this table should behave the same way. Students: the official
-  <a href="/godel-terminal-student-discount/">$5/month student rate</a> beats all of them.</p>
+  ever stops applying, any other referral code in this table should behave the same way. Students: the announced official
+  <a href="/godel-terminal-student-discount/">$5/month student rate</a> beats all of them, if it is still live.</p>
 </section>
 
 <section>

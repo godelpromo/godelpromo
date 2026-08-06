@@ -86,7 +86,7 @@ export const PRICING = {
     amount: 30,
     unit: 'month',
     display: '$30',
-    note: 'Regulatory surcharge for FINRA-licensed users, covering professional-subscriber exchange fees.',
+    note: 'Regulatory surcharge for FINRA-licensed users, covering professional-subscriber exchange fees. The pricing page spells out both plans: $148/month on monthly, or $996/year plus $360/year on annual.',
     source: 'godelterminal.com/pricing, August 2026',
     attributed: false,
   },
@@ -98,8 +98,18 @@ export const PRICING = {
     attributed: false,
   },
   org: {
-    note: 'ORG plan for teams of two or more: organization billing, grouped seats, a dedicated representative, custom pricing.',
-    source: 'godelterminal.com/pricing, August 2026',
+    note: 'ORG plan for teams of two or more: organization billing, grouped seats, a dedicated representative. In-app copy states a 10% discount at 2+ users with prorated seat additions.',
+    source: 'godelterminal.com/pricing and in-app ORG copy (archived app build), 2026',
+    attributed: false,
+  },
+  /**
+   * Brokerage-linked discount, from the vendor's own in-app copy and changelog
+   * (June 2026 build). The most current pricing lever and bigger than any code
+   * for eligible users — no competitor page covers it.
+   */
+  brokerageDiscount: {
+    note: 'Accounts with a connected brokerage holding at least $5,000 and at least one eligible trade in the trailing month may qualify for a discounted rate — $118 to $80/month for new accounts, $10 off for locked-in accounts. Organizations and prepaid accounts are excluded.',
+    source: 'vendor in-app changelog v4.2.7 and June 2026 app build (archived)',
     attributed: false,
   },
   /**
@@ -108,8 +118,9 @@ export const PRICING = {
    * updated. Community-reported points are attributed as such.
    */
   history: [
-    { when: 'late 2024', monthly: 60, source: 'community-reported (Reddit, contemporaneous)', attributed: true },
-    { when: 'February 2025', monthly: 80, finraMonthly: 110, source: 'community-reported (r/GodelTerminal announcements)', attributed: true },
+    { when: 'October 2024', monthly: 40, source: 'archived vendor documentation', attributed: false },
+    { when: 'late 2024', monthly: 60, finraMonthly: 90, source: 'archived vendor documentation and app builds', attributed: false },
+    { when: 'March 2025', monthly: 80, finraMonthly: 110, source: 'vendor in-app changelog v3.8.0 (archived)', attributed: false },
     { when: 'August 2026', monthly: 118, annual: 996, source: 'godelterminal.com/pricing', attributed: false },
   ],
 };
@@ -131,7 +142,8 @@ export const STUDENT = {
   ],
   source: 'Official @GodelTerminal X account, November 2024',
   sourceUrl: 'https://x.com/GodelTerminal/status/1860073008397975569',
-  note: 'Announced on the official X account but absent from the pricing page — confirm in-app before relying on it.',
+  note: 'Announced on the official X account and implemented in-app in November 2024, but never listed on the pricing page — and archived app builds from mid-2026 no longer show the in-app Student Discount button. The program may have been discontinued. Email student@godelterminal.com to confirm it is still live before planning around it.',
+  statusUncertain: true,
 };
 
 /** The referral programme itself, from Godel's own page. */

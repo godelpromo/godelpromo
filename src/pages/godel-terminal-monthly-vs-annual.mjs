@@ -24,7 +24,7 @@ const faqs = [
   },
   {
     q: `Does the FINRA surcharge apply on both plans?`,
-    a: `${PRODUCT.name}'s pricing page lists a ${PRICING.finraSurcharge.display}/month surcharge for FINRA-licensed users. Exactly how it is billed against each plan is not spelled out, so if you are licensed, budget roughly $${PRICING.finraSurcharge.amount * 12}/year extra and confirm the mechanics at checkout.`,
+    a: `Yes — and the pricing page spells it out for both: $${PRICING.monthly.amount + PRICING.finraSurcharge.amount}/month on the monthly plan, or ${PRICING.annual.display}/year plus $${PRICING.finraSurcharge.amount * 12}/year on annual. If you are FINRA-licensed, add that to whichever column you compare.`,
   },
   {
     q: `Can I start monthly and switch to annual later?`,
@@ -132,7 +132,8 @@ monthly cheaper to <em>keep</em>.</p>
 <h2>The line most comparisons skip</h2>
 
 <p class="prose">${esc(PRODUCT.name)}'s pricing page lists a <strong>${PRICING.finraSurcharge.display}/month surcharge
-for FINRA-licensed users</strong>. If that applies to you, budget roughly
+for FINRA-licensed users</strong> — stated for both plans: $${PRICING.monthly.amount + PRICING.finraSurcharge.amount}/month
+on monthly, or ${PRICING.annual.display} plus $${PRICING.finraSurcharge.amount * 12}/year on annual. If that applies to you, add
 $${PRICING.finraSurcharge.amount * 12}/year to both columns before comparing against anything else you pay for.
 The full fee picture, with sourcing on every figure, is on the
 <a href="/godel-terminal-pricing/">pricing breakdown →</a></p>

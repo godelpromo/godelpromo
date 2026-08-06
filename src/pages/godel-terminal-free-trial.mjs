@@ -13,7 +13,11 @@ const faqs = [
   },
   {
     q: `Is there a free version of ${PRODUCT.name}?`,
-    a: `No permanently free tier is advertised. ${PRODUCT.name} is a paid product with a reported trial period.`,
+    a: `No permanently free tier is advertised. ${PRODUCT.name} is a paid product with a ${PRICING.freeTrial.days}-day trial.`,
+  },
+  {
+    q: `Wasn't the trial 30 days?`,
+    a: `It was — archived app builds show a 30-day trial through early 2025, shortened to ${PRICING.freeTrial.days} days by mid-2025. Guides still quoting 30 days are describing the old product. Archived builds also gate the trial to accounts that have never had a subscription, so it is a one-time offer.`,
   },
   {
     q: `Do I need a credit card for the trial?`,

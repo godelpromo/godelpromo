@@ -27,6 +27,20 @@ export const VENDOR_PAGES = {
   companyNews: 'https://www.dl.software/news/',
 };
 
+/**
+ * Trial history, from archived vendor app builds (harvested via Wayback,
+ * 2026-08-05). The trial was 30 days in builds from November 2024 through
+ * March 2025 and 14 days by August 2025; archived builds gate the trial to
+ * accounts that have never had a subscription (`has_had_subscription`).
+ */
+export const TRIAL_HISTORY = {
+  tier: 'vendor',
+  was: '30-day free trial (archived app builds, November 2024 – March 2025)',
+  now: '14-day free trial (vendor pricing page and terms, August 2026)',
+  oneTime: 'Archived builds show the trial offered only to accounts that have never had a subscription.',
+  source: 'archived app.godelterminal.com bundles via Wayback, 2026-08-05 harvest',
+};
+
 /** Cancellation and billing, from the vendor terms (August 2026). */
 export const CANCELLATION = {
   tier: 'vendor',

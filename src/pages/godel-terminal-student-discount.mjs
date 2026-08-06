@@ -23,7 +23,7 @@ const faqs = [
 export const page = {
   path: '/godel-terminal-student-discount/',
   title: 'Godel Terminal Student Discount: The Official $5/Month Rate',
-  description: 'Godel Terminal offers students a $5/month rate: sign up with a .edu email and send your student ID. How the official program works, and when TAKE30 beats it.',
+  description: 'Godel Terminal announced a $5/month student rate: .edu signup plus a student ID. How the official program works, whether it is still live, and how to check.',
   summary: 'The official Godel Terminal student program — $5 a month with a .edu email and a student ID — and why it beats every promo code in circulation.',
   datePublished: '2026-08-05',
   breadcrumbs: [
@@ -38,10 +38,11 @@ export const page = {
     return `
 <h1>Godel Terminal student discount: ${esc(STUDENT.display)} a month with a .edu email</h1>
 
-<p class="lede">${esc(PRODUCT.name)} offers students a rate of <strong>${esc(STUDENT.display)} per ${esc(STUDENT.unit)}</strong>,
-announced by the official @GodelTerminal X account in November 2024. You sign up with a .edu email, use the
-Student Discount button in your profile, and email your student ID to ${esc(STUDENT.contact)}. If you have a
-.edu address, this beats every promo code in circulation — including ours.</p>
+<p class="lede">${esc(PRODUCT.name)} announced a student rate of <strong>${esc(STUDENT.display)} per ${esc(STUDENT.unit)}</strong>
+on its official X account in November 2024: sign up with a .edu email, use the Student Discount button in your
+profile, and email your student ID to ${esc(STUDENT.contact)}. If you have a .edu address and the program is
+still live, it beats every promo code in circulation — including ours. Whether it is still live is the honest
+open question on this page.</p>
 
 ${note(`<strong>One honest caveat before you plan around it:</strong> ${esc(STUDENT.note)} The program's only
 published source is the <a href="${STUDENT.sourceUrl}" rel="nofollow noopener" target="_blank">official

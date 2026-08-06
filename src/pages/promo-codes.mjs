@@ -18,7 +18,7 @@ const faqs = [
   },
   {
     q: `What about students?`,
-    a: `Students beat every code: ${PRODUCT.name}'s official student rate is ${STUDENT.display}/${STUDENT.unit} with a .edu signup and a student ID. <a href="/godel-terminal-student-discount/">How the student program works</a>.`,
+    a: `${PRODUCT.name} announced an official student rate of ${STUDENT.display}/${STUDENT.unit} (.edu signup plus a student ID) that beats every code — though it has never appeared on the pricing page, so confirm it is still live. <a href="/godel-terminal-student-discount/">How the student program works</a>.`,
   },
   {
     q: `Is there a ${PRODUCT.name} coupon for 40%, 75% or 80% off?`,
@@ -79,9 +79,10 @@ paid. The one exception: <span class="mono">X25</span>, posted by ${esc(PRODUCT.
 25% — <a href="/godel-terminal-official-promo-code/">smaller than the referral codes</a>.</p>
 
 ${note(`No code in circulation gives more than ${PROMO.percent}% off, and none extends past the
-${esc(PROMO.appliesTo)}. Anyone claiming otherwise is guessing. The only route to a deeper discount is not a code
-at all: students with a .edu email get an official <a href="/godel-terminal-student-discount/">${esc(STUDENT.display)}/month
-rate</a>.`)}
+${esc(PROMO.appliesTo)}. Anyone claiming otherwise is guessing. The deeper discounts are not codes at all:
+an announced <a href="/godel-terminal-student-discount/">${esc(STUDENT.display)}/month student rate</a> (.edu email;
+confirm it is still live), and an in-app brokerage-linked rate — connect a brokerage holding $5,000+ with a
+recent trade and the vendor's own app copy offers $80/month instead of ${PRICING.monthly.display}.`)}
 
 <h2>All known Godel Terminal codes</h2>
 

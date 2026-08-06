@@ -25,7 +25,7 @@ const faqs = [
   },
   {
     q: `Is there a student discount?`,
-    a: `Yes — ${STUDENT.display}/${STUDENT.unit}, announced by the official ${PRODUCT.name} X account. Sign up with a .edu email and send your student ID. If you qualify, it beats every promo code. <a href="/godel-terminal-student-discount/">How the student rate works</a>.`,
+    a: `A ${STUDENT.display}/${STUDENT.unit} student rate was announced by the official ${PRODUCT.name} X account in November 2024 — .edu signup plus a student ID. It is not on the pricing page and the in-app button has come and gone, so confirm it is still live with ${STUDENT.contact}. If it is, it beats every promo code. <a href="/godel-terminal-student-discount/">The full picture</a>.`,
   },
   {
     q: `Are the 40% and 75% off claims real?`,

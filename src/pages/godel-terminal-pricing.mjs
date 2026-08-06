@@ -22,7 +22,11 @@ const faqs = [
   },
   {
     q: `Is there a student price?`,
-    a: `Yes — an official student rate of <strong>${STUDENT.display}/${STUDENT.unit}</strong>, announced on ${PRODUCT.name}'s own X account: .edu signup, then email a student ID. It beats every promo code by a wide margin. <a href="/godel-terminal-student-discount/">How it works</a>.`,
+    a: `An official student rate of <strong>${STUDENT.display}/${STUDENT.unit}</strong> was announced on ${PRODUCT.name}'s own X account (.edu signup, then email a student ID). It has never appeared on the pricing page and the in-app button has come and gone, so confirm it is still live — if it is, it beats every promo code by a wide margin. <a href="/godel-terminal-student-discount/">How it works</a>.`,
+  },
+  {
+    q: `Are there discounts besides promo codes?`,
+    a: `Two, per the vendor's own in-app copy: a brokerage-linked rate (connect a brokerage holding $5,000+ with at least one recent trade and new accounts are offered $80/month instead of ${PRICING.monthly.display}), and a 10% organization discount at two or more seats. Neither is advertised on the pricing page — they surface in-app.`,
   },
   {
     q: `Is annual or monthly better value?`,
@@ -152,6 +156,21 @@ and it is worth taking — but it is one month, not a rate change. Anyone framin
 <p class="prose">There is a mild irony worth flagging: the discount is worth more in cash on the
 <em>monthly</em> plan, but the annual plan is far cheaper overall. If you already know you want the product,
 annual wins even though the code looks smaller against it.</p>
+
+<h2>The discounts that are not codes</h2>
+
+<p class="prose">Three ways to pay less that no coupon site lists, all from the vendor's own surfaces:</p>
+
+<ul class="prose">
+  <li><strong>Brokerage-linked rate.</strong> The vendor's in-app copy offers accounts with a connected
+  brokerage holding at least $5,000 and one eligible trade in the trailing month a discounted rate —
+  $80/month instead of ${PRICING.monthly.display} for new accounts, $10 off for locked-in ones. Organizations and
+  prepaid accounts are excluded. (Source: archived in-app changelog and app build, 2026.)</li>
+  <li><strong>Organization discount.</strong> The ORG plan groups billing for teams; in-app copy states a
+  10% discount at two or more seats, with prorated seat additions.</li>
+  <li><strong>Student rate.</strong> ${esc(STUDENT.display)}/${esc(STUDENT.unit)}, announced on the official X account —
+  with a live-status caveat covered on the <a href="/godel-terminal-student-discount/">student page</a>.</li>
+</ul>
 
 <h2>Why other pages quote $60 or $80 a month</h2>
 

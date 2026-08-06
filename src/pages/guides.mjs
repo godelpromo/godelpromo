@@ -41,6 +41,7 @@ const GROUPS = [
       { href: '/godel-terminal-commands/', label: 'Command reference', blurb: 'Every documented command, grouped the way the vendor groups them.' },
       { href: '/godel-terminal-commands-that-dont-exist/', label: 'Commands that "don\'t exist"', blurb: 'Our dated corrections ledger — what changed and when.' },
       { href: '/starter-guide/', label: 'Starter guide', blurb: 'A first 30 minutes that tests what actually matters.' },
+      { href: '/godel-terminal-stock-research-workflow/', label: 'Full research workflow', blurb: 'A complete research pass, command by command.' },
       { href: '/godel-terminal-data-coverage/', label: 'Data coverage', blurb: 'Real-time vs delayed, by market — the honest split.' },
       { href: '/godel-terminal-excel/', label: 'Excel integration', blurb: 'Export exists; a live plugin does not.' },
       { href: '/godel-terminal-api/', label: 'API access', blurb: 'No public API — the full sourced answer.' },

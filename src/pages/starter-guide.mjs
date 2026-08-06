@@ -97,7 +97,8 @@ a restatement, an acquisition, an S-1. ${esc(cmd('CF').summary)}</p>
 The only number that matters is how many other tools you can cancel, and if the answer is zero, the price is
 irrelevant regardless of how low it is.</p>
 
-<p class="prose"><a href="/godel-terminal-commands/">Full command reference →</a> ·
+<p class="prose"><a href="/godel-terminal-stock-research-workflow/">Graduate to the full research workflow →</a> ·
+<a href="/godel-terminal-commands/">Full command reference →</a> ·
 <a href="/godel-terminal-free-trial/">How to use a full trial period →</a></p>
 
 ${codeBox()}

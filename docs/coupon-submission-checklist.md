@@ -67,6 +67,14 @@ Matching their numbers would destroy the only thing that differentiates you, and
 mechanically too: inflated codes get downvoted and removed on community-moderated sites, and a
 code that fails at checkout produces exactly the "this didn't work" comment that kills a listing.
 
+Two more accuracy rules (added 2026-08-05):
+
+- **Never label TAKE30 "official".** An official code exists — X25, from Godel's own X account,
+  at 25% — and TAKE30 is a referral code. "Independent/affiliate, 30%" is the accurate framing,
+  and it's also the better offer.
+- **Never submit TAKE30 into student-discount listing slots.** The official student rate is
+  $5/month via .edu signup; a code listing there would be worse than the real answer.
+
 ---
 
 ## Track B — no Godel page exists yet (DO THESE FIRST)

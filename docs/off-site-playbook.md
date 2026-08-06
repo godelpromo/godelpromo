@@ -134,16 +134,17 @@ These carry more weight per link than coupon sites and tend to persist longer.
 **Directory blurb (150 words):**
 ```
 GodelPromo is an independent reference for Godel Terminal covering pricing, the documented command
-set, and honest comparisons against Bloomberg, Koyfin and TradingView.
+set, and honest comparisons against Bloomberg, Koyfin, FactSet, Seeking Alpha and TradingView.
 
-It maintains a verified command reference built from Godel Terminal's own documentation URLs —
-including a list of commands that other guides publish but which don't exist in the official docs
-(OPT, HDS, GIP, MOST and FOCUS are all commonly cited and none are real; the documented equivalents
-are OMON, HMS, HP, EQS and QM).
+It maintains a verified 48-command reference built from Godel Terminal's own documentation, kept
+current with a public, dated corrections ledger — including the five commands that gained
+documentation in 2026 and the working aliases (OPT opens OMON; GIP opens G) that other guides
+still describe incorrectly.
 
-The site also publishes an interactive multi-seat cost calculator comparing Godel Terminal against
-Bloomberg, LSEG Workspace, FactSet, Koyfin and TradingView, and clearly separates vendor-published
-pricing from third-party reported figures.
+The site also publishes an interactive multi-seat cost calculator, a data-coverage breakdown
+separating real-time from delayed markets, and pages on the official $5/month student rate and
+the official X25 code. Vendor-published figures are always distinguished from third-party
+reports.
 
 Promo code TAKE30 gives 30% off the first month. The site discloses that it earns referral
 commission on subscriptions.
@@ -171,29 +172,30 @@ r/FinancialCareers · r/CFA
 
 ### Draft 1 — the command post (your strongest asset)
 
-**Title:** `PSA: half the Godel Terminal command guides online list commands that don't exist`
+> **Rewritten 2026-08-05.** The old version of this draft claimed OPT/HDS/G/GIP/MOST/FOCUS/SECF
+> don't exist. Godel's docs expanded from 17 to 48 commands and five of those are now real
+> (HDS, G, MOST, FOCUS, SECF), with OPT and GIP documented as aliases. **Never post the old
+> version** — it is now checkably false.
+
+**Title:** `PSA: most Godel Terminal command guides are months out of date (docs went 17 → 48 commands)`
 
 ```
-I've been cross-referencing Godel Terminal guides against their actual documentation and a lot of
-the popular ones are just wrong. They've copied Bloomberg mnemonics and assumed Godel adopted them.
+I've been cross-referencing Godel Terminal guides against the actual documentation and almost
+all of them — including, until recently, mine — describe an old version of the product.
 
-Commands that get listed but have no page in Godel's docs:
+As of August 2026 Godel documents 48 commands, up from 17 earlier this year. Things guides
+still get wrong:
 
-- OPT (options) → it's actually OMON
-- HDS (holders) → it's actually HMS
-- G / GIP (charts) → it's HP for historical prices
-- MOST (most active) → it's EQS, the equity screener
-- FOCUS (quick quote) → it's QM, the quote monitor
+- "OPT doesn't work" — it does; it's a documented alias of OMON (so are CALL and PUT)
+- "HDS isn't real" — it is now: Holders (institutional ownership, links to the 13F filings)
+- "G isn't real" — it is now: the TradingView-powered chart window (GIP and GP are aliases)
+- HMS is NOT holders — it's Historical Multiple Security (multi-ticker comparison charts)
+- MOST, FOCUS and SECF all have real doc pages now too
 
-You can check this yourself — Godel's command docs are at
-godelterminal.com/docs/commands/<mnemonic>.html. OMON, EQS, HMS and HP all resolve. OPT, MOST,
-HDS, GIP and FOCUS don't.
+You can check any mnemonic yourself: godelterminal.com/docs/commands/<mnemonic>
+(e.g. /docs/commands/hds resolves, and the OMON page lists its aliases).
 
-The 17 that are documented: DES, N, QM, CF, FA, WEI, EM, OMON, EQS, HP, ANR, ERN, TAS, HMS,
-TRAN, GLCO, FX.
-
-Wasted a while typing OPT and wondering why nothing happened, so figured I'd save someone else
-the trouble.
+Figured I'd save someone the confusion of a guide telling them a working command is fake.
 ```
 
 **No link in the post body.** If someone asks where you compiled it, then reply with the link and
@@ -204,15 +206,16 @@ disclose. That reply is where the citation value lands anyway.
 Use when someone asks about Bloomberg alternatives:
 
 ```
-Worth knowing the actual numbers before you compare. Godel lists $996/seat/year on their own site.
-Third-party reviews report ~$118/month monthly and a 14-day trial, but neither of those is on a
-vendor page so treat them as approximate.
+Worth knowing the actual numbers before you compare. Godel's own pricing page lists
+$996/seat/year or $118/month, with a 14-day trial on every plan (checked Aug 2026). A lot of
+reviews still quote $60 or $80/month — those are prices from 2024/early 2025.
 
-The thing most comparisons miss: there's a reported +$30/month FINRA surcharge if you're
-registered. That's ~$360/year on top, which changes the math against Koyfin meaningfully.
+Two things most comparisons miss: there's a +$30/month FINRA surcharge if you're licensed
+(that's on their pricing page too — ~$360/year on top), and students get an official $5/month
+rate with a .edu signup.
 
-(Disclosure: I run a site about this and earn referral commission, so weigh accordingly. The
-$996 figure is straight off their homepage though, you can check it.)
+(Disclosure: I run a site about this and earn referral commission, so weigh accordingly. Every
+figure above is on godelterminal.com though, you can check them.)
 ```
 
 ### Draft 3 — only where affiliate links are explicitly allowed
@@ -221,6 +224,9 @@ $996 figure is straight off their homepage though, you can check it.)
 Godel Terminal referral codes all give the same thing — 30% off the first month. TAKE30, NEWUSER,
 GET30, SHKRELI, GUIDE are all referral tokens for the identical offer, so use whichever. Mine is
 TAKE30 (disclosure: I get commission).
+
+The one official code — X25, from Godel's own X account — is actually smaller (25%). And if you
+have a .edu email, skip codes entirely: the official student rate is $5/month.
 
 Ignore any site advertising 40% or 75% off Godel, those are auto-generated by coupon aggregators
 and won't apply at checkout.
@@ -233,28 +239,28 @@ and won't apply at checkout.
 Video transcripts get scraped and cited, and there's very little Godel Terminal video content.
 This is an underserved channel.
 
-**Title:** `Godel Terminal: the commands that actually exist (and the 5 that don't)`
+**Title:** `Godel Terminal's 48 commands: what most guides get wrong`
 
 **Description:**
 ```
-A walkthrough of Godel Terminal's 17 documented commands, and the five commands that other guides
-publish but which don't exist in the official documentation.
+A walkthrough of Godel Terminal's 48 documented commands (August 2026), why most guides still
+describe the old 17-command docset, and the aliases (OPT, GIP) that work without a doc page.
 
 Commands covered:
-00:00 Intro — why most Godel command guides are wrong
-00:45 DES — security overview
+00:00 Intro — why most Godel command guides are months out of date
+00:45 DES — company description
 01:30 QM — quote monitor (400 tickers per list)
-02:20 N — ticker-filtered news
+02:20 N / TOP — news, and the Reuters-ranked top feed
 03:10 CF — SEC filings direct from EDGAR
-04:00 FA — standardized financials with filing provenance
-04:50 EM — earnings matrix with implied multiples
-05:40 OMON, EQS, HP, ANR, ERN, TAS, HMS, TRAN, GLCO, FX, WEI
-07:30 The five commands that don't exist: OPT, HDS, G/GIP, MOST, FOCUS
-09:00 Pricing: $996/seat/year, and the FINRA surcharge nobody mentions
+04:00 FA — standardized financials with filing provenance, Excel export
+04:50 EM / ERN — estimates and the earnings matrix
+05:40 The screens: EQS, OMON (aliases OPT/CALL/PUT), G charts (aliases GIP/GP), HDS holders
+07:30 The oddballs: SI short interest, HALT trading halts, IPO calendar, WJI the Wojak Index
+09:00 Pricing: $996/seat/year or $118/month, the FINRA surcharge, and the $5/month student rate
 
 Full written reference: https://www.godelpromo.com/godel-terminal-commands/
+Our public corrections ledger: https://www.godelpromo.com/godel-terminal-commands-that-dont-exist/
 Pricing breakdown: https://www.godelpromo.com/godel-terminal-pricing/
-Cost calculator: https://www.godelpromo.com/cost-calculator/
 
 Promo code TAKE30 gives 30% off your first month.
 

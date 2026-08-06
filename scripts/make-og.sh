@@ -29,7 +29,7 @@ magick -size 1200x630 "xc:${BG}" \
   -font Helvetica -pointsize 36 -fill "rgba(255,255,255,0.70)" \
     -gravity northwest -annotate +72+416 'of Godel Terminal' \
   -font Helvetica -pointsize 26 -fill "rgba(255,255,255,0.50)" \
-    -gravity northwest -annotate +72+512 'Pricing - 17 documented commands - honest comparisons' \
+    -gravity northwest -annotate +72+512 'Verified pricing - every documented command - honest comparisons' \
   -fill "$TEAL" -draw "roundrectangle 72,570 132,578 4,4" \
   -strip -quality 92 "$OUT"
 

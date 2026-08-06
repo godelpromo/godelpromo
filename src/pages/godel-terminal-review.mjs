@@ -1,5 +1,5 @@
 import { PROMO, PRODUCT, PRICING, COMPANY, CASE_STUDY } from '../data/site.mjs';
-import { COMMANDS, PHANTOM_COMMANDS, officialCommands, commandCount } from '../data/commands.mjs';
+import { COMMANDS, ALIASES, officialCommands, commandCount } from '../data/commands.mjs';
 import { codeBox, ctaRow, faqSection, table, note, esc } from '../lib/components.mjs';
 
 const faqs = [
@@ -51,7 +51,8 @@ export const page = {
 <h1>Godel Terminal review: what is actually verifiable</h1>
 
 <p class="lede">There are a lot of ${esc(PRODUCT.name)} reviews claiming six months of daily hands-on use.
-Several of them list commands that do not exist in ${esc(PRODUCT.name)}'s documentation. This review takes a
+Several of them quote prices two changes out of date and describe a command set a third the size of the
+current documentation. This review takes a
 different approach: it tells you exactly what it knows, how it knows it, and what remains unverified.</p>
 
 ${note(`<strong>Methodology, stated up front:</strong> this review is built from ${esc(PRODUCT.name)}'s own
@@ -103,22 +104,26 @@ and ${commandCount()} in total have documentation pages. The genuinely useful sp
 
 <p class="prose"><a href="/godel-terminal-commands/">Full command reference with sourcing →</a></p>
 
-<h2>Where other reviews go wrong</h2>
+<h2>Where reviews go stale — including ours</h2>
 
 <p class="prose">This is the part worth reading carefully, because it is a decent proxy for how much any given
-${esc(PRODUCT.name)} review actually checked. Widely-published guides list these commands:</p>
+${esc(PRODUCT.name)} review actually checked, and how recently. The documentation is a moving target: as of
+August 2026 it covers ${commandCount()} commands, up from 17 a month earlier. Five commands we previously
+flagged as nonexistent gained real documentation pages, and mnemonics like <span class="mono">OPT</span> turn
+out to be documented aliases:</p>
 
 ${table({
-  head: ['Command listed elsewhere', 'Claimed to do', 'Documented equivalent'],
-  rows: PHANTOM_COMMANDS.map((p) => ({
-    cells: [`<span class="mono">${esc(p.claimed)}</span>`, esc(p.claimedAs), `<strong class="mono">${esc(p.instead)}</strong>`],
+  head: ['Alias that works', 'Opens', 'Note'],
+  rows: ALIASES.map((a) => ({
+    cells: [`<span class="mono">${esc(a.alias)}</span>`, `<strong class="mono">${esc(a.canonical)}</strong>`, esc(a.note || '')],
   })),
 })}
 
-<p class="prose">None of the left-hand column appears in ${esc(PRODUCT.name)}'s command documentation. They are
-legacy-terminal mnemonics that ${esc(PRODUCT.name)} did not adopt, copied forward by reviewers who assumed rather than
-checked. If a review tells you to type <code class="mono">OPT</code> for options, it is describing a product it has
-not opened.</p>
+<p class="prose">Most reviews in this niche still describe the product at some earlier moment — quoting $60 or
+$80 monthly pricing from 2024–25, or a 17-command docset. We keep a
+<a href="/godel-terminal-commands-that-dont-exist/">dated corrections page</a> instead of silently editing,
+so you can see exactly what changed and when. A review that never corrects itself is a review that never
+re-checked.</p>
 
 <h2>The cost case</h2>
 
@@ -131,8 +136,8 @@ not opened.</p>
 ${esc(CASE_STUDY.savings)} in savings. Treat it as marketing — but attributable marketing, which is a step above
 the anonymous testimonials most competitors in this space run.</p>
 
-<p class="prose">One cost caveat that rarely gets mentioned: independent reviews report an additional
-<strong>${PRICING.finraSurcharge.display}/month surcharge for FINRA-registered users</strong>. If that applies to you it is
+<p class="prose">One cost caveat that rarely gets mentioned: ${esc(PRODUCT.name)}'s pricing page lists an additional
+<strong>${PRICING.finraSurcharge.display}/month surcharge for FINRA-licensed users</strong>. If that applies to you it is
 roughly a ${Math.round((PRICING.finraSurcharge.amount * 12 / PRICING.annual.amount) * 100)}% increase on the seat price.
 <a href="/godel-terminal-pricing/">Full pricing breakdown →</a></p>
 

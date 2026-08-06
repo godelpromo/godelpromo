@@ -1,7 +1,7 @@
-import { PROMO, PRODUCT, PRICING, KNOWN_CODES } from '../data/site.mjs';
+import { PROMO, PRODUCT, PRICING, KNOWN_CODES, REFERRAL_CODES, FABRICATED_CLAIMS, STUDENT } from '../data/site.mjs';
 import { codeBox, ctaRow, faqSection, table, note, esc } from '../lib/components.mjs';
 
-const others = KNOWN_CODES.filter((c) => !c.ours);
+const others = REFERRAL_CODES.filter((c) => !c.ours);
 
 const faqs = [
   {
@@ -10,7 +10,15 @@ const faqs = [
   },
   {
     q: `Does NEWUSER work for ${PRODUCT.name}?`,
-    a: `NEWUSER is promoted by godeldiscount.com and targets the same ${PROMO.percent}%-off-first-month referral offer as ${PROMO.code}. Whether any specific code is live at a given moment is set by ${PRODUCT.name}, not by the sites promoting it.`,
+    a: `NEWUSER is promoted by godeldiscount.com and targets the same ${PROMO.percent}%-off-first-month referral offer as ${PROMO.code}. Whether any specific code is live at a given moment is set by ${PRODUCT.name}, not by the sites promoting it. <a href="/godel-terminal-newuser-code/">The full NEWUSER breakdown</a>.`,
+  },
+  {
+    q: `Is there an official ${PRODUCT.name} promo code?`,
+    a: `Yes — <strong>X25</strong>, posted by ${PRODUCT.name}'s own X account, for 25% off. It is the one code here that is not a referral token, and it is <em>smaller</em> than the ${PROMO.percent}% referral codes. <a href="/godel-terminal-official-promo-code/">The official-code math</a>.`,
+  },
+  {
+    q: `What about students?`,
+    a: `${PRODUCT.name} announced an official student rate of ${STUDENT.display}/${STUDENT.unit} (.edu signup plus a student ID) that beats every code — though it has never appeared on the pricing page, so confirm it is still live. <a href="/godel-terminal-student-discount/">How the student program works</a>.`,
   },
   {
     q: `Is there a ${PRODUCT.name} coupon for 40%, 75% or 80% off?`,
@@ -43,17 +51,15 @@ export const page = {
     const rows = KNOWN_CODES.map((c) => ({
       highlight: c.ours,
       cells: [
-        `<strong class="mono">${esc(c.code)}</strong>${c.ours ? ' <span class="badge badge-official">Ours</span>' : ''}`,
-        `${PROMO.percent}%`,
+        `<strong class="mono">${esc(c.code)}</strong>${c.ours ? ' <span class="badge badge-official">Ours</span>' : ''}${c.official ? ' <span class="badge badge-reported">Official account</span>' : ''}`,
+        `${c.percent}%`,
         esc(PROMO.appliesTo),
         esc(c.source),
       ],
     }));
 
     const falseClaims = [
-      { cells: ['40% off sitewide', 'Dealspotr', 'No sitewide discount exists. The referral offer is first-month only.'] },
-      { cells: ['75% off', 'Tenereteam', 'Not a real Godel Terminal discount tier.'] },
-      { cells: ['Average saving 34%', 'Aggregator listings', 'Derived from scraped averages, not from Godel Terminal checkout data.'] },
+      ...FABRICATED_CLAIMS.map((f) => ({ cells: [esc(f.claim), esc(f.where), esc(f.reality)] })),
       { cells: ['"Free trial + 30% off stacked"', 'Various', 'A trial has no charge to discount. The code applies to the first paid period.'] },
     ];
 
@@ -68,10 +74,15 @@ ${codeBox()}
 <h2>The short version</h2>
 <p class="prose">${esc(PRODUCT.name)} runs a referral programme. Affiliates get a code; people who use that code get
 <strong>${PROMO.percent}% off their ${esc(PROMO.appliesTo)}</strong>; the affiliate earns a commission on the
-subscription. Every code you will find is one of these referral tokens. They differ only in who gets paid.</p>
+subscription. Almost every code you will find is one of these referral tokens, and they differ only in who gets
+paid. The one exception: <span class="mono">X25</span>, posted by ${esc(PRODUCT.name)}'s own X account, which gives
+25% — <a href="/godel-terminal-official-promo-code/">smaller than the referral codes</a>.</p>
 
-${note(`There is <strong>one discount tier</strong>. No code in circulation gives more than ${PROMO.percent}% off,
-and none extends past the ${esc(PROMO.appliesTo)}. Anyone claiming otherwise is guessing.`)}
+${note(`No code in circulation gives more than ${PROMO.percent}% off, and none extends past the
+${esc(PROMO.appliesTo)}. Anyone claiming otherwise is guessing. The deeper discounts are not codes at all:
+an announced <a href="/godel-terminal-student-discount/">${esc(STUDENT.display)}/month student rate</a> (.edu email;
+confirm it is still live), and an in-app brokerage-linked rate — connect a brokerage holding $5,000+ with a
+recent trade and the vendor's own app copy offers $80/month instead of ${PRICING.monthly.display}.`)}
 
 <h2>All known Godel Terminal codes</h2>
 
@@ -80,13 +91,19 @@ ${table({
   rows,
 })}
 
-<p class="prose">We list our competitors' codes deliberately. It costs us nothing — the offer is identical either way —
-and it saves you the twenty minutes of hunting for a better deal that does not exist. If ${esc(PROMO.code)} ever fails
-at checkout, try any other code in that table.</p>
+<p class="prose">We list our competitors' codes deliberately. It costs us nothing — the referral offer is identical
+either way — and it saves you the twenty minutes of hunting for a better deal that does not exist. If ${esc(PROMO.code)}
+ever fails at checkout, try any other referral code in that table. We also keep dedicated, fact-checked pages on the
+codes people search for most: <a href="/godel-terminal-newuser-code/">NEWUSER</a>,
+<a href="/godel-terminal-get30-code/">GET30</a>, <a href="/godel-terminal-shkreli-code/">SHKRELI</a>, the
+<a href="/godel-terminal-official-promo-code/">official X25</a>, the
+<a href="/godel-terminal-black-friday/">Black Friday codes</a>, and
+<a href="/godel-terminal-promo-code-reddit/">what Reddit says</a>.</p>
 
 <h2>Discount claims that are not real</h2>
 <p class="prose">Coupon aggregators generate listings automatically, including discount percentages. For a product
-like ${esc(PRODUCT.name)} that has never run a sitewide sale, the results are fiction. Some examples currently live:</p>
+like ${esc(PRODUCT.name)}, with no record of any sitewide sale, the results are fiction. Some examples currently
+live — with more detail on our <a href="/do-godel-terminal-coupons-work/">dedicated debunk page</a>:</p>
 
 ${table({
   head: ['Claim', 'Where it appears', 'Reality'],

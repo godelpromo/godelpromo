@@ -1,6 +1,6 @@
 import { PROMO, PRODUCT, PRICING, KNOWN_CODES, CASE_STUDY, COMPANY } from '../data/site.mjs';
 import { codeBox, ctaRow, faqSection, table, tiles, note, offerSummary, esc } from '../lib/components.mjs';
-import { officialCommands } from '../data/commands.mjs';
+import { officialCommands, commandCount } from '../data/commands.mjs';
 
 const faqs = [
   {
@@ -13,11 +13,11 @@ const faqs = [
   },
   {
     q: `Is ${PROMO.code} better than NEWUSER, GET30, SHKRELI or GUIDE?`,
-    a: `They are all the same offer. Every one of these codes is a referral token in ${PRODUCT.name}'s affiliate programme, and every one delivers ${PROMO.percent}% off the ${PROMO.appliesTo}. There is no code in circulation that gives a bigger discount, and anyone advertising 40%, 75% or "up to 80% off" is describing a discount that does not exist.`,
+    a: `They are all the same offer. Every one of these codes is a referral token in ${PRODUCT.name}'s affiliate programme, and every one delivers ${PROMO.percent}% off the ${PROMO.appliesTo}. No code in circulation gives more — even <a href="/godel-terminal-official-promo-code/">X25, the code from ${PRODUCT.name}'s own X account</a>, is smaller at 25% — and anyone advertising 40%, 75% or "up to 80% off" is describing a discount that does not exist. One genuine exception: ${PRODUCT.name} announced an official <a href="/godel-terminal-student-discount/">$5/month student rate</a> (.edu signup) that beats every code — confirm it is still live before counting on it.`,
   },
   {
     q: `How much does ${PRODUCT.name} cost?`,
-    a: `${PRODUCT.name}'s own site lists entry pricing at <strong>${PRICING.annual.display} per ${PRICING.annual.unit}</strong>. Third-party reviews report a monthly option around ${PRICING.monthly.display}/month and a ${PRICING.freeTrial.days}-day free trial, though those figures are not stated on a vendor page — confirm both at checkout. See our <a href="/godel-terminal-pricing/">pricing breakdown</a>.`,
+    a: `${PRODUCT.name}'s own pricing page lists <strong>${PRICING.annual.display} per ${PRICING.annual.unit}</strong> or ${PRICING.monthly.display}/month, with a ${PRICING.freeTrial.days}-day free trial on every plan (as of August 2026). FINRA-licensed users pay a ${PRICING.finraSurcharge.display}/month surcharge. See our <a href="/godel-terminal-pricing/">pricing breakdown</a>.`,
   },
   {
     q: `Where exactly do I enter the code?`,
@@ -36,8 +36,8 @@ const faqs = [
 const codeRows = KNOWN_CODES.map((c) => ({
   highlight: c.ours,
   cells: [
-    `<strong class="mono">${esc(c.code)}</strong>${c.ours ? ' <span class="badge badge-official">Ours</span>' : ''}`,
-    `${PROMO.percent}% off ${PROMO.appliesTo}`,
+    `<strong class="mono">${esc(c.code)}</strong>${c.ours ? ' <span class="badge badge-official">Ours</span>' : ''}${c.official ? ' <span class="badge badge-reported">Official account</span>' : ''}`,
+    `${c.percent}% off ${PROMO.appliesTo}`,
     esc(c.source),
   ],
 }));
@@ -81,7 +81,7 @@ export const page = {
     <p class="muted" style="font-size:14.5px">${esc(PRODUCT.positioning)} Built by ${esc(PRODUCT.vendorNote)}, currently in ${esc(PRODUCT.status)}.</p>
     <p style="margin-bottom:6px"><span class="stat">${PRICING.annual.display}</span><span class="stat-label">per ${esc(PRICING.annual.unit)} — vendor-stated entry price</span></p>
     <p style="margin-bottom:6px"><span class="stat">${PROMO.percent}%</span><span class="stat-label">off your ${esc(PROMO.appliesTo)} with ${esc(PROMO.code)}</span></p>
-    <p><span class="stat">17</span><span class="stat-label">commands with official documentation</span></p>
+    <p><span class="stat">${commandCount()}</span><span class="stat-label">commands with official documentation</span></p>
   </aside>
 </section>
 
@@ -104,18 +104,20 @@ export const page = {
 
 <section>
   <h2>Every Godel Terminal promo code, compared</h2>
-  <p class="prose">Searching for a ${esc(PRODUCT.name)} discount turns up half a dozen different codes across
-  half a dozen different sites, each presented as though it were exclusive. They are not. Here is the honest version —
-  all of these are referral tokens pointing at the same offer.</p>
+  <p class="prose">Searching for a ${esc(PRODUCT.name)} discount turns up a dozen different codes across
+  a dozen different sites, each presented as though it were exclusive. They are not. Here is the honest version —
+  every referral code points at the same ${PROMO.percent}% offer, and the one official code
+  (<span class="mono">X25</span>, from ${esc(PRODUCT.name)}'s own X account) is actually <em>smaller</em>, at 25%.</p>
 
   ${table({
     head: ['Code', 'Actual discount', 'Promoted by'],
     rows: codeRows,
   })}
 
-  <p class="prose faint">We list our competitors' codes because it is simply true that they work identically,
-  and you deserve to know that before you spend time hunting for a better one. If ${esc(PROMO.code)} ever stops
-  applying, any other code in this table should behave the same way.</p>
+  <p class="prose faint">We list our competitors' codes because it is simply true that the referral codes work
+  identically, and you deserve to know that before you spend time hunting for a better one. If ${esc(PROMO.code)}
+  ever stops applying, any other referral code in this table should behave the same way. Students: the announced official
+  <a href="/godel-terminal-student-discount/">$5/month student rate</a> beats all of them, if it is still live.</p>
 </section>
 
 <section>
@@ -130,7 +132,7 @@ export const page = {
 
   ${tiles(cmdTiles)}
 
-  <p class="prose"><a href="/godel-terminal-commands/">See all 17 documented commands →</a></p>
+  <p class="prose"><a href="/godel-terminal-commands/">See all ${commandCount()} documented commands →</a></p>
 </section>
 
 <section>

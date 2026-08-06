@@ -84,8 +84,8 @@ a restatement, an acquisition, an S-1. ${esc(cmd('CF').summary)}</p>
 <ul class="prose">
   <li><code class="mono">EM</code> — ${esc(cmd('EM').summary)}</li>
   <li><code class="mono">EQS</code> — the documented equity screener.</li>
-  <li><code class="mono">OMON</code> — the documented options chain. (Not <code class="mono">OPT</code>, whatever
-  other guides tell you.)</li>
+  <li><code class="mono">OMON</code> — the documented options chain. (<code class="mono">OPT</code> and
+  <code class="mono">CALL</code>/<code class="mono">PUT</code> are documented aliases that open the same window.)</li>
   <li><code class="mono">TAS</code> — the tape, for reading order flow.</li>
   <li><code class="mono">WEI</code> — world indices, no ticker needed. A good default open-of-day screen.</li>
 </ul>
@@ -97,7 +97,8 @@ a restatement, an acquisition, an S-1. ${esc(cmd('CF').summary)}</p>
 The only number that matters is how many other tools you can cancel, and if the answer is zero, the price is
 irrelevant regardless of how low it is.</p>
 
-<p class="prose"><a href="/godel-terminal-commands/">Full command reference →</a> ·
+<p class="prose"><a href="/godel-terminal-stock-research-workflow/">Graduate to the full research workflow →</a> ·
+<a href="/godel-terminal-commands/">Full command reference →</a> ·
 <a href="/godel-terminal-free-trial/">How to use a full trial period →</a></p>
 
 ${codeBox()}

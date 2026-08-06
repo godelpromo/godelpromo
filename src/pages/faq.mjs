@@ -1,5 +1,5 @@
-import { PROMO, PRODUCT, PRICING, KNOWN_CODES, COMPANY } from '../data/site.mjs';
-import { commandCount, PHANTOM_COMMANDS } from '../data/commands.mjs';
+import { PROMO, PRODUCT, PRICING, KNOWN_CODES, STUDENT, COMPANY } from '../data/site.mjs';
+import { commandCount, ALIASES } from '../data/commands.mjs';
 import { codeBox, ctaRow, faqSection, esc } from '../lib/components.mjs';
 
 const others = KNOWN_CODES.filter((c) => !c.ours).map((c) => c.code);
@@ -21,7 +21,11 @@ const faqs = [
   },
   {
     q: `Which ${PRODUCT.name} code is best — ${PROMO.code}, ${others.slice(0, 3).join(', ')}?`,
-    a: `They are equivalent. All are referral tokens in the same affiliate programme delivering ${PROMO.percent}% off the ${PROMO.appliesTo}. See our <a href="/promo-codes/">full code comparison</a>.`,
+    a: `The referral codes are equivalent: all are tokens in the same affiliate programme delivering ${PROMO.percent}% off the ${PROMO.appliesTo}. The one exception is <strong>X25</strong>, the code from ${PRODUCT.name}'s own X account, which is smaller at 25%. See our <a href="/promo-codes/">full code comparison</a>.`,
+  },
+  {
+    q: `Is there a student discount?`,
+    a: `Yes — ${STUDENT.display}/${STUDENT.unit}, announced by the official ${PRODUCT.name} X account. Sign up with a .edu email and send your student ID. If you qualify, it beats every promo code. <a href="/godel-terminal-student-discount/">How the student rate works</a>.`,
   },
   {
     q: `Are the 40% and 75% off claims real?`,
@@ -29,15 +33,19 @@ const faqs = [
   },
   {
     q: `How much does ${PRODUCT.name} cost?`,
-    a: `${PRICING.annual.display} per ${PRICING.annual.unit} is published by ${PRODUCT.name}. A ${PRICING.monthly.display}/month option and a ${PRICING.freeTrial.days}-day trial are reported by third parties but not vendor-published. <a href="/godel-terminal-pricing/">Full breakdown</a>.`,
+    a: `${PRICING.annual.display} per ${PRICING.annual.unit}, or ${PRICING.monthly.display}/month — both published on ${PRODUCT.name}'s own pricing page as of August 2026. <a href="/godel-terminal-pricing/">Full breakdown</a>.`,
   },
   {
     q: `Is there a hidden fee?`,
-    a: `An additional ${PRICING.finraSurcharge.display}/month is reported for FINRA-registered users. It is not hidden — exchange data is licensed differently for registered professionals — but it is frequently omitted from comparisons.`,
+    a: `${PRODUCT.name}'s pricing page lists an additional ${PRICING.finraSurcharge.display}/month surcharge for FINRA-licensed users. It is not hidden — exchange data is licensed differently for registered professionals — but it is frequently omitted from comparisons.`,
   },
   {
     q: `Is there a free trial?`,
-    a: `A ${PRICING.freeTrial.days}-day trial is widely reported. <a href="/godel-terminal-free-trial/">Details and caveats</a>.`,
+    a: `Yes — every plan starts with a ${PRICING.freeTrial.days}-day free trial, per ${PRODUCT.name}'s own pricing page. <a href="/godel-terminal-free-trial/">Details and how it interacts with the code</a>.`,
+  },
+  {
+    q: `How do I cancel?`,
+    a: `In-account, any time; cancellation takes effect at the end of the current paid term, per the vendor terms. No refund policy is published. <a href="/how-to-cancel-godel-terminal/">What is and isn't published</a>.`,
   },
   {
     q: `Can I use the code with the free trial?`,
@@ -52,8 +60,12 @@ const faqs = [
     a: `${commandCount()} have official documentation pages. <a href="/godel-terminal-commands/">Full reference</a>.`,
   },
   {
-    q: `Why doesn't OPT work?`,
-    a: `Because the documented options command is <strong>OMON</strong>. ${PHANTOM_COMMANDS.length} commonly-cited commands do not exist in ${PRODUCT.name}'s docs — <a href="/godel-terminal-commands/">see the list</a>.`,
+    q: `Does OPT work in ${PRODUCT.name}?`,
+    a: `Yes. OPT is a documented alias of <strong>OMON</strong>, the options-chain command — one of ${ALIASES.length} aliases ${PRODUCT.name} documents. Several commands that older guides (ours included) flagged as nonexistent now have official documentation pages. <a href="/godel-terminal-commands-that-dont-exist/">Our dated corrections</a>.`,
+  },
+  {
+    q: `Does ${PRODUCT.name} have an API?`,
+    a: `No public API exists, and the vendor terms prohibit scraping. Several commands export to Excel CSV/JSON instead. <a href="/godel-terminal-api/">The full sourced answer</a>.`,
   },
   {
     q: `Can ${PRODUCT.name} replace Bloomberg?`,

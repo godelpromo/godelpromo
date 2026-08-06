@@ -1,4 +1,4 @@
-import { PROMO, PRODUCT, PRICING, COMPARISON_TERMINALS, CASE_STUDY } from '../data/site.mjs';
+import { PROMO, PRODUCT, PRICING, STUDENT, COMPARISON_TERMINALS, CASE_STUDY } from '../data/site.mjs';
 import { codeBox, ctaRow, faqSection, table, note, esc } from '../lib/components.mjs';
 
 const discountedMonthly = (PRICING.monthly.amount * (1 - PROMO.percent / 100)).toFixed(2);
@@ -6,7 +6,7 @@ const discountedMonthly = (PRICING.monthly.amount * (1 - PROMO.percent / 100)).t
 const faqs = [
   {
     q: `How much does ${PRODUCT.name} cost?`,
-    a: `${PRODUCT.name}'s own site advertises entry pricing at <strong>${PRICING.annual.display} per ${PRICING.annual.unit}</strong>, which works out to about $${PRICING.annual.effectiveMonthly} a month. Independent reviews report a month-to-month option at around ${PRICING.monthly.display}/month, though that figure is not published on a ${PRODUCT.name} page.`,
+    a: `${PRODUCT.name}'s own pricing page lists <strong>${PRICING.annual.display} per ${PRICING.annual.unit}</strong> — about $${PRICING.annual.effectiveMonthly} a month — or <strong>${PRICING.monthly.display}/month</strong> billed monthly. Both figures are vendor-published as of August 2026.`,
   },
   {
     q: `What does ${PROMO.code} bring the price down to?`,
@@ -14,11 +14,15 @@ const faqs = [
   },
   {
     q: `Is there a free trial?`,
-    a: `A ${PRICING.freeTrial.days}-day free trial is reported by multiple independent reviews. It is not stated on ${PRODUCT.name}'s marketing homepage, so confirm availability at signup. See our <a href="/godel-terminal-free-trial/">free trial page</a>.`,
+    a: `Yes — the pricing page states every plan starts with a <strong>${PRICING.freeTrial.days}-day free trial</strong>, and the vendor terms say the account is not charged until upgraded. See our <a href="/godel-terminal-free-trial/">free trial page</a>.`,
   },
   {
     q: `Are there extra fees?`,
-    a: `Independent reviews report an additional <strong>${PRICING.finraSurcharge.display}/month surcharge for FINRA-registered users</strong>. This is a common structure for market-data products, since exchange data is licensed differently for registered professionals. Verify your own status at checkout — it can materially change the total.`,
+    a: `The pricing page lists an additional <strong>${PRICING.finraSurcharge.display}/month surcharge for FINRA-licensed users</strong>, covering professional-subscriber exchange fees. This is a common structure for market-data products — exchange data is licensed differently for registered professionals. Verify your own status at checkout; it can materially change the total.`,
+  },
+  {
+    q: `Is there a student price?`,
+    a: `Yes — an official student rate of <strong>${STUDENT.display}/${STUDENT.unit}</strong>, announced on ${PRODUCT.name}'s own X account: .edu signup, then email a student ID. It beats every promo code by a wide margin. <a href="/godel-terminal-student-discount/">How it works</a>.`,
   },
   {
     q: `Is annual or monthly better value?`,
@@ -26,14 +30,14 @@ const faqs = [
   },
   {
     q: `Can I cancel?`,
-    a: `Monthly plans are reported to be cancellable at any time without a cancellation fee; annual plans commit for the year. Confirm the terms that apply to you before paying.`,
+    a: `Yes — the vendor terms state you can cancel in-account at any time, effective at the end of the current paid term. No refund policy is published. <a href="/how-to-cancel-godel-terminal/">What is and isn't published about cancelling</a>.`,
   },
 ];
 
 export const page = {
   path: '/godel-terminal-pricing/',
   title: `Godel Terminal Pricing ${new Date().getFullYear()}: Real Costs and Fees`,
-  description: `Godel Terminal costs $996/seat/year. Plus the reported monthly rate, the FINRA surcharge most comparisons omit, and what ${PROMO.code} actually saves.`,
+  description: `Godel Terminal costs $996/seat/year or $118/month, vendor-published. Plus the FINRA surcharge, the $5 student rate, and what ${PROMO.code} actually saves.`,
   summary: 'Godel Terminal pricing broken down with sourcing — annual, monthly, the FINRA surcharge, and what the promo code is actually worth.',
   breadcrumbs: [
     { href: '/', label: 'Home' },
@@ -60,7 +64,7 @@ export const page = {
           PRICING.monthly.display,
           'per month',
           `$${discountedMonthly} first month with ${esc(PROMO.code)}`,
-          '<span class="badge badge-reported">Third-party</span>',
+          '<span class="badge badge-official">Vendor-stated</span>',
         ],
       },
       {
@@ -68,8 +72,8 @@ export const page = {
           '<strong>FINRA surcharge</strong>',
           `+${PRICING.finraSurcharge.display}`,
           'per month',
-          'Applies to FINRA-registered users',
-          '<span class="badge badge-reported">Third-party</span>',
+          'Applies to FINRA-licensed users',
+          '<span class="badge badge-official">Vendor-stated</span>',
         ],
       },
       {
@@ -77,8 +81,26 @@ export const page = {
           '<strong>Free trial</strong>',
           `${PRICING.freeTrial.days} days`,
           '—',
-          'Reported; confirm at signup',
-          '<span class="badge badge-reported">Third-party</span>',
+          'Every plan; account not charged until upgraded',
+          '<span class="badge badge-official">Vendor-stated</span>',
+        ],
+      },
+      {
+        cells: [
+          '<strong>Student rate</strong>',
+          STUDENT.display,
+          `per ${esc(STUDENT.unit)}`,
+          '<a href="/godel-terminal-student-discount/">.edu signup + student ID</a>',
+          '<span class="badge badge-official">Official X account</span>',
+        ],
+      },
+      {
+        cells: [
+          '<strong>ORG (teams)</strong>',
+          'Custom',
+          'per organization',
+          'Teams of 2+; grouped seats, dedicated rep',
+          '<span class="badge badge-official">Vendor-stated</span>',
         ],
       },
     ];
@@ -95,13 +117,15 @@ export const page = {
     return `
 <h1>Godel Terminal pricing in ${new Date().getFullYear()}</h1>
 
-<p class="lede">Most pricing pages for ${esc(PRODUCT.name)} state a single number with total confidence.
-The honest position is that ${esc(PRODUCT.name)} publishes one price on its own site and the rest circulates
-second-hand. This page marks which is which.</p>
+<p class="lede">${esc(PRODUCT.name)} costs <strong>${PRICING.annual.display} per ${esc(PRICING.annual.unit)}</strong>
+or <strong>${PRICING.monthly.display}/month</strong>, with a ${PRICING.freeTrial.days}-day free trial — all
+vendor-published as of August 2026. The complications worth knowing about are the FINRA surcharge, the official
+$5/month student rate, and the fact that half the pages ranking for this query still quote prices from 2024.</p>
 
 ${note(`<strong>How to read this page:</strong> figures tagged <span class="badge badge-official">Vendor-stated</span>
-come from ${esc(PRODUCT.name)}'s own website. Figures tagged <span class="badge badge-reported">Third-party</span>
-are corroborated across independent reviews but do not appear on a vendor page. Always confirm the total at checkout.`)}
+come from ${esc(PRODUCT.name)}'s own website, checked August 2026. Figures tagged
+<span class="badge badge-reported">Third-party</span> are corroborated across independent reviews but do not appear
+on a vendor page. Always confirm the total at checkout.`)}
 
 <h2>Plans and fees</h2>
 
@@ -120,7 +144,7 @@ enough that you should know before you compare.</p>
 
 ${codeBox({ note: `${PROMO.percent}% off the ${PROMO.appliesTo} — about $${(PRICING.monthly.amount * PROMO.percent / 100).toFixed(2)} on a monthly plan.` })}
 
-<p class="prose">On a reported ${PRICING.monthly.display}/month plan, ${PROMO.percent}% off the ${esc(PROMO.appliesTo)}
+<p class="prose">On the ${PRICING.monthly.display}/month plan, ${PROMO.percent}% off the ${esc(PROMO.appliesTo)}
 saves roughly <strong>$${(PRICING.monthly.amount * PROMO.percent / 100).toFixed(2)}</strong> once. That is a real saving
 and it is worth taking — but it is one month, not a rate change. Anyone framing a first-month referral discount as
 "save 30% on ${esc(PRODUCT.name)}" is describing something that does not happen.</p>
@@ -128,6 +152,26 @@ and it is worth taking — but it is one month, not a rate change. Anyone framin
 <p class="prose">There is a mild irony worth flagging: the discount is worth more in cash on the
 <em>monthly</em> plan, but the annual plan is far cheaper overall. If you already know you want the product,
 annual wins even though the code looks smaller against it.</p>
+
+<h2>Why other pages quote $60 or $80 a month</h2>
+
+<p class="prose">Because those were real prices, once. ${esc(PRODUCT.name)}'s pricing has moved at least twice:</p>
+
+${table({
+  head: ['When', 'Monthly price', 'Source'],
+  rows: PRICING.history.map((h) => ({
+    highlight: !h.attributed,
+    cells: [
+      esc(h.when),
+      `$${h.monthly}${h.finraMonthly ? ` ($${h.finraMonthly} FINRA)` : ''}${h.annual ? ` or $${h.annual}/yr` : ''}`,
+      `${esc(h.source)}${h.attributed ? '' : ' <span class="badge badge-official">Vendor-stated</span>'}`,
+    ],
+  })),
+})}
+
+<p class="prose">A page quoting $60 or $80 a month is describing the product as it was one or two price changes
+ago — which also tells you when that page last checked anything. The current vendor-published price is
+${PRICING.monthly.display}/month or ${PRICING.annual.display}/year.</p>
 
 <h2>How that compares to other terminals</h2>
 

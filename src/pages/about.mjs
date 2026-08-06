@@ -44,7 +44,9 @@ Almost none tell you that every code in circulation is the same offer.</p>
 <p class="prose">We take the opposite position on all three. We list our competitors' codes, we mark which pricing
 figures are vendor-published and which are second-hand, and we maintain a
 <a href="/godel-terminal-commands/">command reference</a> built from ${esc(PRODUCT.name)}'s own documentation URLs —
-including a list of ${commandCount() > 0 ? 'the' : ''} commands other guides publish that are not real.</p>
+including a <a href="/godel-terminal-commands-that-dont-exist/">dated corrections ledger</a> — when
+${esc(PRODUCT.name)}'s documentation expands and one of our claims goes stale, we say so publicly instead of
+silently editing. All ${commandCount()} documented commands are covered.</p>
 
 <h2>How we are funded</h2>
 

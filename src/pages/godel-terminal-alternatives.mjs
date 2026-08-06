@@ -63,19 +63,20 @@ approximations — institutional terminal pricing is negotiated and rarely discl
     <p>Similar price bracket, similar target user. Stronger on dashboards, macro data and visual analytics;
     weaker if you specifically want a command-line workflow. If you are choosing between this and
     ${esc(PRODUCT.name)} on price alone, you are asking the wrong question — trial both and see which
-    interaction model you actually prefer.</p>
+    interaction model you actually prefer. <a href="/godel-terminal-vs-koyfin/">Full comparison →</a></p>
   </div>
   <div class="tile">
     <h3>TradingView — if you mainly chart</h3>
     <p>Best-in-class charting and a large community, at a fraction of the price. But it is not a research
     terminal: no standardized financials tied to filings, no consensus estimates screen, no filings browser.
-    If charting is 80% of your usage, this is the rational choice.</p>
+    If charting is 80% of your usage, this is the rational choice.
+    <a href="/godel-terminal-vs-tradingview/">Full comparison →</a></p>
   </div>
   <div class="tile">
     <h3>FactSet / LSEG Workspace — institutional depth</h3>
     <p>Genuinely comprehensive, genuinely expensive, and negotiated per contract. Worth it when you need
     fixed income, derivatives analytics, or coverage that has to be defensible to a compliance function.
-    Overkill for a two-person shop.</p>
+    Overkill for a two-person shop. <a href="/godel-terminal-vs-factset/">Godel vs FactSet →</a></p>
   </div>
   <div class="tile">
     <h3>Bloomberg — the standard</h3>

@@ -95,7 +95,7 @@ Our <a href="/godel-terminal-vs-bloomberg/">function-by-function comparison</a> 
 
 <h2>Try it before you model it</h2>
 
-<p class="prose">A reported ${PRICING.freeTrial.days}-day trial settles the coverage question faster than any
+<p class="prose">A ${PRICING.freeTrial.days}-day trial (vendor-published) settles the coverage question faster than any
 spreadsheet. If you subscribe, ${esc(PROMO.code)} takes ${PROMO.percent}% off the ${esc(PROMO.appliesTo)}.</p>
 
 ${codeBox()}

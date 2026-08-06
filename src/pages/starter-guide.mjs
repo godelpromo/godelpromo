@@ -84,8 +84,8 @@ a restatement, an acquisition, an S-1. ${esc(cmd('CF').summary)}</p>
 <ul class="prose">
   <li><code class="mono">EM</code> — ${esc(cmd('EM').summary)}</li>
   <li><code class="mono">EQS</code> — the documented equity screener.</li>
-  <li><code class="mono">OMON</code> — the documented options chain. (Not <code class="mono">OPT</code>, whatever
-  other guides tell you.)</li>
+  <li><code class="mono">OMON</code> — the documented options chain. (<code class="mono">OPT</code> and
+  <code class="mono">CALL</code>/<code class="mono">PUT</code> are documented aliases that open the same window.)</li>
   <li><code class="mono">TAS</code> — the tape, for reading order flow.</li>
   <li><code class="mono">WEI</code> — world indices, no ticker needed. A good default open-of-day screen.</li>
 </ul>

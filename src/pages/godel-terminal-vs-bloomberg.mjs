@@ -140,7 +140,7 @@ premature; using it to stop rationing terminal access is not.</p>
 
 <h2>Try it before deciding</h2>
 
-<p class="prose">A reported ${PRICING.freeTrial.days}-day free trial is the cheapest way to settle this for your own
+<p class="prose">A ${PRICING.freeTrial.days}-day free trial (vendor-published) is the cheapest way to settle this for your own
 workflow. If you subscribe, ${esc(PROMO.code)} takes ${PROMO.percent}% off the ${esc(PROMO.appliesTo)}.</p>
 
 ${codeBox()}

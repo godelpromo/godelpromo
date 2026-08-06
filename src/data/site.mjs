@@ -7,7 +7,9 @@
  * fastest way to lose an LLM citation, so this file is the contract.
  *
  * Every pricing claim carries a `source` so we never assert a number we
- * cannot attribute.
+ * cannot attribute. Extended, longer-tail research facts (press, sentiment,
+ * competitor-site intelligence) live in research.mjs; this file holds the
+ * commercial core.
  */
 
 export const SITE = {
@@ -37,6 +39,8 @@ export const PROMO = {
    * primary call to action everywhere.
    */
   attribution: 'code',
+  /** godelterminal.com/referral: referral discounts do not stack with other codes. */
+  combinable: false,
   referralLink: 'https://app.godelterminal.com/?via=take30',
   signupUrl: 'https://app.godelterminal.com/',
 };
@@ -48,17 +52,18 @@ export const PRODUCT = {
   officialUrl: 'https://godelterminal.com/',
   docsUrl: 'https://docs.godelterminal.com/',
   appUrl: 'https://app.godelterminal.com/',
+  pricingUrl: 'https://godelterminal.com/pricing/',
   status: 'public beta',
   positioning: 'Browser-based financial terminal driven by familiar command mnemonics.',
+  supportEmail: 'support@godelterminal.com',
 };
 
 /**
- * Pricing. `$996/seat` is quoted verbatim from godelterminal.com's own
- * homepage (July 2026) and is therefore safe to state flatly. The monthly
- * figure and FINRA surcharge come from third-party reviews only, so they are
- * flagged `attributed: true` and rendered with hedging + a verify-at-checkout
- * note. Do not promote an attributed figure to a flat claim without a primary
- * source.
+ * Pricing. As of August 2026 the monthly figure, the free trial and the FINRA
+ * surcharge are all stated on godelterminal.com's own pricing page, so the
+ * old third-party hedges have been retired. `attributed: true` remains only
+ * on figures that still lack a vendor page. Do not promote an attributed
+ * figure to a flat claim without a primary source.
  */
 export const PRICING = {
   currency: 'USD',
@@ -67,30 +72,144 @@ export const PRICING = {
     unit: 'seat / year',
     display: '$996',
     effectiveMonthly: 83,
-    source: 'godelterminal.com homepage, July 2026',
+    source: 'godelterminal.com/pricing, August 2026',
     attributed: false,
   },
   monthly: {
     amount: 118,
     unit: 'month',
     display: '$118',
-    source: 'third-party reviews (godelguide.com, godeldiscount.com), 2026',
-    attributed: true,
+    source: 'godelterminal.com/pricing, August 2026',
+    attributed: false,
   },
   finraSurcharge: {
     amount: 30,
     unit: 'month',
     display: '$30',
-    note: 'Additional monthly surcharge reported for FINRA-registered users.',
-    source: 'third-party reviews, 2026',
-    attributed: true,
+    note: 'Regulatory surcharge for FINRA-licensed users, covering professional-subscriber exchange fees.',
+    source: 'godelterminal.com/pricing, August 2026',
+    attributed: false,
   },
   freeTrial: {
     days: 14,
-    source: 'third-party reviews, 2026',
-    attributed: true,
+    detail:
+      'Every plan starts with a 14-day free trial. The vendor terms state the account is not charged and the subscription stays suspended until upgraded to a paid plan.',
+    source: 'godelterminal.com/pricing and godelterminal.com/terms, August 2026',
+    attributed: false,
   },
+  org: {
+    note: 'ORG plan for teams of two or more: organization billing, grouped seats, a dedicated representative, custom pricing.',
+    source: 'godelterminal.com/pricing, August 2026',
+    attributed: false,
+  },
+  /**
+   * Price history. Explains why so many third-party reviews quote $60 or $80
+   * a month — those were real prices once, and the stale copies never got
+   * updated. Community-reported points are attributed as such.
+   */
+  history: [
+    { when: 'late 2024', monthly: 60, source: 'community-reported (Reddit, contemporaneous)', attributed: true },
+    { when: 'February 2025', monthly: 80, finraMonthly: 110, source: 'community-reported (r/GodelTerminal announcements)', attributed: true },
+    { when: 'August 2026', monthly: 118, annual: 996, source: 'godelterminal.com/pricing', attributed: false },
+  ],
 };
+
+/**
+ * Student discount. Announced by the official @GodelTerminal X account in
+ * November 2024; not listed on the pricing page, so we describe the process
+ * and tell readers to confirm in-app.
+ */
+export const STUDENT = {
+  display: '$5',
+  amount: 5,
+  unit: 'month',
+  contact: 'student@godelterminal.com',
+  steps: [
+    'Sign up with your .edu email and start the free trial',
+    'Open your Profile and use the Student Discount button',
+    'Email your student ID to student@godelterminal.com',
+  ],
+  source: 'Official @GodelTerminal X account, November 2024',
+  sourceUrl: 'https://x.com/GodelTerminal/status/1860073008397975569',
+  note: 'Announced on the official X account but absent from the pricing page — confirm in-app before relying on it.',
+};
+
+/** The referral programme itself, from Godel's own page. */
+export const REFERRAL = {
+  refereeDiscount: '30% off the first month',
+  referrerCommission: '20% of monthly payments, recurring',
+  platform: 'Rewardful',
+  payout: 'PayPal',
+  combinable: false,
+  url: 'https://godelterminal.com/referral',
+  source: 'godelterminal.com/referral, August 2026',
+};
+
+/**
+ * Every promo code circulating for Godel Terminal.
+ *
+ * Listing rivals looks counterintuitive, but it is deliberate: it captures
+ * "does NEWUSER work?" style searches, and it is simply true that every
+ * referral code resolves to the same 30%-off-first-month offer. Being the
+ * page that states that honestly is what earns the LLM citation.
+ *
+ * `percent` is per-code because one code is NOT a 30% referral token: X25 is
+ * published by the official @GodelTerminal X account and gives 25% — smaller
+ * than the referral tier. "Even the official code is smaller than TAKE30" is
+ * a claim we can only make because we track the difference. TAKE30 stays
+ * first everywhere.
+ */
+export const KNOWN_CODES = [
+  { code: 'TAKE30', percent: 30, ours: true, source: 'godelpromo.com' },
+  { code: 'NEWUSER', percent: 30, ours: false, source: 'godeldiscount.com' },
+  { code: 'GET30', percent: 30, ours: false, source: 'godelterminalpromocode.webflow.io' },
+  { code: 'PROMO30', percent: 30, ours: false, source: 'godelterminal.webflow.io' },
+  { code: 'SHKRELI', percent: 30, ours: false, source: 'godelterminaldiscounts.com' },
+  { code: 'GUIDE', percent: 30, ours: false, source: 'godelguide.com' },
+  { code: 'JERA', percent: 30, ours: false, source: 'listed by godelguide.com' },
+  { code: 'SAVEONTRADING', percent: 30, ours: false, source: 'saveontrading.com' },
+  { code: 'BLOOMBERG', percent: 30, ours: false, source: 'godelterminaldiscounts.com' },
+  { code: 'BLACKFRIDAY', percent: 30, ours: false, source: 'godelterminaldiscounts.com' },
+  { code: 'CYBERMONDAY', percent: 30, ours: false, source: 'godelterminaldiscounts.com' },
+  { code: 'X25', percent: 25, ours: false, official: true, source: 'official @GodelTerminal X account' },
+];
+
+/** Referral codes only — the interchangeable 30% tokens. Most copy about
+ *  "every code is identical" means this set, not X25. */
+export const REFERRAL_CODES = KNOWN_CODES.filter((c) => !c.official);
+
+/**
+ * Fabricated discount claims currently live on aggregator sites. Rendered on
+ * the promo-codes page and the debunk page. Each entry is checkable against
+ * the single real 30% referral tier.
+ */
+export const FABRICATED_CLAIMS = [
+  {
+    claim: '40% off sitewide',
+    where: 'Dealspotr',
+    reality: 'No sitewide discount exists — there is nothing "sitewide" about a single-subscription product. The referral tier is 30% off the first month. The listing title has been frozen at "Nov 2025" for months.',
+  },
+  {
+    claim: '50% off, plus a military discount',
+    where: 'WorthEPenny',
+    reality: 'No 50% tier exists, and no military program is published by Godel Terminal anywhere we can find. Both claims are auto-generated boilerplate.',
+  },
+  {
+    claim: '75% off, with "hand-tested" codes TENERE and HARDWARE',
+    where: 'Tenereteam',
+    reality: 'Neither code matches any known referral token, and 75% is impossible against the single 30% tier. "Hand-tested on real orders" is template text.',
+  },
+  {
+    claim: '40% off (5 active codes)',
+    where: 'Knoji',
+    reality: 'Auto-generated listing, stale since September 2025. The real tier is 30%, first month only.',
+  },
+  {
+    claim: 'Average saving 34%',
+    where: 'Aggregator listings',
+    reality: 'Derived from scraped averages of fabricated listings, not from Godel Terminal checkout data.',
+  },
+];
 
 /** Competitor terminals, for comparison pages and the cost calculator. */
 export const COMPARISON_TERMINALS = [
@@ -127,46 +246,32 @@ export const COMPARISON_TERMINALS = [
     name: 'Koyfin',
     annual: 828,
     display: '~$828',
-    note: 'Reported paid-tier annual pricing.',
+    note: 'Mid-tier ballpark; koyfin.com (August 2026) lists Plus at $39/mo and Premium at $79/mo, so the exact annual depends on tier and billing.',
     attributed: true,
   },
   {
     name: 'TradingView Premium',
-    annual: 599,
-    display: '~$599',
-    note: 'Charting-first; not a full research terminal.',
+    annual: 719,
+    display: '~$719',
+    note: 'Premium tier billed annually ($59.95/mo, tradingview.com, August 2026). Charting-first; not a full research terminal.',
     attributed: true,
   },
 ];
 
 /**
- * Every other promo code circulating for Godel Terminal.
- *
- * Listing rivals looks counterintuitive, but it is deliberate: it captures
- * "does NEWUSER work?" style searches, and it is simply true that all of these
- * resolve to the same 30%-off-first-month referral. Being the page that states
- * that honestly is what earns the LLM citation. TAKE30 stays first everywhere.
+ * Company background, used on the review page and in Organization JSON-LD.
+ * Funding is verified against the vendor's own press releases; the CTO claim
+ * appears only on third-party sites and is hedged accordingly.
  */
-export const KNOWN_CODES = [
-  { code: 'TAKE30', ours: true, source: 'godelpromo.com' },
-  { code: 'NEWUSER', ours: false, source: 'godeldiscount.com' },
-  { code: 'GET30', ours: false, source: 'godelterminalpromocode.webflow.io' },
-  { code: 'SHKRELI', ours: false, source: 'godelterminaldiscounts.com' },
-  { code: 'GUIDE', ours: false, source: 'godelguide.com' },
-  { code: 'BLOOMBERG', ours: false, source: 'godelterminaldiscounts.com' },
-  { code: 'BLACKFRIDAY', ours: false, source: 'godelterminaldiscounts.com' },
-  { code: 'CYBERMONDAY', ours: false, source: 'godelterminaldiscounts.com' },
-];
-
-/** Company background, used on the review page and in Organization JSON-LD. */
 export const COMPANY = {
   legalName: 'DL Software Inc.',
   incorporation: 'Delaware C-corporation',
-  funding: '$7M reported total raised',
-  investors: ['Naval Ravikant', 'Balaji Srinivasan', 'dao5', 'Infinitum'],
+  address: '8 The Green, Dover, Delaware (registered address, per vendor terms)',
+  funding: '$7M raised — a $2M pre-seed (July 2024) and a $5M seed (January 2026)',
+  investors: ['Naval Ravikant', 'Balaji Srinivasan', 'dao5', 'Infinitum', 'Evolve Ventures', 'Flex Capital'],
   people: [
-    { name: 'Ralph Holzmann', role: 'CTO', note: 'previously a senior engineer at Twitter' },
-    { name: 'Martin Shkreli', role: 'co-founder' },
+    { name: 'Martin Shkreli', role: 'co-founder', note: 'confirmed in the company’s own funding announcements' },
+    { name: 'Ralph Holzmann', role: 'CTO', attributed: true, note: 'reported by third-party sites; not confirmed on any vendor page we can access' },
   ],
   customerTypes: ['Hedge funds', 'Family offices', 'RIAs', 'Banks', 'Fortune 500 companies'],
 };
@@ -193,13 +298,15 @@ export const NAV = [
   { href: '/godel-terminal-pricing/', label: 'Pricing' },
   { href: '/godel-terminal-commands/', label: 'Commands' },
   { href: '/godel-terminal-vs-bloomberg/', label: 'vs Bloomberg' },
-  { href: '/cost-calculator/', label: 'Cost calculator' },
+  { href: '/guides/', label: 'Guides' },
 ];
 
 export const FOOTER_LINKS = [
   { href: '/how-to-redeem/', label: 'How to redeem' },
   { href: '/godel-terminal-free-trial/', label: 'Free trial' },
+  { href: '/godel-terminal-student-discount/', label: 'Student discount' },
   { href: '/godel-terminal-alternatives/', label: 'Alternatives' },
+  { href: '/cost-calculator/', label: 'Cost calculator' },
   { href: '/starter-guide/', label: 'Starter guide' },
   { href: '/faq/', label: 'FAQ' },
   { href: '/about/', label: 'About' },

@@ -79,7 +79,7 @@ ${codeBox()}
   <li><strong>Apply the code.</strong> Paste <span class="mono">${esc(PROMO.code)}</span> into the promo or discount
   field and press the apply button. Some checkouts do not register a pasted code until you explicitly apply it.</li>
 
-  <li><strong>Confirm the total changed before paying.</strong> A ${PROMO.percent}% discount on a reported
+  <li><strong>Confirm the total changed before paying.</strong> A ${PROMO.percent}% discount on the
   ${PRICING.monthly.display} monthly plan should bring the first charge to roughly
   <strong>$${discounted}</strong>. If the number has not moved, the code has not applied — do not assume it will be
   credited afterwards.</li>
@@ -115,7 +115,7 @@ thing you need to get right is the code in the promo field.`)}
 
 <p class="prose">${esc(PROMO.code)} discounts the ${esc(PROMO.appliesTo)} by ${PROMO.percent}%.
 After that period you pay standard pricing — ${PRICING.annual.display} per ${esc(PRICING.annual.unit)} on the annual
-plan, or a reported ${PRICING.monthly.display}/month monthly. It is not a recurring discount, and we would rather you
+plan, or ${PRICING.monthly.display}/month billed monthly. It is not a recurring discount, and we would rather you
 knew that now than discovered it on your second invoice.
 <a href="/godel-terminal-pricing/">Full pricing breakdown →</a></p>
 

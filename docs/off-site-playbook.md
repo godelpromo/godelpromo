@@ -322,4 +322,8 @@ Check monthly:
 - **Manual AI checks** — ask ChatGPT, Claude, Perplexity and Google AI Mode
   *"what's the promo code for Godel Terminal?"* and record which code comes back and which sources
   are cited. This is the actual scoreboard.
+- **Automated scoreboard** — a scheduled cloud routine runs the search-side half of this on the
+  1st of each month and appends the result to [`scoreboard.md`](scoreboard.md). It measures what
+  a search retrieves, not what each chat assistant answers — keep doing the manual assistant
+  checks; the log file has a section per month to drop those into.
 - **Rewardful dashboard** — conversions, the only metric that pays

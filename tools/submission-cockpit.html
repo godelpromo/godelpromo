@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Coupon submission cockpit — TAKE30</title>
+<style>
+:root{--bg:#070b14;--panel:rgba(255,255,255,.05);--border:rgba(255,255,255,.13);
+--text:rgba(255,255,255,.93);--muted:rgba(255,255,255,.66);--faint:rgba(255,255,255,.45);
+--accent:#4ea1ff;--good:#2dd4bf;--warn:#fbbf24}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+color:var(--text);background:linear-gradient(180deg,#050814,var(--bg) 40%,#050814);min-height:100vh}
+.wrap{max-width:1000px;margin:0 auto;padding:28px 20px 80px}
+h1{font-size:26px;margin:0 0 6px;letter-spacing:-.5px}
+h2{font-size:18px;margin:34px 0 4px;letter-spacing:-.2px}
+.sub{color:var(--muted);margin:0 0 22px;font-size:14.5px}
+.hint{color:var(--faint);font-size:13.5px;margin:0 0 14px}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:13px;padding:16px 18px;margin-bottom:12px}
+.field{display:grid;grid-template-columns:150px 1fr auto;gap:10px;align-items:center;
+padding:7px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.field:last-child{border-bottom:none}
+.field label{color:var(--muted);font-size:13px}
+.field .val{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13.5px;
+word-break:break-word;white-space:pre-wrap}
+button{font:inherit;font-size:12.5px;font-weight:650;padding:6px 12px;border-radius:8px;
+border:1px solid var(--border);background:rgba(255,255,255,.07);color:var(--text);cursor:pointer;
+white-space:nowrap;transition:background .15s}
+button:hover{background:rgba(78,161,255,.22)}
+button.copied{background:rgba(45,212,191,.28);border-color:rgba(45,212,191,.5)}
+.site{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;background:var(--panel);
+border:1px solid var(--border);border-radius:11px;margin-bottom:9px}
+.site.done{opacity:.45}
+.site.done .name{text-decoration:line-through}
+.site input[type=checkbox]{width:19px;height:19px;margin-top:2px;accent-color:var(--good);flex:0 0 auto;cursor:pointer}
+.site .body{flex:1;min-width:0}
+.name{font-weight:650;font-size:15px}
+.name a{color:var(--accent);text-decoration:none}
+.name a:hover{text-decoration:underline}
+.why{color:var(--muted);font-size:13.5px;margin-top:3px}
+.tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+padding:2px 7px;border-radius:5px;margin-left:7px;vertical-align:1px}
+.tag-new{background:rgba(45,212,191,.16);color:var(--good);border:1px solid rgba(45,212,191,.34)}
+.tag-exists{background:rgba(78,161,255,.14);color:var(--accent);border:1px solid rgba(78,161,255,.32)}
+.tag-fake{background:rgba(251,191,36,.14);color:var(--warn);border:1px solid rgba(251,191,36,.3)}
+.rule{border-left:3px solid var(--warn);background:rgba(251,191,36,.07);padding:12px 16px;
+border-radius:0 10px 10px 0;margin:18px 0;font-size:14.5px;color:var(--muted)}
+.rule strong{color:var(--text)}
+.progress{position:sticky;top:0;background:rgba(7,11,20,.93);backdrop-filter:blur(10px);
+padding:12px 0;margin-bottom:6px;border-bottom:1px solid var(--border);z-index:10;
+display:flex;align-items:center;gap:14px}
+.bar{flex:1;height:7px;background:rgba(255,255,255,.09);border-radius:4px;overflow:hidden}
+.bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--good),var(--accent));
+transition:width .3s}
+.count{font-variant-numeric:tabular-nums;font-weight:700;font-size:14px;white-space:nowrap}
+.reset{margin-left:auto}
+@media(max-width:640px){.field{grid-template-columns:1fr;gap:4px}.field button{justify-self:start}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Coupon submission cockpit</h1>
+<p class="sub">Click to copy each value, open each site, paste. Progress saves in this browser.</p>
+
+<div class="progress">
+  <span class="count" id="count">0 / 11</span>
+  <span class="bar"><span id="barfill"></span></span>
+  <button class="reset" id="reset">Reset</button>
+</div>
+
+<div class="rule">
+  <strong>The one rule: enter 30. Never 40, 50 or 75.</strong>
+  Dealspotr advertises 40% sitewide, Tenereteam 75%, WorthEPenny 50% — all fabricated.
+  There is one referral tier: 30% off the first month. Matching their numbers destroys your only
+  differentiator, and inflated codes get voted off the community-moderated sites anyway.
+</div>
+
+<h2>Field values</h2>
+<p class="hint">Use these identically on every site — consistency across domains is itself a signal.</p>
+<div class="card" id="fields"></div>
+
+<h2>Track B — no Godel page exists yet</h2>
+<p class="hint">Do these first. You create the listing, so TAKE30 is the only code on the page
+rather than the sixth row under someone else's.</p>
+<div id="trackB"></div>
+
+<h2>Track A — page exists, add your row</h2>
+<p class="hint">Lower effort, and the page already ranks — you inherit its authority.</p>
+<div id="trackA"></div>
+
+<h2>Optional</h2>
+<div id="trackC"></div>
+
+</div>
+
+<script>
+const FIELDS = [
+  ['Code', 'TAKE30'],
+  ['Discount', '30'],
+  ['Discount type', 'Percent off'],
+  ['Applies to', 'First month / first billing period'],
+  ['Merchant', 'Godel Terminal'],
+  ['Merchant domain', 'godelterminal.com'],
+  ['Category', 'Finance › Investing tools'],
+  ['Expiry', 'Ongoing (or furthest date allowed)'],
+  ['Your landing page', 'https://www.godelpromo.com/promo-codes/'],
+  ['Title', '30% off your first month of Godel Terminal'],
+  ['Description', 'Use code TAKE30 at checkout for 30% off your first month of Godel Terminal, the browser-based financial terminal. Applies to the first billing period only. Godel Terminal lists entry pricing at $996 per seat per year. Verify the total updates at checkout before paying.'],
+  ['Description (short)', 'TAKE30 takes 30% off your first month of Godel Terminal. First billing period only — check the total updates at checkout.'],
+  ['Terms', 'Applies to the first billing period only. Not a recurring discount. New subscribers. Discount terms are set by Godel Terminal and can change.'],
+];
+
+const SITES = {
+  trackB: [
+    ['Wethrift', 'https://www.wethrift.com/submit', 'Accepts direct submission. Add the merchant if it is not found.', 'new'],
+    ['Knoji', 'https://knoji.com', 'Search the merchant, then "Add a coupon". High authority, heavily scraped by AI crawlers.', 'new'],
+    ['CouponBirds', 'https://www.couponbirds.com/submit', 'Straightforward submission form.', 'new'],
+    ['CouponFollow', 'https://couponfollow.com', 'Confirmed no Godel page (404). Uncontested.', 'new'],
+    ['SimplyCodes', 'https://simplycodes.com', 'Community-moderated and quality-weighted — accuracy is rewarded here specifically.', 'new'],
+    ['Coupert', 'https://coupert.com', 'Returned 410 for Godel, so no live page.', 'new'],
+  ],
+  trackA: [
+    ['Dealspotr', 'https://dealspotr.com/promo-codes/godelterminal.com', 'Already lists 5 codes. Create account → "Add a deal". Highest authority on this list.', 'fake'],
+    ['CouponBind', 'https://www.couponbind.com/coupons/godelterminal.com', 'Lists 2 codes at the correct 30%.', 'exists'],
+    ['GreenPromoCode', 'https://www.greenpromocode.com/coupons/godel-terminal/', 'Existing page, correct 30%.', 'exists'],
+    ['Tenereteam', 'https://godel-terminal.tenereteam.com/coupons', 'Currently advertises a fabricated 75%.', 'fake'],
+    ['WorthEPenny', 'https://godelterminal.worthepenny.com/coupon/', 'Currently advertises a fabricated 50%.', 'fake'],
+  ],
+  trackC: [
+    ['Slickdeals', 'https://slickdeals.net', 'Heavily moderated by real people. Post only if you would post it as a user — a rejection is worse than no submission.', 'exists'],
+  ],
+};
+
+const TAGS = { new: ['tag-new', 'no page yet'], exists: ['tag-exists', 'page exists'], fake: ['tag-fake', 'fake % listed'] };
+
+function copyBtn(text) {
+  const b = document.createElement('button');
+  b.textContent = 'Copy';
+  b.onclick = async () => {
+    try { await navigator.clipboard.writeText(text); }
+    catch { const t = document.createElement('textarea'); t.value = text; document.body.appendChild(t); t.select(); document.execCommand('copy'); t.remove(); }
+    b.textContent = 'Copied'; b.classList.add('copied');
+    setTimeout(() => { b.textContent = 'Copy'; b.classList.remove('copied'); }, 1200);
+  };
+  return b;
+}
+
+const fieldsEl = document.getElementById('fields');
+for (const [label, value] of FIELDS) {
+  const row = document.createElement('div'); row.className = 'field';
+  const l = document.createElement('label'); l.textContent = label;
+  const v = document.createElement('div'); v.className = 'val'; v.textContent = value;
+  row.append(l, v, copyBtn(value));
+  fieldsEl.appendChild(row);
+}
+
+const KEY = 'godelpromo-submissions-v1';
+const done = new Set(JSON.parse(localStorage.getItem(KEY) || '[]'));
+const total = Object.values(SITES).flat().length;
+
+function save() {
+  localStorage.setItem(KEY, JSON.stringify([...done]));
+  document.getElementById('count').textContent = `${done.size} / ${total}`;
+  document.getElementById('barfill').style.width = (done.size / total * 100) + '%';
+}
+
+for (const [track, list] of Object.entries(SITES)) {
+  const host = document.getElementById(track);
+  for (const [name, url, why, tag] of list) {
+    const el = document.createElement('div');
+    el.className = 'site' + (done.has(name) ? ' done' : '');
+    const cb = document.createElement('input');
+    cb.type = 'checkbox'; cb.checked = done.has(name);
+    cb.onchange = () => { cb.checked ? done.add(name) : done.delete(name); el.classList.toggle('done', cb.checked); save(); };
+    const body = document.createElement('div'); body.className = 'body';
+    const [cls, txt] = TAGS[tag];
+    body.innerHTML = `<div class="name"><a href="${url}" target="_blank" rel="noopener">${name}</a>`
+      + `<span class="tag ${cls}">${txt}</span></div><div class="why">${why}</div>`;
+    el.append(cb, body);
+    host.appendChild(el);
+  }
+}
+
+document.getElementById('reset').onclick = () => {
+  if (!confirm('Clear all progress?')) return;
+  done.clear(); save();
+  document.querySelectorAll('.site').forEach(s => { s.classList.remove('done'); s.querySelector('input').checked = false; });
+};
+
+save();
+</script>
+</body>
+</html>

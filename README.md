@@ -16,7 +16,8 @@ npm run serve         # build + serve on http://localhost:4321
 
 ```
 src/data/site.mjs        Single source of truth: promo code, pricing, competitors, disclosures
-src/data/commands.mjs    Command reference with provenance tiers
+src/data/commands.mjs    Command reference with provenance tiers (48 commands, aliases, corrections ledger)
+src/data/research.mjs    Extended fact bank: vendor pages, ownership/press, sentiment, competitor intel
 src/lib/layout.mjs       HTML shell, meta tags, JSON-LD entity graph
 src/lib/components.mjs   Reusable content blocks
 src/pages/*.mjs          One module per page — exports `page`
@@ -47,7 +48,7 @@ The sitemap, `llms.txt`, breadcrumb schema and nav wiring all follow automatical
 Run `node scripts/check.mjs` before committing — it catches broken links, duplicate titles,
 malformed JSON-LD and missing `rel="sponsored"` on affiliate links.
 
-### Two rules worth keeping
+### Three rules worth keeping
 
 **1. Facts live in `src/data/`, never inline in a page.** Every price, code and command is defined
 once. Inconsistent facts across pages are the fastest way to lose an AI citation.
@@ -55,8 +56,15 @@ once. Inconsistent facts across pages are the fastest way to lose an AI citation
 **2. Respect the provenance tiers.** `src/data/commands.mjs` marks each command `official`
 (vendor-published prose) or `documented` (official doc page exists, no vendor prose). Pricing entries
 carry `attributed: true` when the figure comes from third-party reviews rather than a vendor page, and
-the copy hedges accordingly. Being visibly careful about what we do and don't know is the site's main
-differentiator — don't promote a claim between tiers without a primary source.
+the copy hedges accordingly. `src/data/research.mjs` extends the same discipline to everything else
+(tiers: vendor / press / community / affiliate — community facts always render as attributed
+sentiment). Being visibly careful about what we do and don't know is the site's main differentiator —
+don't promote a claim between tiers without a primary source.
+
+**3. Correct in public.** When a claim goes stale (e.g. the command docs grew 17 → 48 in 2026 and
+five "phantom" commands became real), update the data AND add a row to the `CORRECTIONS` ledger in
+`commands.mjs`, which renders on `/godel-terminal-commands-that-dont-exist/`. Silent edits waste the
+site's one differentiator; public corrections compound it.
 
 ## Deployment — Cloudflare Pages
 

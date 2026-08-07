@@ -14,6 +14,7 @@ import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { renderPage } from './src/lib/layout.mjs';
+import { esc } from './src/lib/components.mjs';
 import { SITE, PROMO, PRODUCT, PRICING, STUDENT, REFERRAL_CODES } from './src/data/site.mjs';
 import { commandCount } from './src/data/commands.mjs';
 
@@ -252,6 +253,48 @@ function buildHeaders() {
 `;
 }
 
+/**
+ * Cloudflare Pages serves /404.html for any path that matches no file or
+ * redirect, and serves it with a real 404 status.
+ *
+ * Without this file the site answered 200 with the homepage for every unknown
+ * URL — a soft 404. That is worse than it sounds on a small site: it makes an
+ * unbounded space of typo and stale-link URLs look like valid pages, so crawl
+ * budget drains into them and Search Console reports them as soft 404s.
+ *
+ * Deliberately not a src/pages module: it must stay out of the sitemap, out of
+ * llms.txt, and out of the internal link graph, and living outside the page
+ * list is what guarantees that.
+ */
+function build404() {
+  return renderPage({
+    path: '/404.html',
+    title: 'Page not found — GodelPromo',
+    description:
+      'That page does not exist on godelpromo.com. Jump to the current Godel Terminal promo codes, the command reference, or the redemption guide instead.',
+    noindex: true,
+    main: `
+<h1>Page not found</h1>
+
+<p class="lede">That URL does not exist on this site. It may have been renamed, or the link that
+sent you here may be out of date.</p>
+
+<p class="prose">These are the pages people usually want:</p>
+
+<ul class="prose">
+  <li><a href="/promo-codes/">Current ${esc(PRODUCT.name)} promo codes</a> — every working code, with what it actually does.</li>
+  <li><a href="/how-to-redeem/">How to redeem a code</a> — where the field is and when to enter it.</li>
+  <li><a href="/godel-terminal-pricing/">Pricing</a> — current tiers and what each one includes.</li>
+  <li><a href="/godel-terminal-commands/">Command reference</a> — all ${commandCount} commands.</li>
+  <li><a href="/faq/">FAQ</a> — the questions that come up most.</li>
+</ul>
+
+<p class="prose">If you followed a link on this site to get here, that is a bug worth knowing about —
+the <a href="/about/">about page</a> explains how to reach us.</p>
+`,
+  });
+}
+
 async function main() {
   const t0 = Date.now();
   if (existsSync(dist)) { await rm(dist, { recursive: true }); }
@@ -298,6 +341,7 @@ async function main() {
   await writeFile(path.join(dist, 'llms.txt'), buildLlmsTxt(pages), 'utf8');
   await writeFile(path.join(dist, '_redirects'), buildRedirects(), 'utf8');
   await writeFile(path.join(dist, '_headers'), buildHeaders(), 'utf8');
+  await writeFile(path.join(dist, '404.html'), build404(), 'utf8');
 
   // IndexNow ownership key. Bing, Yandex and Seznam verify by fetching
   // /<key>.txt containing the key itself.

@@ -38,10 +38,15 @@ const files = await walk(dist);
 const routes = new Set(files.map(routeOf));
 const titles = new Map();
 const descriptions = new Map();
+// A page that opts out of indexing is expected to be absent from the sitemap,
+// so the coverage check below skips these rather than reporting them missing.
+const noindexRoutes = new Set();
 
 for (const file of files) {
   const html = await readFile(file, 'utf8');
   const route = routeOf(file);
+
+  if (/<meta name="robots" content="noindex/.test(html)) { noindexRoutes.add(route); }
 
   // --- JSON-LD parses ---
   const ld = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
@@ -109,6 +114,7 @@ for (const file of files) {
 // --- sitemap covers every indexable route ---
 const sitemap = await readFile(path.join(dist, 'sitemap.xml'), 'utf8');
 for (const route of routes) {
+  if (noindexRoutes.has(route)) { continue; }
   if (!sitemap.includes(`${route}<`) && !sitemap.includes(`${route}</loc>`)) {
     const full = `https://www.godelpromo.com${route}`;
     if (!sitemap.includes(full)) { problems.push(`sitemap: missing ${route}`); }

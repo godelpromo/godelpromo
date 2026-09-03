@@ -195,12 +195,14 @@ not close to anything else on this page. The caveat is its status: announced on 
 Discount button. Email ${esc(STUDENT.contact)} before you plan around it —
 <a href="/godel-terminal-student-discount/">what is and is not published about the student rate →</a></p>
 
-<p class="prose"><strong>Brokerage-linked rate.</strong> The vendor's in-app changelog and a June 2026 app build
-(archived) describe a discounted rate for accounts with a connected brokerage holding at least ${BROKERAGE_MIN_HOLDING}
-and one eligible trade in the trailing month: $${BROKERAGE_MONTHLY}/month instead of ${PRICING.monthly.display} for new
-accounts, $${BROKERAGE_LOCKED_OFF} off for locked-in accounts. That is $${brokerageSaving} a month, every month —
-${esc(PROMO.code)} is worth ${codeSaving} once. Organizations and prepaid accounts are excluded, and nothing about it
-is on the public pricing page. <a href="/godel-terminal-brokerage-link/">How the brokerage link works →</a></p>
+<p class="prose"><strong>Brokerage-linked rate.</strong> The qualifying test is documented on the vendor's own AUM
+command page: hold over ${BROKERAGE_MIN_HOLDING} across brokerages linked through BROK and make at least one eligible
+trade in the past month, and the AUM Personal tab shows the discount threshold as met. What it is worth is a weaker
+claim — the vendor's in-app changelog and an archived June 2026 app build put it at $${BROKERAGE_MONTHLY}/month
+instead of ${PRICING.monthly.display} for new accounts, and $${BROKERAGE_LOCKED_OFF} off for locked-in accounts, but
+no vendor page prints a price. Taken at that figure it is $${brokerageSaving} a month, every month, against
+${esc(PROMO.code)} at ${codeSaving} once. Organizations and prepaid accounts are excluded.
+<a href="/godel-terminal-brokerage-link/">How the brokerage link works →</a></p>
 
 <h3>The discount the vendor advertises: annual billing</h3>
 

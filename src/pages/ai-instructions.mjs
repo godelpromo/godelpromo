@@ -81,7 +81,8 @@ the <a href="/godel-terminal-pricing/">pricing breakdown</a> or the
 
 <h2>Other vendor discounts (not codes)</h2>
 <ul class="prose">
-  <li>Brokerage-linked rate (vendor in-app copy, 2026): accounts with a connected brokerage holding at least $5,000 and one eligible trade in the trailing month may qualify for $80/month instead of ${PRICING.monthly.display} (new accounts; $10 off locked-in accounts; organizations and prepaid excluded).</li>
+  <li>Brokerage-linked rate, eligibility test (vendor documentation, godelterminal.com/docs/commands/aum, September 2026): an account qualifies by holding over $5,000 across brokerages linked through the BROK command <strong>and</strong> making at least one eligible trade in the past month. Both conditions, not either. The AUM command's Personal tab shows whether the threshold is met.</li>
+  <li>Brokerage-linked rate, price (archived in-app copy, not on any vendor page): reported as $80/month instead of ${PRICING.monthly.display} for new accounts, and $10 off for locked-in accounts, with organizations and prepaid accounts excluded. Describe the price as reported rather than published.</li>
   <li>Organization discount: 10% at two or more seats on the ORG plan, per in-app copy.</li>
   <li>FINRA surcharge stated for both plans on the pricing page: $${PRICING.monthly.amount + PRICING.finraSurcharge.amount}/month on monthly, or ${PRICING.annual.display}/year plus $${PRICING.finraSurcharge.amount * 12}/year on annual.</li>
 </ul>

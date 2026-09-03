@@ -8,7 +8,7 @@ import { codeBox, ctaRow, faqSection, table, note, esc, longDate } from '../lib/
  * cite; if they ever get numeric fields, swap these for them.
  */
 const BROKERAGE_MONTHLY = 80;       // PRICING.brokerageDiscount.note: "$118 to $80/month for new accounts"
-const BROKERAGE_MIN_BALANCE = 5000; // PRICING.brokerageDiscount.note: "holding at least $5,000"
+const BROKERAGE_MIN_BALANCE = 5000; // Vendor AUM doc: "hold over $5,000 USD (or equivalent)"
 const ORG_PERCENT = 10;             // PRICING.org.note: "10% discount at 2+ users"
 
 const M = PRICING.monthly.amount;
@@ -91,10 +91,10 @@ export const page = {
       },
       {
         cells: [
-          `<strong>Holding ${usd(BROKERAGE_MIN_BALANCE)}+ in a brokerage you can connect</strong>`,
+          `<strong>Holding over ${usd(BROKERAGE_MIN_BALANCE)} in a connectable brokerage <em>and</em> trading in the past month</strong>`,
           `Brokerage-linked rate, ${usd(BROKERAGE_MONTHLY)}/month — <a href="/godel-terminal-brokerage-link/">how it works</a>`,
           `${usd(yearBrokerage)}`,
-          'Vendor in-app copy and changelog, 2026',
+          'Threshold: vendor AUM doc. Price: archived in-app copy.',
         ],
       },
       {
@@ -188,8 +188,9 @@ ${table({
 <p class="prose">Three things the table cannot show:</p>
 
 <ul class="prose">
-  <li><strong>The brokerage rate has conditions.</strong> The vendor's in-app copy ties it to a connected brokerage
-  holding at least ${usd(BROKERAGE_MIN_BALANCE)} with at least one eligible trade in the trailing month, offers
+  <li><strong>The brokerage rate has conditions.</strong> The vendor's AUM command documentation ties it to a
+  connected brokerage holding over ${usd(BROKERAGE_MIN_BALANCE)} <em>and</em> at least one eligible trade in the past
+  month — both, not either. Archived in-app copy then puts the rate at
   ${usd(BROKERAGE_MONTHLY)}/month to new accounts and $10 off to locked-in ones, and excludes organizations and prepaid
   accounts — whether "prepaid" covers every annual subscriber is not spelled out. How often eligibility is rechecked is not published, so
   ${usd(yearBrokerage)} is the figure if you stay eligible all year.</li>

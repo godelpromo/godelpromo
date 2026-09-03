@@ -85,7 +85,7 @@ export const page = {
           '<strong>Brokerage-linked rate</strong>',
           `$${BROKERAGE_MONTHLY}/month for new accounts; $${BROKERAGE_LOCKED_OFF} off for locked-in accounts`,
           `$${brokerageSaving}/month, recurring`,
-          `Connected brokerage holding ${BROKERAGE_MIN_HOLDING}+ with one eligible trade in the trailing month; not organizations or prepaid accounts`,
+          `Holding over ${BROKERAGE_MIN_HOLDING} in linked brokerages <em>and</em> one eligible trade in the past month; not organizations or prepaid accounts`,
           'Threshold: vendor AUM doc. Price: archived in-app copy.',
         ],
       },

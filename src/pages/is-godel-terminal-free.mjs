@@ -155,7 +155,7 @@ ${table({
       cells: [
         '<strong>Brokerage-linked rate</strong>',
         '$80/month',
-        `Connected brokerage holding $5,000+ with at least one eligible trade in the trailing month; $80 is the new-account rate (locked-in accounts get $10 off instead), organizations and prepaid excluded — <a href="/godel-terminal-brokerage-link/">details</a>`,
+        `Connected brokerage holding over $5,000 <em>and</em> at least one eligible trade in the past month; $80 is the new-account rate (locked-in accounts get $10 off instead), organizations and prepaid excluded — <a href="/godel-terminal-brokerage-link/">details</a>`,
         'Vendor in-app changelog and June 2026 app build (archived)',
       ],
     },

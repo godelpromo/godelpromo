@@ -190,7 +190,7 @@ annual wins even though the code looks smaller against it.</p>
 
 <ul class="prose">
   <li><strong>Brokerage-linked rate.</strong> The vendor's in-app copy offers accounts with a connected
-  brokerage holding at least $5,000 and one eligible trade in the trailing month a discounted rate —
+  brokerage holding over $5,000 <em>and</em> one eligible trade in the past month a discounted rate —
   $80/month instead of ${PRICING.monthly.display} for new accounts, $10 off for locked-in ones. Organizations and
   prepaid accounts are excluded. (Source: archived in-app changelog and app build, 2026.)</li>
   <li><strong>Organization discount.</strong> The ORG plan groups billing for teams; in-app copy states a

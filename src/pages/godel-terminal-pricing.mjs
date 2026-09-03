@@ -219,6 +219,40 @@ ${table({
 ago — which also tells you when that page last checked anything. The current vendor-published price is
 ${PRICING.monthly.display}/month or ${PRICING.annual.display}/year.</p>
 
+<p class="prose">This is not hypothetical. These are pages that ranked for Godel Terminal pricing and review
+queries when we checked on 3 September 2026, with what each one was telling readers that day:</p>
+
+${table({
+  head: ['Where', 'What it says', 'What is actually published'],
+  rows: [
+    { cells: [
+      'thestockdork.com, "Godel Terminal Review 2026"',
+      '"Pro plan $80/month"; "FINRA-registered users $120/month", i.e. a $40 surcharge',
+      `${PRICING.monthly.display}/month, with a ${PRICING.finraSurcharge.display} surcharge — $${PRICING.monthly.amount + PRICING.finraSurcharge.amount}/month, not $120`,
+    ] },
+    { cells: [
+      'sourceforge.net and slashdot.org product listings',
+      '"Starting Price: $20 per month"',
+      `${PRICING.monthly.display}/month. No $20 tier has ever been published`,
+    ] },
+    { cells: [
+      'godelterminalpromocode.webflow.io (GET30) and greenpromocode.com',
+      '"$60 per month"',
+      `The late-2024 price, two changes ago`,
+    ] },
+    { cells: [
+      'capterra.com',
+      `${PRICING.monthly.display}/month — correct — plus an "Organization Plan $1,500 per user, per year" and a "Free Tier $0.00"`,
+      'The monthly figure matches. Neither the $1,500 ORG figure nor a $0 tier appears on the vendor pricing page; Capterra labels the listing "Provider data verified"',
+    ] },
+  ],
+})}
+
+<p class="prose faint">We name them because a claim you cannot check is worth nothing. Every figure in the middle
+column was read off the page on the date given, and every figure in the right-hand column is
+<a href="${esc(VENDOR_PAGES.pricing)}" rel="nofollow noopener" target="_blank">on the vendor's pricing page</a>
+today. If one of these sites corrects itself, this table will say so.</p>
+
 <h2>How that compares to other terminals</h2>
 
 <p class="prose">${esc(PRODUCT.name)} anchors its own marketing against "a $30,000 terminal", and its published

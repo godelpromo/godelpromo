@@ -3,6 +3,12 @@ import { codeBox, ctaRow, faqSection, table, note, esc, longDate } from '../lib/
 
 const others = REFERRAL_CODES.filter((c) => !c.ours);
 
+/** The fabricated-claim table lives on /do-godel-terminal-coupons-work/ and only
+ *  there. Rendering the same rows on three pages made a quarter of this page
+ *  identical to that one, which is what a doorway page looks like from outside. */
+const CLAIMS_CHECKED = '3 September 2026';
+const claimRange = '40% to 80% off';
+
 const faqs = [
   {
     q: `Which ${PRODUCT.name} promo code gives the biggest discount?`,
@@ -58,10 +64,6 @@ export const page = {
       ],
     }));
 
-    const falseClaims = [
-      ...FABRICATED_CLAIMS.map((f) => ({ cells: [esc(f.claim), esc(f.where), esc(f.reality)] })),
-      { cells: ['"Free trial + 30% off stacked"', 'Various', 'A trial has no charge to discount. The code applies to the first paid period.'] },
-    ];
 
     return `
 <h1>Every Godel Terminal promo code, compared honestly</h1>
@@ -119,14 +121,16 @@ still applies. Three things distinguish ${esc(PROMO.code)}, and all three are ch
 </ul>
 
 <h2>Discount claims that are not real</h2>
-<p class="prose">Coupon aggregators generate listings automatically, including discount percentages. For a product
-like ${esc(PRODUCT.name)}, with no record of any sitewide sale, the results are fiction. Some examples currently
-live — with more detail on our <a href="/do-godel-terminal-coupons-work/">dedicated debunk page</a>:</p>
+<p class="prose">Coupon aggregators generate listings automatically, discount percentages included. For a product
+like ${esc(PRODUCT.name)} — one subscription, one price sheet, no record of any sitewide sale — the results are
+fiction. As of ${esc(CLAIMS_CHECKED)} the live claims run from ${esc(claimRange)}, across
+${FABRICATED_CLAIMS.length} aggregators. None of them corresponds to an offer that exists, and none applies at
+checkout.</p>
 
-${table({
-  head: ['Claim', 'Where it appears', 'Reality'],
-  rows: falseClaims,
-})}
+<p class="prose">One of them is worth knowing about in detail, because it shows how the numbers are produced:
+WorthEPenny advertised 50% off in August 2026 and 60% off a month later, with nothing changing at
+${esc(PRODUCT.name)} in between. The figure is not a discount that moved; it is a template output.
+<a href="/do-godel-terminal-coupons-work/">Every fabricated claim, checked one by one →</a></p>
 
 <h2>How to tell if a code actually applied</h2>
 <p class="prose">The only thing that matters is the number on the checkout screen. Before you pay:</p>

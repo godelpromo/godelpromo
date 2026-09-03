@@ -1,6 +1,6 @@
 import { PROMO, PRODUCT, PRICING, REFERRAL, REFERRAL_CODES } from '../data/site.mjs';
 import { SENTIMENT } from '../data/research.mjs';
-import { codeBox, ctaRow, faqSection, note, esc } from '../lib/components.mjs';
+import { codeBox, ctaRow, faqSection, note, esc, longDate } from '../lib/components.mjs';
 
 const faqs = [
   {
@@ -17,7 +17,7 @@ const faqs = [
   },
   {
     q: 'Should I trust a promo code I found in a Reddit comment?',
-    a: `It will almost certainly work — referral tokens are interchangeable, so the risk is not a scam code, it is expecting the code to be special. Whatever code you enter, the test is the same: the total on the checkout screen must update before you pay.`,
+    a: `It will almost certainly work — referral tokens all resolve to the same ${PROMO.percent}% tier, so the risk is not a scam code, it is expecting the code to be special. Whatever code you enter, the test is the same: the total on the checkout screen must update before you pay. If you would rather use one that has actually been tested, ${PROMO.code} was last applied at a real checkout on ${longDate(PROMO.lastVerified)}.`,
   },
 ];
 
@@ -78,8 +78,8 @@ aggregators, not from ${esc(PRODUCT.name)}, and none applies at checkout —
 <a href="/do-godel-terminal-coupons-work/">every fabricated claim, checked →</a>`, { warn: true })}
 
 <h2>The verified version of what Reddit tells you</h2>
-<p class="prose">Every referral code is the same, so use whichever is in front of you — this one was last
-tested at checkout on ${esc(PROMO.lastVerified)}:</p>
+<p class="prose">Every referral code gives the same ${PROMO.percent}%, so the sensible tie-breaker is verification.
+Use ${esc(PROMO.code)} — last applied at a real checkout on ${esc(longDate(PROMO.lastVerified))}:</p>
 
 ${codeBox()}
 

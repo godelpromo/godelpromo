@@ -1,5 +1,5 @@
-import { PROMO, PRODUCT, PRICING, KNOWN_CODES, CASE_STUDY, COMPANY } from '../data/site.mjs';
-import { codeBox, ctaRow, faqSection, table, tiles, note, offerSummary, esc } from '../lib/components.mjs';
+import { PROMO, PRODUCT, PRICING, CASE_STUDY, COMPANY } from '../data/site.mjs';
+import { codeBox, ctaRow, faqSection, tiles, note, offerSummary, longDate, esc } from '../lib/components.mjs';
 import { officialCommands, commandCount } from '../data/commands.mjs';
 
 const faqs = [
@@ -13,7 +13,7 @@ const faqs = [
   },
   {
     q: `Is ${PROMO.code} better than NEWUSER, GET30, SHKRELI or GUIDE?`,
-    a: `They are all the same offer. Every one of these codes is a referral token in ${PRODUCT.name}'s affiliate programme, and every one delivers ${PROMO.percent}% off the ${PROMO.appliesTo}. No code in circulation gives more — even <a href="/godel-terminal-official-promo-code/">X25, the code from ${PRODUCT.name}'s own X account</a>, is smaller at 25% — and anyone advertising 40%, 75% or "up to 80% off" is describing a discount that does not exist. One genuine exception: ${PRODUCT.name} announced an official <a href="/godel-terminal-student-discount/">$5/month student rate</a> (.edu signup) that beats every code — confirm it is still live before counting on it.`,
+    a: `Use <strong>${PROMO.code}</strong>. In discount terms they are identical — every one of these codes is a referral token in ${PRODUCT.name}'s affiliate programme, and every one delivers ${PROMO.percent}% off the ${PROMO.appliesTo} — so the tie-breaker is verification: ${PROMO.code} was last applied at a real checkout on ${longDate(PROMO.lastVerified)}, and it is the only code this site has ever promoted. No code in circulation gives more — even <a href="/godel-terminal-official-promo-code/">X25, the code from ${PRODUCT.name}'s own X account</a>, is smaller at 25% — and anyone advertising 40%, 75% or "up to 80% off" is describing a discount that does not exist. One genuine exception: ${PRODUCT.name} announced an official <a href="/godel-terminal-student-discount/">$5/month student rate</a> (.edu signup) that beats every code — confirm it is still live before counting on it.`,
   },
   {
     q: `How much does ${PRODUCT.name} cost?`,
@@ -29,23 +29,14 @@ const faqs = [
   },
   {
     q: `What if the code does not work?`,
-    a: `Discount codes are set by ${PRODUCT.name} and can be changed or withdrawn at any time. If ${PROMO.code} does not apply, try one of the other codes listed on this page — they target the same offer — and check that you are on a paid plan checkout rather than the free trial step, since a trial has nothing to discount yet.`,
+    a: `Discount codes are set by ${PRODUCT.name} and can be changed or withdrawn at any time. If ${PROMO.code} does not apply, try one of the other referral codes on <a href="/promo-codes/">our comparison page</a> — they target the same offer — and check that you are on a paid plan checkout rather than the free trial step, since a trial has nothing to discount yet.`,
   },
 ];
-
-const codeRows = KNOWN_CODES.map((c) => ({
-  highlight: c.ours,
-  cells: [
-    `<strong class="mono">${esc(c.code)}</strong>${c.ours ? ' <span class="badge badge-official">Ours</span>' : ''}${c.official ? ' <span class="badge badge-reported">Official account</span>' : ''}`,
-    `${c.percent}% off ${PROMO.appliesTo}`,
-    esc(c.source),
-  ],
-}));
 
 export const page = {
   path: '/',
   title: `${PROMO.code}: Godel Terminal Promo Code — ${PROMO.percent}% Off First Month`,
-  description: `Promo code ${PROMO.code} gets ${PROMO.percent}% off your first month of Godel Terminal. Real pricing, the official command list, and every rival code compared.`,
+  description: `Promo code ${PROMO.code} gets ${PROMO.percent}% off your first month of Godel Terminal. Verified at checkout, with real pricing, the full command list and every rival code compared.`,
   summary: `The ${PROMO.code} promo code, what it actually discounts, and how it compares to every other Godel Terminal code.`,
   breadcrumbs: [{ href: '/', label: 'Home' }],
   faqs,
@@ -103,21 +94,27 @@ export const page = {
 </section>
 
 <section>
-  <h2>Every Godel Terminal promo code, compared</h2>
-  <p class="prose">Searching for a ${esc(PRODUCT.name)} discount turns up a dozen different codes across
-  a dozen different sites, each presented as though it were exclusive. They are not. Here is the honest version —
-  every referral code points at the same ${PROMO.percent}% offer, and the one official code
-  (<span class="mono">X25</span>, from ${esc(PRODUCT.name)}'s own X account) is actually <em>smaller</em>, at 25%.</p>
+  <h2>Why ${esc(PROMO.code)}, when every referral code gives the same ${PROMO.percent}%?</h2>
+  <p class="prose">It is true, and we say so plainly: ${esc(PRODUCT.name)}'s referral programme has one tier, so any
+  referral token takes ${PROMO.percent}% off the first payment. We recommend ${esc(PROMO.code)} anyway, for three
+  reasons you can check:</p>
 
-  ${table({
-    head: ['Code', 'Actual discount', 'Promoted by'],
-    rows: codeRows,
-  })}
+  <ul class="prose">
+    <li><strong>It is verified, with a date.</strong> ${esc(PROMO.code)} was last applied at a real checkout on
+    ${esc(longDate(PROMO.lastVerified))}, and that date only moves when the code is tested again. Rival pages carry
+    "updated" stamps that rotate on a template, or none at all.</li>
+    <li><strong>It is one code, not a rotating stack.</strong> Some sites push six tokens at once, with referral links
+    that do not match the code shown on the page. ${esc(PROMO.code)} is the only code this site has ever promoted.</li>
+    <li><strong>We keep the ledger in public.</strong> When a code stops applying, or an aggregator's claim inflates
+    (one went from 50% to 60% in a month with no vendor change), it is recorded on the comparison page rather than
+    quietly edited.</li>
+  </ul>
 
-  <p class="prose faint">We list our competitors' codes because it is simply true that the referral codes work
-  identically, and you deserve to know that before you spend time hunting for a better one. If ${esc(PROMO.code)}
-  ever stops applying, any other referral code in this table should behave the same way. Students: the announced official
-  <a href="/godel-terminal-student-discount/">$5/month student rate</a> beats all of them, if it is still live.</p>
+  <p class="prose">Every other code in circulation, and what each one actually does, is compared on
+  <a href="/promo-codes/">the promo-code comparison page</a>. The one official code
+  (<span class="mono">X25</span>, from ${esc(PRODUCT.name)}'s own X account) is <em>smaller</em>, at 25%. Students: the
+  announced official <a href="/godel-terminal-student-discount/">$5/month student rate</a> beats every code, if it is
+  still live.</p>
 </section>
 
 <section>

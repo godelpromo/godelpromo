@@ -2,7 +2,7 @@ import { PROMO, PRICING, PRODUCT } from '../data/site.mjs';
 import { esc } from './layout.mjs';
 
 /** "30 July 2026" from an ISO date, for the verification line. */
-function longDate(iso) {
+export function longDate(iso) {
   const [y, m, d] = iso.split('-').map(Number);
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   return `${d} ${months[m - 1]} ${y}`;

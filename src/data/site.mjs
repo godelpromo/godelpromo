@@ -153,8 +153,12 @@ export const REFERRAL = {
   platform: 'Rewardful',
   payout: 'PayPal',
   combinable: false,
+  /** The referral FAQ's own example of a non-combinable vendor coupon. Percent never published. */
+  exampleCoupon: 'NVDA',
+  /** Quoted from the referral FAQ: why the vendor tells affiliates to share the code, not the link. */
+  linkWarning: 'Ad blockers and browser settings may block tracking if only the link is used. Your friends must use the code at checkout for it to count.',
   url: 'https://godelterminal.com/referral',
-  source: 'godelterminal.com/referral, August 2026',
+  source: 'godelterminal.com/referral, checked 2026-09-03',
 };
 
 /**
@@ -184,6 +188,10 @@ export const KNOWN_CODES = [
   { code: 'CODE30', percent: 30, ours: false, source: 'LinkedIn newsletter “Godel Terminal discount CODE30”' },
   { code: 'JENY', percent: 30, ours: false, source: 'jenova.ai shared-answer page' },
   { code: 'FUNDEDPROGRAM', percent: 30, ours: false, source: 'thetrade-reviews.com' },
+  { code: 'SHKRELIPLANET', percent: 30, ours: false, source: 'Shkreli Planet YouTube channel' },
+  { code: 'THESHKRELIPILL', percent: 30, ours: false, source: 'The Shkreli Pill YouTube channel' },
+  { code: 'SUMMER', percent: 30, ours: false, source: 'godelterminaldiscounts.com' },
+  { code: '2025', percent: 30, ours: false, source: 'godelterminaldiscounts.com' },
   { code: 'BLOOMBERG', percent: 30, ours: false, source: 'godelterminaldiscounts.com' },
   { code: 'BLACKFRIDAY', percent: 30, ours: false, source: 'godelterminaldiscounts.com' },
   { code: 'CYBERMONDAY', percent: 30, ours: false, source: 'godelterminaldiscounts.com' },
@@ -219,6 +227,11 @@ export const FABRICATED_CLAIMS = [
     claim: '40% off (5 active codes)',
     where: 'Knoji',
     reality: 'Auto-generated listing, stale since September 2025. The real tier is 30%, first month only.',
+  },
+  {
+    claim: 'Up to 80% off (twelve unnamed offers)',
+    where: 'Goodsearch',
+    reality: 'Twelve offers with no code strings, headlined at 80%. Nothing in the referral programme or on the vendor pricing page supports any figure above 30%, and the listing exposes no code that could be tested.',
   },
   {
     claim: 'Average saving 34%',

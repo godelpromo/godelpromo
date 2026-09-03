@@ -8,10 +8,12 @@ const firstMonth = (PRICING.monthly.amount * (1 - PROMO.percent / 100)).toFixed(
 const otherReferralCount = REFERRAL_CODES.filter((c) => !c.ours).length;
 
 /**
- * The three-letter code fragments Coupert's godelterminal.com listing shows
- * behind its "Show Code" button (September 2026). Matched against the
- * referral tokens in KNOWN_CODES at render time so the sentence stays true
- * as the code list grows.
+ * The three-letter code fragments Coupert's godelterminal.com listing showed
+ * behind its "Show Code" button when it was last recorded. Every URL form for
+ * that listing failed on 3 September 2026 (404 for /coupon/godelterminal.com,
+ * 410 Gone for /store/godelterminal.com), so the fragments are reported as last
+ * recorded rather than as live. Matched against the referral tokens in
+ * KNOWN_CODES at render time so the sentence stays true as the code list grows.
  */
 const COUPERT_FRAGMENTS = ['PRO', 'AVE', 'AGO'];
 const fragmentMatches = COUPERT_FRAGMENTS.map((f) => ({
@@ -32,18 +34,18 @@ const fragmentSentence = matched.length
  * rather than dropped, so the reader knows which claims were re-checked.
  */
 const STATUS_2026_09_03 = {
-  Dealspotr: 'Returned HTTP 403 to our fetch; the 40% headline stands as last recorded.',
+  Dealspotr: 'Returned HTTP 403; not retrievable. The 40% headline stands as last recorded.',
   WorthEPenny: 'Behind a bot check; not retrievable. The 50%-to-60% rotation stands as recorded.',
   Tenereteam: 'Returned HTTP 403; not retrievable. TENERE and HARDWARE still match no referral token.',
   Knoji: 'Returned HTTP 403; not retrievable.',
-  Goodsearch: 'Live. One sentence of its FAQ reads: "The best promotion available for Godel Terminal is 80% off - this code will give you 25% Off." It counts "12 coupons", files the product under "Miscellaneous", and shows no code string.',
+  Goodsearch: 'Live. One sentence of its FAQ reads: "The best promotion available for Godel Terminal is 80% off - this code will give you 25% Off." It counts "12 coupons" in one place and "all 30 codes available" in another, files the product under "Miscellaneous", and names exactly one code string — GET55, which matches no referral token this site tracks.',
   'Aggregator listings': 'A derived figure; nothing to fetch.',
 };
 
 const faqs = [
   {
     q: 'Is there a Godel Terminal coupon code for 2026?',
-    a: `Yes, in the only form that exists: a referral code. Every referral code gives ${PROMO.percent}% off the ${PROMO.appliesTo}, and ${PROMO.code} was last applied at a real checkout on ${esc(verified)}. ${esc(PRODUCT.name)} has published no 2026-specific coupon, seasonal sale or sitewide discount — its pricing page, checked September 2026, lists the plans, the trial and the FINRA surcharge and nothing else.`,
+    a: `Yes, in the only form that exists: a referral code. Every referral code gives ${PROMO.percent}% off the ${PROMO.appliesTo}, and ${PROMO.code} was last applied at a real checkout on ${esc(verified)}. ${esc(PRODUCT.name)} has published no 2026-specific coupon, seasonal sale or sitewide discount — its pricing page, checked September 2026, lists the plans, the ${PRICING.freeTrial.days}-day trial, the FINRA surcharge, an unpriced ORG team discount, its own FAQ and an "In Godel today / Working on" feature list — and no coupon field, seasonal offer or sale.`,
   },
   {
     q: 'What is the best Godel Terminal coupon code?',
@@ -59,7 +61,7 @@ const faqs = [
   },
   {
     q: `Can I stack a coupon with ${PROMO.code}?`,
-    a: `No. The vendor's referral FAQ states the referral discount "cannot be combined with other discount codes" and that "your friends can only use one discount at checkout" (checked 3 September 2026). One code per checkout, and the largest code is ${PROMO.percent}%.`,
+    a: `No. The vendor's referral FAQ states the referral discount "cannot be combined with other discount codes" and that "your friends can only use one discount at checkout" (checked 3 September 2026). One code per checkout, and the largest code with a published percentage is ${PROMO.percent}%.`,
   },
   {
     q: 'Is there a Godel Terminal Black Friday coupon?',
@@ -91,20 +93,21 @@ export const page = {
           esc('Up to 60% off, four codes "Worked just now"'),
           'Coupert',
           esc(`No 60% tier exists. The four entries all "expire" 30 September 2026 and show only the fragments ${COUPERT_FRAGMENTS.join(', ')} behind a "Show Code" button. The page also promises free shipping and 30-day returns on a browser subscription.`),
-          esc('Live, September 2026. Its own extension advert lower on the same page reads "Save Up to 30%", contradicting the headline above it.'),
+          esc('Not retrievable on 3 September 2026 — coupert.com returned 404 for /coupon/godelterminal.com and 410 Gone for /store/godelterminal.com. The claim stands as last recorded, including an extension advert lower on the same page reading "Save Up to 30%" against the headline above it.'),
         ],
       },
     ];
 
     return `
-<h1>Godel Terminal Coupon Code: ${PROMO.percent}% off the first month, and nothing higher</h1>
+<h1>Godel Terminal Coupon Code: ${PROMO.percent}% off the first month, and nothing higher at checkout</h1>
 
-<p class="lede">The ${esc(PRODUCT.name)} coupon code that applies at checkout is a referral code.
-<strong class="mono">${esc(PROMO.code)}</strong> takes <strong>${PROMO.percent}% off your ${esc(PROMO.appliesTo)}</strong>,
-was last applied at a real checkout on <strong>${esc(verified)}</strong>, and is the only code this site has ever
-promoted. No coupon above ${PROMO.percent}% exists. The vendor's pricing page, checked September 2026, advertises no
-sale of any kind, and every 40%, 60%, 75% or 80% figure in the coupon results traces to an auto-generated aggregator
-listing — each one is checked below.</p>
+<p class="lede">The ${esc(PRODUCT.name)} coupon code that applies at checkout is a referral code:
+<strong class="mono">${esc(PROMO.code)}</strong> takes <strong>${PROMO.percent}% off your ${esc(PROMO.appliesTo)} of
+${esc(PRODUCT.name)}</strong>, and was last applied at a real checkout on <strong>${esc(verified)}</strong>. It is the
+only code this site has ever promoted, and no coupon above ${PROMO.percent}% is published anywhere we can find. The
+vendor's pricing page, checked September 2026, advertises no coupon and no seasonal sale — the savings it names
+are the annual plan's "Save 30%" label and an unpriced ORG discount for teams — and every 40%, 60%, 75% or 80%
+figure in the coupon results traces to an auto-generated aggregator listing, each one checked below.</p>
 
 ${codeBox()}
 
@@ -112,8 +115,8 @@ ${codeBox()}
 
 <p class="prose">Coupon language comes from retail: sitewide sales, clearance, stackable codes. ${esc(PRODUCT.name)}
 sells one subscription at one price sheet — ${PRICING.monthly.display} a month or ${PRICING.annual.display} per
-${esc(PRICING.annual.unit)}, per the vendor's pricing page in September 2026 — and the only "sale" that page mentions
-is the annual plan itself, labelled "Save 30%" against twelve monthly payments. Within that, a coupon code can be one
+${esc(PRICING.annual.unit)}, per the vendor's pricing page in September 2026 — and the only "sale" that page
+advertises is the annual plan itself, labelled "Save 30%" against twelve monthly payments. Within that, a coupon code can be one
 of three things:</p>
 
 <ul class="prose">
@@ -122,15 +125,15 @@ of three things:</p>
   ${otherReferralCount - 3} other tokens all sit on it and differ only in who is credited —
   <a href="/promo-codes/">every code, compared</a>.</li>
   <li><strong>A vendor coupon.</strong> The same FAQ says the discount "cannot be combined with other discount codes
-  (e.g., coupon code ${esc(REFERRAL.exampleCoupon)})". That is the only place ${esc(PRODUCT.name)} mentions a coupon of
-  its own, and it appears purely as an example of something you cannot stack: ${esc(REFERRAL.exampleCoupon)}'s
-  percentage, dates and current status are not published. The one code the vendor has actually published is
+  (e.g., coupon code ${esc(REFERRAL.exampleCoupon)})". That is the only coupon of its own ${esc(PRODUCT.name)} names
+  anywhere on its own website, and it appears purely as an example of something you cannot stack:
+  ${esc(REFERRAL.exampleCoupon)}'s percentage, dates and current status are not published. The one code the vendor has actually published is
   <a href="/godel-terminal-official-promo-code/">${esc(x25.code)}, at ${x25.percent}%</a>, in its X profile —
   smaller than the referral tier.</li>
   <li><strong>Not a code at all.</strong> The deeper discounts are account states, not strings: the announced
   <a href="/godel-terminal-student-discount/">${esc(STUDENT.display)}/month student rate</a> (.edu email; confirm it is
-  still live), the <a href="/godel-terminal-brokerage-link/">brokerage-linked rate</a> in the vendor's in-app copy, and
-  the ORG discount for teams. None is entered in a promo field.</li>
+  still live), the <a href="/godel-terminal-brokerage-link/">brokerage-linked rate</a> reported in archived vendor
+  in-app copy, and the ORG discount for teams. None is entered in a promo field.</li>
 </ul>
 
 ${note(`<strong>The ceiling is set by the vendor, not by coupon sites.</strong> The referral FAQ states that "your
@@ -149,16 +152,16 @@ ${table({
 })}
 
 <p class="prose">The Coupert row is the instructive one, because it is the listing an extension user is most likely
-to meet. Its headline says 60%; its own extension advert on the same page says 30%; its descriptive copy says the
-merchant sources "the latest fashion products". Nobody at Coupert has seen a ${esc(PRODUCT.name)} checkout — a
-merchant name was dropped into a template.</p>
+to meet. As last recorded its headline said 60%; its own extension advert on the same page said 30%; its descriptive
+copy said the merchant sources "the latest fashion products". Nothing in it shows any sign of a
+${esc(PRODUCT.name)} checkout — a merchant name dropped into a retail template.</p>
 
 <h2>Why the numbers rotate</h2>
 
-<p class="prose">The figures move because they are fields, not findings. WorthEPenny's listing read 50% in August
-2026 and 60% in September with no vendor change between. Coupert's entries all expire on 30 September 2026 and its
-title carries "September 2026" — both roll forward on 1 October. Goodsearch's FAQ manages "80% off" and "25% Off" in
-the same sentence, and explains coupon failures with an example about sunglasses frames. Dealspotr's title has
+<p class="prose">The figures move because they are fields, not findings. Coupert's entries, as last recorded, all
+expired on 30 September 2026 under a title carrying "September 2026" — both template fields rather than vendor
+dates. Goodsearch's FAQ manages "80% off" and "25% Off" in the same sentence, and explains coupon failures with
+an example about sunglasses frames. Dealspotr's title has
 been frozen at "Nov 2025" for months. That is what a per-merchant template produces when the merchant is a
 single-subscription research terminal and the template was written for shoes. The full mechanics, and how to spot a
 fabricated coupon in ten seconds, are on the <a href="/do-godel-terminal-coupons-work/">debunk page</a>; this page
@@ -169,14 +172,15 @@ adds the extension layer that page does not cover.</p>
 <p class="prose">The extensions describe their own method plainly. Honey: "With a single click, we'll test codes at
 checkout" (joinhoney.com, September 2026). Capital One Shopping: it "automatically applies coupon codes at checkout"
 (capitaloneshopping.com, September 2026). Coupert: it "can test and apply all promo codes with one click" (its
-godelterminal.com page, September 2026). The input is always the codes already in the extension's database, which
-for a niche merchant means the publicly listed ones. What those databases hold for godelterminal.com:</p>
+godelterminal.com listing as last recorded; that URL did not resolve on 3 September 2026). The input is always the
+codes already in the extension's database, which for a niche merchant means the publicly listed ones. What those databases hold for godelterminal.com:</p>
 
 <ul class="prose">
   <li><strong>Honey and Capital One Shopping:</strong> the standard store-page URL for godelterminal.com on each
   service returned 404 on 3 September 2026. Nothing to test from.</li>
   <li><strong>RetailMeNot:</strong> could not be retrieved, so not reported here.</li>
-  <li><strong>Coupert:</strong> a live listing whose visible fragments are ${COUPERT_FRAGMENTS.join(', ')}. Of those,
+  <li><strong>Coupert:</strong> a listing whose store URL no longer resolved on 3 September 2026; as last recorded its
+  visible fragments were ${COUPERT_FRAGMENTS.join(', ')}. Of those,
   ${fragmentSentence}</li>
 </ul>
 
@@ -194,10 +198,11 @@ rely on a link or a plugin.</p>
   free trial (vendor pricing page, September 2026), and a trial has no charge for a code to reduce.</li>
   <li><strong>Apply the code explicitly</strong> and watch the total. ${PROMO.percent}% off the
   ${PRICING.monthly.display} monthly plan should read roughly <strong>$${firstMonth}</strong> for the first charge.</li>
-  <li><strong>Annual billing is the open question.</strong> The vendor describes the discount as applying to the
-  "first month's payment". Two affiliate sites — ${esc(CODE_SITES.NEWUSER.site)} and saveontrading.com (its deal page,
-  September 2026) — state the code does not apply to the annual plan; the vendor page does not address it. Confirm
-  at checkout before paying annual, and note the annual plan is already ${PRICING.annual.display} against
+  <li><strong>Annual billing is the open question.</strong> The referral page says referred users receive the
+  discount "on their first month's subscription", and that it is "only applied to the first payment". One affiliate
+  site — ${esc(CODE_SITES.NEWUSER.site)} — states the code applies to the monthly plan with annual excluded; the
+  vendor page does not address it, and saveontrading.com's deal page could not be retrieved on 3 September 2026, so
+  nothing is claimed for it here. Confirm at checkout before paying annual, and note the annual plan is already ${PRICING.annual.display} against
   $${PRICING.monthly.amount * 12} of monthly payments — <a href="/godel-terminal-monthly-vs-annual/">the arithmetic</a>.</li>
   <li><strong>If the total has not moved, the code has not applied.</strong> Do not assume a later credit.</li>
 </ol>

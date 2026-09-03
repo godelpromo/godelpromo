@@ -42,11 +42,11 @@ const rateSaving = monthly - BROKERAGE_RATE;
 const faqs = [
   {
     q: 'Does Godel Terminal work with Robinhood?',
-    a: `Yes, as a read-only link. Robinhood is one of the ${SUPPORTED_BROKERAGES.length} brokerages listed on the vendor's BROK documentation page (September 2026), connected through SnapTrade. The link pulls your holdings into ${esc(PRODUCT.name)} for the AUM view; it does not let you place Robinhood orders from the terminal. The doc has no Robinhood-specific caveats; SnapTrade's own integration page covers the auth flow and supported regions.`,
+    a: `Yes, as a read-only link. Robinhood is one of the ${SUPPORTED_BROKERAGES.length} brokerages listed on the vendor's BROK documentation page (September 2026), connected through SnapTrade. The link pulls your holdings into ${esc(PRODUCT.name)} for the AUM view; it does not let you place Robinhood orders from the terminal. The doc lists no Robinhood-specific caveats and no Robinhood-specific region list.`,
   },
   {
     q: 'Can I place trades or paper trade in Godel Terminal?',
-    a: `No. The vendor's own line is "${esc(PLATFORMS.notABroker.quote)}" The BROK documentation states that access is read-only and that ${esc(PRODUCT.name)} "never has the ability to place trades on your behalf". No paper-trading or backtesting feature is published either. Treat the brokerage link as a portfolio view, not a trading pipe.`,
+    a: `No. The vendor's own line is "${esc(PLATFORMS.notABroker.quote)}" The BROK documentation states that access is read-only and that ${esc(PRODUCT.name)} "never has the ability to place trades on your behalf". No paper-trading or backtesting feature is published either. The link reads positions; it does not send orders.`,
   },
   {
     q: 'Does Godel Terminal connect to Interactive Brokers?',
@@ -58,7 +58,7 @@ const faqs = [
   },
   {
     q: `Can I use ${PROMO.code} on top of the brokerage rate?`,
-    a: `Nothing published says the two combine, and the vendor's referral page states referral discounts do not combine with other codes. There is also little to gain: ${esc(PROMO.code)} saves about $${codeSaving} once, while the brokerage rate saves $${rateSaving} every month you qualify. If you are eligible, take the brokerage rate; if you are not, ${esc(PROMO.code)} is the largest discount left.`,
+    a: `Nothing published says the two combine, and the vendor's referral page states referral discounts do not combine with other codes. There is also little to gain: ${esc(PROMO.code)} saves about $${codeSaving} once, while the brokerage rate saves $${rateSaving} every month you qualify. If you qualify for the brokerage rate, take it; if you do not, ${esc(PROMO.code)} is the largest code discount on ${esc(PRODUCT.name)} — ${PROMO.percent}% off the first month, last applied at checkout on ${esc(longDate(PROMO.lastVerified))}.`,
   },
   {
     q: 'Do I need a paid account to use BROK?',
@@ -68,8 +68,8 @@ const faqs = [
 
 export const page = {
   path: '/godel-terminal-brokerage-link/',
-  title: 'Godel Terminal Brokerage Link: BROK, AUM and the $80 Rate',
-  description: `Godel Terminal's BROK command links 14 brokerages read-only via SnapTrade, with no trading. Plus the in-app $80/month brokerage rate, compared to ${PROMO.code}.`,
+  title: 'Godel Terminal Brokerage Link: BROK, AUM, $80 In-App Rate',
+  description: "Godel Terminal's BROK links 14 brokerages read-only via SnapTrade, no trading. The in-app $80/month rate needs $5,000 linked plus a recent trade.",
   summary: 'What the Godel Terminal brokerage link (BROK) actually does — 14 read-only SnapTrade connections, no execution — and how the in-app $80/month brokerage rate compares to the promo code.',
   datePublished: '2026-09-03',
   breadcrumbs: [
@@ -82,15 +82,16 @@ export const page = {
   render() {
     const brokerageList = SUPPORTED_BROKERAGES.map((b) => `<li>${esc(b)}</li>`).join('\n  ');
     return `
-<h1>Godel Terminal Brokerage Link: what BROK does, and the $${BROKERAGE_RATE} rate it unlocks</h1>
+<h1>Godel Terminal Brokerage Link: what BROK does, and the in-app $${BROKERAGE_RATE} rate it unlocks</h1>
 
 <p class="lede">${esc(PRODUCT.name)} is not a broker and does not execute trades. What it has is a
 <strong>read-only brokerage link</strong>: the documented <code class="mono">BROK</code> command connects
 ${SUPPORTED_BROKERAGES.length} brokerages — Robinhood, Interactive Brokers, Schwab and Fidelity among them —
 through SnapTrade, so your holdings show up inside the terminal. The reason to care beyond a portfolio view
-is money: the vendor's in-app copy offers connected accounts holding ${AUM_THRESHOLD}+ a rate of
-<strong>$${BROKERAGE_RATE}/month instead of ${PRICING.monthly.display}</strong>, which is a bigger saving than any promo
-code, including ours.</p>
+is money: the vendor's AUM doc puts the discount threshold at over ${AUM_THRESHOLD} across linked brokerages
+<em>and</em> at least one eligible trade in the past month, and archived in-app copy prices the rate it unlocks at
+<strong>$${BROKERAGE_RATE}/month instead of ${PRICING.monthly.display}</strong> — a bigger monthly saving than any
+promo code, including ours.</p>
 
 ${note(`<strong>Sourcing:</strong> the command behaviour on this page comes from the vendor's own
 <a href="${BROK.docUrl}" rel="nofollow noopener" target="_blank">BROK</a> and
@@ -129,7 +130,7 @@ supported integrations, and that a brokerage shown grayed out may be temporarily
 </ul>
 
 <p class="prose">Anything not on that list is not supported. The doc offers a "Don't see your brokerage? Submit it
-here" form at the bottom of the window, with no commitment attached. Disconnecting is a toggle in BROK with a
+here" form at the bottom of the window; whether requests get acted on is not published. Disconnecting is a toggle in BROK with a
 confirmation toast; an expired connection reconnects by flipping the toggle again, which runs a
 disconnect-then-reconnect cycle.</p>
 
@@ -138,7 +139,8 @@ disconnect-then-reconnect cycle.</p>
 <p class="prose">IBKR gets its own section on the doc because it does not use a password. You generate a Query ID
 (Client Portal, Performance &amp; Reports, Flex Queries) and a Token (Account Settings, Configure Flex Web Service),
 then submit both on IBKR's site after SnapTrade redirects you there. Supported regions per the doc: US, Europe,
-Australia, India, Canada. Because the integration reads via Flex Query, it cannot place trades even in principle.
+Australia, India, Canada. Per the doc, the Flex Query integration pulls account and portfolio data and "does not
+support placing trades".
 You can also cut the link from the IBKR side by revoking the token, though the doc notes the BROK card may still
 show as connected until the next poll.</p>
 
@@ -154,8 +156,8 @@ show as connected until the next poll.</p>
   account.</li>
 </ul>
 
-<p class="prose">Balances refresh roughly every 24 hours, so a deposit made today will not flip the threshold line
-until tomorrow. The doc states the threshold as over ${AUM_THRESHOLD} USD (or equivalent) across linked brokerages
+<p class="prose">The doc states individual balances refresh approximately every 24 hours, so a deposit made today
+may not flip the threshold line until the next refresh. The doc states the threshold as over ${AUM_THRESHOLD} USD (or equivalent) across linked brokerages
 <em>and</em> at least one eligible trade in the past month. What counts as an "eligible trade" is not defined
 anywhere we can find.</p>
 
@@ -168,7 +170,7 @@ account differs, the in-app number wins.</p>
 
 <p class="prose">Two exclusions matter. <strong>Organizations</strong> on the ORG plan are out. <strong>Prepaid
 accounts</strong> are out too, and whether that covers every annual subscriber is not spelled out; read it as a
-monthly-billing offer until the vendor says otherwise. Accounts on a locked-in price get $${LOCKED_IN_OFF} off rather
+monthly-billing offer until the vendor says otherwise. Accounts on a <a href="/godel-terminal-price-lock/">locked-in price</a> get $${LOCKED_IN_OFF} off rather
 than the $${BROKERAGE_RATE} rate.</p>
 
 <h2>Brokerage rate vs ${esc(PROMO.code)}: the arithmetic</h2>
@@ -221,8 +223,9 @@ ${codeBox({ note: `${PROMO.percent}% off your first month, for readers who do no
 
 <ol class="prose">
   <li><strong>You hold ${AUM_THRESHOLD}+ at one of the ${SUPPORTED_BROKERAGES.length} brokerages and trade at least
-  monthly.</strong> Start the ${PRICING.freeTrial.days}-day trial, run BROK, connect, then check the Personal tab of AUM
-  the next day for "threshold met". Confirm the rate shown in-app before you convert.</li>
+  monthly.</strong> Start the ${PRICING.freeTrial.days}-day trial, then try BROK — the doc says BROK requires a paid
+  account, and whether a trial account counts is not published, so you may have to convert first. Once connected,
+  check the Personal tab of AUM the next day for the threshold line, and confirm the rate shown in-app.</li>
   <li><strong>Your broker is not listed, or you are below the threshold.</strong> The brokerage rate is not
   available to you. ${esc(PROMO.code)} on monthly billing, or the annual plan if you are committed —
   <a href="/godel-terminal-monthly-vs-annual/">the full comparison</a>.</li>
@@ -253,7 +256,7 @@ portfolio view with a real discount attached, on terms that only the in-app copy
   <li>Every price lever in one place: <a href="/godel-terminal-pricing/">the pricing breakdown →</a></li>
 </ul>
 
-${ctaRow({ primary: 'Start the free trial and run BROK', secondary: { href: '/cheapest-way-to-get-godel-terminal/', label: 'Cheapest route overall' } })}
+${ctaRow({ primary: 'Start the free trial', secondary: { href: '/cheapest-way-to-get-godel-terminal/', label: 'Cheapest route overall' } })}
 
 ${faqSection(faqs)}
 `;

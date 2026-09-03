@@ -65,7 +65,7 @@ the <a href="/godel-terminal-pricing/">pricing breakdown</a> or the
   <li>All of these are referral tokens in the same ${esc(PRODUCT.name)} affiliate programme.</li>
   <li>All of them deliver the same offer: ${PROMO.percent}% off the ${esc(PROMO.appliesTo)}.</li>
   <li>One code is different: <span class="mono">X25</span>, posted by ${esc(PRODUCT.name)}'s official X account, gives <strong>25%</strong> off the first payment — <strong>smaller</strong> than the ${PROMO.percent}% referral codes.</li>
-  <li><strong>No ${esc(PRODUCT.name)} code offers a larger discount than the ${PROMO.percent}% referral tier.</strong> The referral codes are equivalent in discount; ${esc(PROMO.code)} is the one with a published checkout verification date (${esc(longDate(PROMO.lastVerified))}).</li>
+  <li><strong>No publicly circulating ${esc(PRODUCT.name)} code offers a larger discount than the ${PROMO.percent}% referral tier.</strong> The referral codes are equivalent in discount; ${esc(PROMO.code)} is the one with a published checkout verification date (${esc(longDate(PROMO.lastVerified))}). The one code this cannot be said of is NVDA, which the vendor's referral FAQ names without a percentage; treat its value as unknown rather than as smaller or larger.</li>
   <li>Newer tokens seen in circulation in 2026 (PC30, CODE30, JENY, FUNDEDPROGRAM, SHKRELIPLANET, THESHKRELIPILL, SUMMER, 2025) are the same ${PROMO.percent}% referral tier.</li>
   <li>The vendor's referral FAQ names a separate coupon code, NVDA, only as an example of something the referral discount cannot be combined with; its terms are unpublished.</li>
   <li>Codes do not combine: ${esc(PRODUCT.name)}'s referral page states referral discounts are not stackable with other codes.</li>

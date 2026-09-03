@@ -80,8 +80,9 @@ subscription. Almost every code you will find is one of these referral tokens, a
 paid. The one exception: <span class="mono">X25</span>, posted by ${esc(PRODUCT.name)}'s own X account, which gives
 25% — <a href="/godel-terminal-official-promo-code/">smaller than the referral codes</a>.</p>
 
-${note(`No code in circulation gives more than ${PROMO.percent}% off, and none extends past the
-${esc(PROMO.appliesTo)}. Anyone claiming otherwise is guessing. The deeper discounts are not codes at all:
+${note(`No code you can actually find gives more than ${PROMO.percent}% off, and none extends past the
+${esc(PROMO.appliesTo)}. Anyone claiming otherwise is guessing. (One code we cannot price: the vendor's referral
+FAQ mentions a coupon called NVDA without saying what it is worth. It is not in circulation on any site we track.) The deeper discounts are not codes at all:
 an announced <a href="/godel-terminal-student-discount/">${esc(STUDENT.display)}/month student rate</a> (.edu email;
 confirm it is still live), and an in-app brokerage-linked rate — connect a brokerage holding $5,000+ with a
 recent trade and the vendor's own app copy offers $80/month instead of ${PRICING.monthly.display}.`)}

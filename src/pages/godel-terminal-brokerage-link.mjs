@@ -54,7 +54,7 @@ const faqs = [
   },
   {
     q: 'What is the Godel Terminal brokerage discount?',
-    a: `Per the vendor's in-app copy: ${esc(PRICING.brokerageDiscount.note)} The AUM command shows whether your linked accounts meet the threshold. The rate does not appear on the public pricing page as of September 2026, so confirm it in-app before planning around it.`,
+    a: `${esc(PRICING.brokerageDiscount.note)} The eligibility test is documented on the vendor's AUM command page; the AUM Personal tab shows whether your linked accounts meet it. The rate does not appear on the public pricing page as of September 2026, so confirm it in-app before planning around it.`,
   },
   {
     q: `Can I use ${PROMO.code} on top of the brokerage rate?`,

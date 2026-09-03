@@ -86,7 +86,7 @@ export const page = {
           `$${BROKERAGE_MONTHLY}/month for new accounts; $${BROKERAGE_LOCKED_OFF} off for locked-in accounts`,
           `$${brokerageSaving}/month, recurring`,
           `Connected brokerage holding ${BROKERAGE_MIN_HOLDING}+ with one eligible trade in the trailing month; not organizations or prepaid accounts`,
-          esc(PRICING.brokerageDiscount.source),
+          'Threshold: vendor AUM doc. Price: archived in-app copy.',
         ],
       },
       {

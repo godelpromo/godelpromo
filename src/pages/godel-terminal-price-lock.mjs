@@ -185,8 +185,9 @@ documented more thinly than the monthly one.</p>
 
 <h2>What "locked-in" means in the vendor's own copy</h2>
 
-<p class="prose">The only place ${esc(PRODUCT.name)} uses the word is its brokerage-linked discount. Per the
-vendor's in-app changelog and a June 2026 app build (archived): "${esc(PRICING.brokerageDiscount.note)}"</p>
+<p class="prose">The only place ${esc(PRODUCT.name)} uses the word is its brokerage-linked discount, whose
+rate — unlike its eligibility test, which is documented on the vendor's AUM command page — comes from the in-app
+changelog and an archived June 2026 app build: "${esc(PRICING.brokerageDiscount.note)}"</p>
 
 <p class="prose">Two things follow from that line, and only two. First, the vendor's own billing distinguishes
 "new accounts" from "locked-in accounts", which is what you would expect if some existing subscribers are still

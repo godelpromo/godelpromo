@@ -107,10 +107,25 @@ export const PRICING = {
    * (June 2026 build). The most current pricing lever and bigger than any code
    * for eligible users — no competitor page covers it.
    */
+  /**
+   * Two different evidence tiers in one offer, kept apart deliberately.
+   *
+   * The ELIGIBILITY TEST is documented on the vendor's own AUM command page:
+   * hold over $5,000 across linked brokerages and make at least one eligible
+   * trade in the past month, and the Personal tab shows the threshold as met.
+   * That is a live vendor doc, checked 2026-09-03.
+   *
+   * The PRICE the threshold unlocks is not on any vendor page — $80/month, and
+   * $10 off for locked-in accounts, come from archived in-app copy. Do not
+   * promote the price to the same tier as the threshold.
+   */
   brokerageDiscount: {
-    note: 'Accounts with a connected brokerage holding at least $5,000 and at least one eligible trade in the trailing month may qualify for a discounted rate — $118 to $80/month for new accounts, $10 off for locked-in accounts. Organizations and prepaid accounts are excluded.',
-    source: 'vendor in-app changelog v4.2.7 and June 2026 app build (archived)',
-    attributed: false,
+    threshold: 'Hold over $5,000 (or equivalent) across brokerages linked through BROK, and make at least one eligible trade in the past month. The AUM command\'s Personal tab shows whether the threshold is met.',
+    thresholdSource: 'godelterminal.com/docs/commands/aum, checked September 2026',
+    thresholdAttributed: false,
+    note: 'Accounts with a connected brokerage holding over $5,000 and at least one eligible trade in the past month meet the documented discount threshold. The rate it unlocks is reported as $118 to $80/month for new accounts, and $10 off for locked-in accounts, with organizations and prepaid accounts excluded — that price is from archived in-app copy, not from a vendor page.',
+    source: 'threshold: godelterminal.com/docs/commands/aum (September 2026); price: vendor in-app changelog v4.2.7 and June 2026 app build (archived)',
+    attributed: true,
   },
   /**
    * Price history. Explains why so many third-party reviews quote $60 or $80

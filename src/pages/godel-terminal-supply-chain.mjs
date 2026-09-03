@@ -37,9 +37,26 @@ const LAUNCH_POST = {
     'Thousands of companies mapped, global coverage',
     'Institutional-grade relationship data, now available to everyone.',
   ],
+  /**
+   * The two follow-ups are NOT equally sourced, so they are not stored alike.
+   * The Atlas one returns verbatim from a public endpoint and can be quoted.
+   * The other could not be retrieved from any endpoint we tried, so it is
+   * carried as an unverified recollection and never rendered inside quotation
+   * marks. Do not promote it without a retrievable source.
+   */
   followUps: [
-    { text: 'Try SPLC on Godel now for free', url: 'app.godelterminal.com/splc/NVDA.US' },
-    { text: 'And yes we made it into a video game - try it now', url: 'app.godelterminal.com/atlas' },
+    {
+      text: 'Try SPLC on Godel now for free',
+      url: 'app.godelterminal.com/splc/NVDA.US',
+      verified: false,
+      note: 'Not retrievable on 3 September 2026 from the syndication endpoint or api.fxtwitter.com, both of which return only the parent post and the Atlas follow-up.',
+    },
+    {
+      text: 'And yes we made it into a video game - try it now',
+      url: 'app.godelterminal.com/atlas?via=ATLASX',
+      verified: true,
+      note: 'Verbatim from api.fxtwitter.com/GodelTerminal/status/2093009170198917224, checked 3 September 2026; the shortened link resolves to a referral URL carrying the token ATLASX.',
+    },
   ],
 };
 
@@ -86,15 +103,15 @@ const faqs = [
   },
   {
     q: `Is SPLC included on every plan, or on the free trial?`,
-    a: `Not published. The launch thread says "Try SPLC on Godel now for free", and the public NVDA page loads without login while carrying an "${esc(PUBLIC_PAGE.prompt)}" prompt. The pricing page states the ${PRICING.freeTrial.days}-day trial opens up "most of Godel" and does not name SPLC in either of its feature lists. If plan gating matters to your decision, ask ${esc(PRODUCT.supportEmail)} before paying rather than assuming. <a href="/godel-terminal-free-trial/">How the trial works →</a>`,
+    a: `Not published. What is checkable is that the public NVDA supply-chain page loads without a login while carrying an "${esc(PUBLIC_PAGE.prompt)}" prompt, so some view of SPLC is reachable anonymously. The pricing page states the ${PRICING.freeTrial.days}-day trial opens up "most of Godel" and does not name SPLC in either of its feature lists. If plan gating matters, ask ${esc(PRODUCT.supportEmail)} before paying. <a href="/godel-terminal-free-trial/">How the trial works →</a>`,
   },
   {
     q: `Is ${PRODUCT.name}'s SPLC the same as Bloomberg's SPLC?`,
-    a: `Nothing published supports a comparison. ${PRODUCT.name} describes itself as "driven by familiar command mnemonics" and named this one SPLC; what Bloomberg calls its own supply-chain function is not publicly documented, so this page makes no claim about the two names matching. Nothing published compares them on provider, depth, or coverage either, so no parity claim is possible. <a href="/godel-terminal-vs-bloomberg/">The broader comparison →</a>`,
+    a: `Nothing published supports a comparison. ${PRODUCT.name} describes itself as "driven by familiar command mnemonics" and named this one SPLC; what Bloomberg calls its own supply-chain function is not publicly documented, so this page makes no claim about the names matching, and nothing compares the two on provider, depth or coverage. <a href="/godel-terminal-vs-bloomberg/">The broader comparison →</a>`,
   },
   {
     q: `What is the "video game" in the launch thread?`,
-    a: `The follow-up post — "${esc(LAUNCH_POST.followUps[1].text)}" — links to <span class="mono">${esc(ATLAS.url)}</span>, a page titled "${esc(ATLAS.title)}" whose own description reads: "${esc(ATLAS.description)}" It is the market-wide view of the same relationship data; SPLC is the per-company view.`,
+    a: `The follow-up post — "${esc(LAUNCH_POST.followUps[1].text)}" — links to <span class="mono">${esc(ATLAS.url)}</span>, whose own description reads: "${esc(ATLAS.description)}" It is the market-wide view of the same relationship data; SPLC is the per-company view.`,
   },
 ];
 
@@ -133,8 +150,8 @@ ${note(`<strong>Sourcing:</strong> every claim below comes from the
 <span class="mono">${esc(ATLAS.url)}</span>, the vendor's
 <a href="${PRODUCT.pricingUrl}" rel="nofollow noopener" target="_blank">pricing page</a>, its
 <a href="${VENDOR_PAGES.dataCoverage}" rel="nofollow noopener" target="_blank">asset-class and coverage page</a> and its
-sitemap — all fetched ${esc(longDate(CHECKED))}. Where a fact is on none of those, this page says "not published" rather than
-guessing.`)}
+sitemap — all fetched ${esc(longDate(CHECKED))}. Where a fact is on none of those, this page says "not
+published".`)}
 
 <h2>What the launch post actually says</h2>
 
@@ -144,19 +161,18 @@ guessing.`)}
   ${LAUNCH_POST.lines.map((l) => `<li>"${esc(l)}"</li>`).join('\n  ')}
 </ul>
 
-<p class="prose">A video attachment follows the last line. X's syndication endpoint stops the text early — the post
-is a note tweet — so the final line above is quoted from the post's full text rather than from the syndicated
-excerpt, which ends at "relationship data, now". Two follow-up posts from the same account are recorded in the
-thread; X blocks non-browser fetchers and its syndication endpoint returns only the parent post, so their text is
-quoted as read on the thread and is not re-verifiable through a public endpoint. The first says
-"${esc(LAUNCH_POST.followUps[0].text)}" and links to <span class="mono">${esc(LAUNCH_POST.followUps[0].url)}</span>.
-The second says "${esc(LAUNCH_POST.followUps[1].text)}" and links to
-<span class="mono">${esc(LAUNCH_POST.followUps[1].url)}</span>.</p>
+<p class="prose">A video attachment follows the last line. Because the post is a note tweet, X's syndication
+excerpt of it stops at "relationship data, now"; the final line above is the full text the same status id returns.
+Two follow-up posts from the same account are recorded in the thread, and they are not equally checkable. The
+second returns verbatim from a public endpoint — "${esc(LAUNCH_POST.followUps[1].text)}" — linking to
+<span class="mono">${esc(LAUNCH_POST.followUps[1].url)}</span>, a referral URL carrying the token ATLASX. The
+first, which invited readers to try SPLC free at
+<span class="mono">${esc(LAUNCH_POST.followUps[0].url)}</span>, could not be retrieved from any endpoint we tried
+on ${esc(CHECKED)}, so it is recorded here as unverified rather than quoted.</p>
 
 <p class="prose">So the vendor's own claims in the post are five: relationship types (suppliers, customers,
 competitors, partners), a one-name starting point, "thousands" of companies, "global" coverage, and that the data is
-"now available to everyone" — a statement about launch, not about which plans include it. Everything else on this
-page is either what the public pages display or an explicit gap.</p>
+"now available to everyone" — a statement about launch, not about which plans include it.</p>
 
 <h2>What the public page shows</h2>
 
@@ -166,18 +182,17 @@ displays a counter, <strong>Relationships: ${PUBLIC_PAGE.relationships}</strong>
 "${esc(PUBLIC_PAGE.legend)}", and the prompt "${esc(PUBLIC_PAGE.prompt)}" The legend counts 3 and 9 items beside a
 relationship count of ${PUBLIC_PAGE.relationships}; nothing published explains the difference.</p>
 
-<p class="prose">Two things in that legend are worth noticing. The categories on screen are broader than the four in
-the post: <em>investors</em> sit with suppliers on the left, and <em>investees</em> sit with customers, partners
-and competitors on the right. And the identifier in the URL is exchange-suffixed (<span class="mono">NVDA.US</span>),
-which is consistent with the "global coverage" claim without proving it — one US name is not evidence about
-international depth either way.</p>
+<p class="prose">The categories on screen are broader than the four in the post: <em>investors</em> sit with
+suppliers on the left, <em>investees</em> with customers, partners and competitors on the right. The identifier in the
+URL is exchange-suffixed (<span class="mono">NVDA.US</span>), consistent with the "global coverage" claim without
+proving it.</p>
 
-<p class="prose">The Atlas page is the market-wide companion: titled "${esc(ATLAS.title)}", described by the vendor
-as "${esc(ATLAS.description)}" Fetched ${esc(longDate(CHECKED))} it renders a counter bar —
-${esc(ATLAS.counters.breakdown)}, ${esc(ATLAS.counters.relationships)} relationships,
-${esc(ATLAS.counters.companies)} companies, "${esc(ATLAS.counters.generated)}" — with the three category counts
-summing exactly to the relationship total. Those counters are the only coverage figures the vendor publishes
-anywhere, and they put a number on the post's "thousands of companies": ${esc(ATLAS.counters.companies)}.</p>
+<p class="prose">The Atlas page is the market-wide companion, titled "${esc(ATLAS.title)}" and quoted in the FAQ
+below. Fetched ${esc(longDate(CHECKED))} it renders a counter bar — ${esc(ATLAS.counters.breakdown)},
+${esc(ATLAS.counters.relationships)} relationships, ${esc(ATLAS.counters.companies)} companies,
+"${esc(ATLAS.counters.generated)}" — the three category counts summing exactly to the relationship total. Those are
+the only coverage figures the vendor publishes anywhere, and they put a number on the post's "thousands":
+${esc(ATLAS.counters.companies)} companies.</p>
 
 <h2>Trying it, and what it costs</h2>
 
@@ -194,8 +209,8 @@ ${codeBox()}
 
 <h2>What is not published</h2>
 
-<p class="prose">This is the section that matters if SPLC is the reason you are considering a subscription. Each
-row says where we looked.</p>
+<p class="prose">This is the section that matters if SPLC is why you would subscribe. Each row says where we
+looked.</p>
 
 ${table({
   head: ['Question', 'Status', 'Where we looked'],
@@ -211,7 +226,7 @@ ${table({
       cells: [
         '<strong>Coverage count</strong>',
         esc(`"Thousands of companies", "global"; ${ATLAS.counters.companies} on Atlas`),
-        esc(`Atlas publishes ${ATLAS.counters.companies} companies and ${ATLAS.counters.relationships} relationships (${ATLAS.counters.breakdown}; ${ATLAS.counters.generated}). The NVDA page counts ${PUBLIC_PAGE.relationships} relationships for one name.`),
+        esc(`Atlas publishes ${ATLAS.counters.companies} companies, ${ATLAS.counters.relationships} relationships, "${ATLAS.counters.generated}". The NVDA page counts ${PUBLIC_PAGE.relationships} for one name.`),
       ],
     },
     {
@@ -225,7 +240,7 @@ ${table({
       cells: [
         '<strong>Plan availability</strong>',
         'Not published',
-        esc(`"Try SPLC on Godel now for free" in the thread; "${PUBLIC_PAGE.prompt}" on the public page; SPLC absent from both feature lists on the pricing page.`),
+        esc(`The public page loads anonymously and shows "${PUBLIC_PAGE.prompt}"; SPLC is absent from both feature lists on the pricing page. An unverified follow-up post is recalled as offering SPLC free.`),
       ],
     },
     {
@@ -246,25 +261,23 @@ ${table({
   caption: `All surfaces fetched ${longDate(CHECKED)}.`,
 })}
 
-<p class="prose">One footnote for readers of this site in particular: nothing in the launch thread is a discount
-offer. The only code the vendor itself publishes is ${esc(X25.code)} — ${X25.percent}% off a first payment, per its
-${esc(X25.source)} — and the <a href="/promo-codes/">code comparison</a> covers how that compares with the referral
-codes.</p>
+<p class="prose">One footnote: nothing in the launch thread is a discount offer. The only code the vendor itself
+publishes is ${esc(X25.code)}, ${X25.percent}% off a first payment, sourced to the ${esc(X25.source)}; the
+<a href="/promo-codes/">code comparison</a> sets it against the referral codes.</p>
 
 <h2>How SPLC fits the existing command set</h2>
 
 <p class="prose">Read against the documented commands, SPLC fills a specific hole. <strong>${esc(des.mnemonic)}</strong>
-answers "what is this company" — ${esc(des.summary)} <strong>${esc(hds.mnemonic)}</strong> answers "who owns it" —
-${esc(hds.summary)} <strong>${esc(cf.mnemonic)}</strong> is where you verify both against the filings. None of the
-${commandCount()} documented commands answers "who does this company depend on, and who
-depends on it". That is the question the launch post is addressing, and in the
+answers "what is this company" — ${esc(des.summary)} <strong>${esc(hds.mnemonic)}</strong> answers "who owns it",
+and <strong>${esc(cf.mnemonic)}</strong> is where you verify both against the filings. None of the
+${commandCount()} documented commands answers "who does this company depend on, and who depends on it". That is the question the launch post is addressing, and in the
 <a href="/godel-terminal-stock-research-workflow/">command-by-command research workflow</a> it would sit between
 orientation and verification: after DES, before CF.</p>
 
-<p class="prose">It is also worth noting where SPLC does <em>not</em> appear. The vendor's pricing page carries two
-feature lists (${esc(ROADMAP_VENDOR.source)}). "In Godel today" names ${esc(ROADMAP_VENDOR.today.join(', '))}.
-"Working on" names ${esc(ROADMAP_VENDOR.workingOn.join(', '))}. SPLC is in neither column — the launch outran the
-pricing page, which is consistent with a product in ${esc(PRODUCT.status)} shipping faster than its own marketing.
+<p class="prose">SPLC also appears in neither of the two feature lists on the vendor's pricing page
+(${esc(ROADMAP_VENDOR.source)}): "In Godel today" names ${esc(ROADMAP_VENDOR.today.join(', '))}, and "Working on"
+names ${esc(ROADMAP_VENDOR.workingOn.join(', '))}. The launch outran the pricing page, which is consistent with a
+product in ${esc(PRODUCT.status)} shipping faster than its own marketing.
 Our <a href="/godel-terminal-commands-that-dont-exist/">corrections ledger</a> logs the same lag from this side: in
 August the vendor's documentation expanded faster than this site tracked it.</p>
 
@@ -278,17 +291,17 @@ yet include a supply-chain row for exactly that reason: there is one side's mark
 
 <h2>Should you decide anything on it yet?</h2>
 
-<p class="prose">If supply-chain mapping is a nice-to-have, none of the gaps above matter much; the rest of the
-product is documented and the <a href="/godel-terminal-data-coverage/">coverage page</a> tells you where the
-underlying market data is real-time versus delayed. If it is the reason you would subscribe, the honest position is
+<p class="prose">If supply-chain mapping is a nice-to-have, the gaps above matter little; the rest of the product
+is documented, and the <a href="/godel-terminal-data-coverage/">coverage page</a> shows where the underlying market
+data is real-time versus delayed. If it is the reason you would subscribe, the honest position is
 that a one-week-old announcement with no documentation, no named provider and no stated methodology behind its
 counters is not yet something to plan around. The cheap test is the public page: swap <span class="mono">NVDA.US</span> for a name you know well —
-ideally a smaller or non-US one — and check whether the relationships it draws match what that company discloses.
-Then run the same check on the ${PRICING.freeTrial.days}-day trial against the documented commands, which is what the
-<a href="/godel-terminal-free-trial/">trial guide</a> sequences day by day.</p>
+ideally a smaller or non-US one — and check the relationships it draws against what that company discloses. The
+<a href="/godel-terminal-free-trial/">trial guide</a> sequences the same check across the
+${PRICING.freeTrial.days}-day trial.</p>
 
-<p class="prose">This page will be updated when a doc page, a provider, or a methodology is published, and the
-change will be dated.</p>
+<p class="prose">This page will be updated, and the change dated, when a doc page, a provider or a methodology is
+published.</p>
 
 ${ctaRow({ primary: 'Start the free trial on Godel Terminal', secondary: { href: '/godel-terminal-commands/', label: 'Full command reference' } })}
 

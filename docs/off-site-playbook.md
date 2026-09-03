@@ -149,6 +149,28 @@ discontinued, so confirm with student@godelterminal.com first.
 others if you'd rather.)
 ```
 
+**Email to Godel Terminal — the only path to literal autofill** (support@godelterminal.com):
+```
+Subject: Enabling Rewardful double-sided incentives on checkout
+
+Hi — I run godelpromo.com, an independent reference site for Godel Terminal, and I'm an
+affiliate in your Rewardful programme (code TAKE30).
+
+Your referral FAQ tells affiliates to share the code rather than the link, because "ad blockers
+and browser settings may block tracking if only the link is used" and referred users "must use
+the code at checkout for it to count". That's a real conversion leak on your side as much as
+ours: anyone who clicks through and forgets to type the code pays full price for month one and
+you lose the signup you would otherwise have closed.
+
+Rewardful's double-sided incentives feature fixes it. When a visitor arrives on an affiliate
+link, Rewardful puts the affiliate's Stripe coupon ID in the tracking cookie; checkout reads it
+with Rewardful.coupon and passes it to Stripe, so the discount is applied automatically and
+attribution still follows the coupon. It is a small change on the checkout page and it is
+documented on Rewardful's side.
+
+Happy to test it against TAKE30 and confirm the discount lands before you roll it out.
+```
+
 **Email to godelguide.com** (the only site that corroborates TAKE30, as unlinked plain text):
 ```
 Subject: TAKE30 row on your discount-code page

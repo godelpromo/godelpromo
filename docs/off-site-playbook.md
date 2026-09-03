@@ -14,6 +14,59 @@ Work top to bottom. Items are ordered by impact per unit of effort.
 
 ---
 
+## Blockers found 2026-09-03 (fix these before anything below)
+
+1. **Cloudflare is rewriting our robots.txt.** The live file starts with a Cloudflare-managed block
+   that says `Disallow: /` for GPTBot, ClaudeBot, Google-Extended, CCBot, meta-externalagent,
+   Amazonbot, Applebot-Extended and Bytespider, and sets `Content-Signal: ai-train=no`. Our own
+   allow-all rules come *after* it. Every competitor serves a clean allow-all. Dashboard for zone
+   godelpromo.com → Security → Settings → Bot traffic → turn OFF "Set your preference to block
+   training in robots.txt"; also confirm Security → Bots / AI Crawl Control → "Block AI bots" is
+   off. Verify: `curl -s https://www.godelpromo.com/robots.txt | head -3` should start with
+   `# godelpromo.com`.
+2. **The monthly scoreboard routine cannot push.** It runs, but the Claude GitHub App is not
+   installed on the godelpromo org, so every commit/PR attempt 403s and the entry is lost. Install
+   it with write access at https://github.com/apps/claude/installations/select_target (or reconnect
+   GitHub at https://claude.ai/customize/connectors).
+3. **Re-verify TAKE30 at checkout and bump `PROMO.lastVerified`.** The date now renders on every
+   code box and in the JSON-LD Offer; it reads 2026-07-30. Open a trial account's upgrade screen,
+   apply the code, confirm the total drops to $82.60, do not pay, then change the date in
+   `src/data/site.mjs`.
+4. **Bing Webmaster Tools is still unverified** (no `BING_API_KEY` anywhere). Bing already ranks
+   /promo-codes/ #2 for "promo code" with zero effort and returns *nothing* coupon-related for
+   "discount code" / "coupon" — the niche is empty there. Verify the site, submit the sitemap,
+   request indexing on the money pages.
+
+## Tier 0.5 — Corroboration you control (this week)
+
+The census on 2026-09-03 found TAKE30 on 2 independent domains; GET30 is on 6, and the #1 result
+for the money query is a content-free LinkedIn newsletter page titled "Godel Terminal promo code
+PC30". Every rival win this month came from a surface the operator controls. Copy the pattern,
+with real content and a disclosure on each:
+
+- **LinkedIn newsletter or article** titled "Godel Terminal promo code TAKE30 (30% off your first
+  month)" — the PC30 page ranks #1 with one sentence; ours can carry the pricing table.
+- **YouTube video** (even a 3-minute screen walkthrough of the pricing page and checkout field)
+  with the description "Godel Terminal promo code TAKE30 — 30% off your first month". Wethrift and
+  Goodsearch harvest codes from video descriptions; every code on their Godel pages came from one.
+  Objective Trade and TickerFluent already review Godel with bare via-links and no code — worth an
+  outreach asking them to add TAKE30 to their descriptions.
+- **Instagram / TikTok post** with the same caption (same harvesters).
+- **flux.ai page** — the #1 "coupon" result is a user page there pushing GET30.
+- **A dated Medium or Substack post** repeating the verified-code table.
+- **godelguide.com outreach.** It is the only third-party page that lists TAKE30, as plain text
+  under GUIDE. Ask (politely, via their contact page) for the TAKE30 row to link to
+  https://www.godelpromo.com/ — a clean editorial link from the one site that corroborates us.
+- **Reddit, precisely targeted.** r/GodelTerminal tolerates codes: the moderator posts GODEL/SAVE
+  with release notes, and thread 1tvag5r (active through 2026-08-28) and the pinned megathread
+  1myawt3 already carry rival codes. A disclosed reply there, with the first-month caveat, is the
+  one Reddit placement web search actually surfaces. Do not start a new thread.
+- **Email the vendor** (support@godelterminal.com): Rewardful supports auto-applying an affiliate's
+  coupon when a visitor arrives via the ?via= link ("double-sided incentives"), but only if Godel
+  wires it into checkout. That is the only path to a code that applies itself.
+
+---
+
 ## Tier 0 — Do these first (60 minutes, unlocks everything else)
 
 ### 1. Bing Webmaster Tools
@@ -61,6 +114,10 @@ else you post are leaking conversions.
 ---
 
 ## Tier 1 — Coupon aggregators (highest corroboration-per-hour)
+
+> Verified routes and the current state of every page are in
+> [`coupon-submission-checklist.md`](coupon-submission-checklist.md) (status check 2026-09-03). The table
+> below is the original overview.
 
 These are the domains AI crawlers hit hardest for coupon queries. Most accept free submissions. Budget
 about 2 hours for the batch.

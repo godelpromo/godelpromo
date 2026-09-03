@@ -130,6 +130,8 @@ p{margin:0 0 14px}
 .code-value{font-size:30px;font-weight:800;letter-spacing:1.5px;
   font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
 .code-note{color:var(--muted);font-size:13px}
+.code-verified{color:var(--faint);font-size:12px}
+.code-verified time{color:var(--muted);font-variant-numeric:tabular-nums}
 .code-actions{display:flex;gap:10px;flex-wrap:wrap}
 
 .actions{display:flex;gap:11px;flex-wrap:wrap;margin:18px 0}

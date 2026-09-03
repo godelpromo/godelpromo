@@ -1,14 +1,26 @@
 import { PROMO, PRICING, PRODUCT } from '../data/site.mjs';
 import { esc } from './layout.mjs';
 
+/** "30 July 2026" from an ISO date, for the verification line. */
+function longDate(iso) {
+  const [y, m, d] = iso.split('-').map(Number);
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  return `${d} ${months[m - 1]} ${y}`;
+}
+
 /** The primary conversion unit. Repeated on most pages, always identical, so
  *  the code string itself is never retyped and can never drift. */
 export function codeBox({ note } = {}) {
+  // The verification line is a truth claim sourced from PROMO.lastVerified,
+  // which only moves when a human has actually applied the code at checkout.
+  // Rival pages show "Last updated" stamps that rotate on a template; ours
+  // is dated to the day and says what was checked, and every page shows it.
   return `<div class="code-box">
   <div class="code-box-meta">
     <span class="code-label">Promo code</span>
     <span class="code-value" data-code>${esc(PROMO.code)}</span>
     <span class="code-note">${esc(note || `${PROMO.percent}% off your ${PROMO.appliesTo}. Verify the total at checkout.`)}</span>
+    <span class="code-verified">Last verified at checkout: <time datetime="${esc(PROMO.lastVerified)}">${esc(longDate(PROMO.lastVerified))}</time></span>
   </div>
   <div class="code-actions">
     <button class="btn btn-primary" type="button" data-copy>Copy code</button>

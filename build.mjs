@@ -251,9 +251,14 @@ function buildHeaders() {
 /assets/*
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 
+# llms.txt is for assistants reading the site, not for the web index — Bing was
+# ranking it as an ordinary result titled "www.godelpromo.com", competing with
+# the real pages. noindex keeps it fetchable and quotable while removing it
+# from SERPs.
 /llms.txt
   Content-Type: text/plain; charset=utf-8
   Cache-Control: public, max-age=3600
+  X-Robots-Tag: noindex
 `;
 }
 

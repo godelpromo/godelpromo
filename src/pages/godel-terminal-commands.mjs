@@ -151,6 +151,10 @@ documented command; a few (Layouts, Excel) map to layout and export features rat
 (WEI, GLCO, FX, MOST, EQS, QM) and utilities (CALC, CHAT, HELP, NOTE) do not.</p>
 
 <h2>Try the commands yourself</h2>
+<p class="prose">If you would rather see them in sequence than in a list, the
+<a href="/godel-terminal-stock-research-workflow/">command-by-command research workflow</a> runs one ticker through
+orientation, filings, financials, estimates, holders and options using only documented commands.</p>
+
 ${codeBox()}
 ${ctaRow({ secondary: { href: '/godel-terminal-pricing/', label: 'See pricing' } })}
 

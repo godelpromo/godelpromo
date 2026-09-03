@@ -133,7 +133,8 @@ export const page = {
 
   ${tiles(cmdTiles)}
 
-  <p class="prose"><a href="/godel-terminal-commands/">See all ${commandCount()} documented commands →</a></p>
+  <p class="prose"><a href="/godel-terminal-commands/">See all ${commandCount()} documented commands →</a>
+  &nbsp;·&nbsp; <a href="/godel-terminal-stock-research-workflow/">A full stock-research pass, command by command →</a></p>
 </section>
 
 <section>

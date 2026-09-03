@@ -37,7 +37,7 @@ const faqs = [
 export const page = {
   path: '/promo-codes/',
   title: `Godel Terminal Promo Codes: Every Code Compared ${new Date().getFullYear()}`,
-  description: `Every Godel Terminal promo code compared honestly. TAKE30, NEWUSER, GET30, SHKRELI and GUIDE all deliver the same 30% off the first month.`,
+  description: `Use TAKE30 for 30% off your first month of Godel Terminal, verified at checkout. Every rival code compared, and why the 40-80% claims are fabricated.`,
   summary: 'Honest comparison of every Godel Terminal promo code in circulation and what each one actually discounts.',
   breadcrumbs: [
     { href: '/', label: 'Home' },

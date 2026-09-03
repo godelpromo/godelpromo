@@ -77,6 +77,24 @@ Two more accuracy rules (added 2026-08-05):
 
 ---
 
+## Two different aggregator sets, 2026-09-03
+
+Google and Bing surface almost disjoint aggregator sets for the same queries, and Bing is the one
+that feeds ChatGPT search and Copilot. Work the Bing list first.
+
+**Bing top 7 for "godel terminal promo code"** (verified via the RSS endpoint; the HTML endpoint
+serves decoys to non-browsers): goodsearch (#1, claims 80%), **www.godelpromo.com/promo-codes/
+(#2)**, wethrift (#3, 13 codes led by MARTIN), godelguide (#4, GUIDE), couponstroller (#5),
+shipthedeal (#6, code "Cyrus"), couponlief (#7). Also seen: knoji, couponbind, discountzoo,
+colormango, flux.ai.
+
+**Google top 8**: the LinkedIn PC30 newsletter, the two Webflow single-pagers, godelterminaldiscounts,
+**godelpromo.com (#4)**, dealspotr, greenpromocode, tenereteam.
+
+Submission priority, highest reach first: goodsearch, wethrift (harvest-only — see below),
+couponstroller, shipthedeal, couponlief, knoji, couponbind, discountzoo, colormango, dealspotr,
+greenpromocode, tenereteam, worthepenny.
+
 ## Status check, 2026-09-03
 
 Every aggregator was re-fetched. None lists TAKE30 as a code. The landscape moved: Wethrift and

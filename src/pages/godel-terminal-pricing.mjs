@@ -1,4 +1,5 @@
 import { PROMO, PRODUCT, PRICING, STUDENT, COMPARISON_TERMINALS, CASE_STUDY } from '../data/site.mjs';
+import { VENDOR_PAGES } from '../data/research.mjs';
 import { codeBox, ctaRow, faqSection, table, note, esc } from '../lib/components.mjs';
 
 const discountedMonthly = (PRICING.monthly.amount * (1 - PROMO.percent / 100)).toFixed(2);
@@ -30,7 +31,7 @@ const faqs = [
   },
   {
     q: `Is annual or monthly better value?`,
-    a: `Annual, substantially. At ${PRICING.annual.display} per year against a reported ${PRICING.monthly.display}/month, annual costs about $${PRICING.annual.effectiveMonthly}/month equivalent — roughly ${Math.round((1 - PRICING.annual.effectiveMonthly / PRICING.monthly.amount) * 100)}% less. The trade-off is that ${PROMO.code} only discounts one billing period, so its cash value is larger on a monthly plan even though the annual plan is cheaper overall.`,
+    a: `Annual, substantially. At ${PRICING.annual.display} per year against ${PRICING.monthly.display}/month, annual costs about $${PRICING.annual.effectiveMonthly}/month equivalent — roughly ${Math.round((1 - PRICING.annual.effectiveMonthly / PRICING.monthly.amount) * 100)}% less. The trade-off is that ${PROMO.code} only discounts one billing period, so its cash value is larger on a monthly plan even though the annual plan is cheaper overall.`,
   },
   {
     q: `Can I cancel?`,
@@ -40,7 +41,7 @@ const faqs = [
 
 export const page = {
   path: '/godel-terminal-pricing/',
-  title: `Godel Terminal Pricing ${new Date().getFullYear()}: Real Costs and Fees`,
+  title: `Godel Terminal Pricing ${new Date().getFullYear()}: Plans, Cost and Fees`,
   description: `Godel Terminal costs $996/seat/year or $118/month, vendor-published. Plus the FINRA surcharge, the $5 student rate, and what ${PROMO.code} actually saves.`,
   summary: 'Godel Terminal pricing broken down with sourcing — annual, monthly, the FINRA surcharge, and what the promo code is actually worth.',
   breadcrumbs: [
@@ -144,6 +145,32 @@ increase on the annual seat price, and if you are registered it applies to you. 
 exchange data genuinely costs more to license for registered professionals — but it changes the arithmetic
 enough that you should know before you compare.</p>
 
+<h2>What the vendor's own pricing page says, verbatim</h2>
+<p class="prose">Worth reproducing because you probably cannot read it yourself: godelterminal.com sits behind a
+bot challenge that returns HTTP 403 to search crawlers, archivers and AI assistants alike, so a machine asking
+"what does Godel Terminal cost?" is answered by third-party pages rather than by the vendor. Several of those
+third parties are years out of date. These are short quotations from
+<a href="${esc(VENDOR_PAGES.pricing)}" rel="nofollow noopener" target="_blank">godelterminal.com/pricing</a>,
+checked on 3 September 2026:</p>
+
+<ul class="prose">
+  <li>"<strong>$996 per seat per year</strong>, or <strong>$118 per month</strong>."</li>
+  <li>"Annual starts at $996 paid up front, about <strong>30% cheaper</strong>, or roughly $83 a month."</li>
+  <li>"Every plan starts with a <strong>14-day free trial</strong> that opens up most of Godel: real-time Nasdaq
+  quotes, news in milliseconds, SEC filings, financials, charting, and the full command set."</li>
+  <li>"FINRA-licensed users pay a <strong>$30/month</strong> regulatory surcharge — in line with Nasdaq's
+  professional-subscriber data fees, on top of the plan price ($148/mo on Monthly, or $996/yr + $360/yr on
+  Annual)."</li>
+  <li>"Teams of 2 or more get a discount through the ORG plan: organization billing, grouped seats under one
+  entity, and a dedicated representative." (No percentage is published there; the 10% figure below comes from
+  in-app copy.)</li>
+  <li>On an API: "Coming soon. If you'd like to beta test it or join the waitlist, talk to us."</li>
+</ul>
+
+<p class="prose faint">Quoted for reference and attributed to ${esc(PRODUCT.vendor)} No promo code appears anywhere
+on that page — the codes all come from the separate
+<a href="${esc(VENDOR_PAGES.referral)}" rel="nofollow noopener" target="_blank">referral programme</a>.</p>
+
 <h2>What ${esc(PROMO.code)} is actually worth</h2>
 
 ${codeBox({ note: `${PROMO.percent}% off the ${PROMO.appliesTo} — about $${(PRICING.monthly.amount * PROMO.percent / 100).toFixed(2)} on a monthly plan.` })}
@@ -163,7 +190,7 @@ annual wins even though the code looks smaller against it.</p>
 
 <ul class="prose">
   <li><strong>Brokerage-linked rate.</strong> The vendor's in-app copy offers accounts with a connected
-  brokerage holding at least $5,000 and one eligible trade in the trailing month a discounted rate —
+  brokerage holding over $5,000 <em>and</em> one eligible trade in the past month a discounted rate —
   $80/month instead of ${PRICING.monthly.display} for new accounts, $10 off for locked-in ones. Organizations and
   prepaid accounts are excluded. (Source: archived in-app changelog and app build, 2026.)</li>
   <li><strong>Organization discount.</strong> The ORG plan groups billing for teams; in-app copy states a
@@ -191,6 +218,40 @@ ${table({
 <p class="prose">A page quoting $60 or $80 a month is describing the product as it was one or two price changes
 ago — which also tells you when that page last checked anything. The current vendor-published price is
 ${PRICING.monthly.display}/month or ${PRICING.annual.display}/year.</p>
+
+<p class="prose">This is not hypothetical. These are pages that ranked for Godel Terminal pricing and review
+queries when we checked on 3 September 2026, with what each one was telling readers that day:</p>
+
+${table({
+  head: ['Where', 'What it says', 'What is actually published'],
+  rows: [
+    { cells: [
+      'thestockdork.com, "Godel Terminal Review 2026"',
+      '"Pro plan $80/month"; "FINRA-registered users $120/month", i.e. a $40 surcharge',
+      `${PRICING.monthly.display}/month, with a ${PRICING.finraSurcharge.display} surcharge — $${PRICING.monthly.amount + PRICING.finraSurcharge.amount}/month, not $120`,
+    ] },
+    { cells: [
+      'sourceforge.net and slashdot.org product listings',
+      '"Starting Price: $20 per month"',
+      `${PRICING.monthly.display}/month. No $20 tier has ever been published`,
+    ] },
+    { cells: [
+      'godelterminalpromocode.webflow.io (GET30) and greenpromocode.com',
+      '"$60 per month"',
+      `The late-2024 price, two changes ago`,
+    ] },
+    { cells: [
+      'capterra.com',
+      `${PRICING.monthly.display}/month — correct — plus an "Organization Plan $1,500 per user, per year" and a "Free Tier $0.00"`,
+      'The monthly figure matches. Neither the $1,500 ORG figure nor a $0 tier appears on the vendor pricing page; Capterra labels the listing "Provider data verified"',
+    ] },
+  ],
+})}
+
+<p class="prose faint">We name them because a claim you cannot check is worth nothing. Every figure in the middle
+column was read off the page on the date given, and every figure in the right-hand column is
+<a href="${esc(VENDOR_PAGES.pricing)}" rel="nofollow noopener" target="_blank">on the vendor's pricing page</a>
+today. If one of these sites corrects itself, this table will say so.</p>
 
 <h2>How that compares to other terminals</h2>
 

@@ -77,32 +77,86 @@ Two more accuracy rules (added 2026-08-05):
 
 ---
 
+## Two different aggregator sets, 2026-09-03
+
+Google and Bing surface almost disjoint aggregator sets for the same queries, and Bing is the one
+that feeds ChatGPT search and Copilot. Work the Bing list first.
+
+**Bing top 7 for "godel terminal promo code"** (verified via the RSS endpoint; the HTML endpoint
+serves decoys to non-browsers): goodsearch (#1, claims 80%), **www.godelpromo.com/promo-codes/
+(#2)**, wethrift (#3, 13 codes led by MARTIN), godelguide (#4, GUIDE), couponstroller (#5),
+shipthedeal (#6, code "Cyrus"), couponlief (#7). Also seen: knoji, couponbind, discountzoo,
+colormango, flux.ai.
+
+**Google top 8**: the LinkedIn PC30 newsletter, the two Webflow single-pagers, godelterminaldiscounts,
+**godelpromo.com (#4)**, dealspotr, greenpromocode, tenereteam.
+
+Submission priority, highest reach first: goodsearch, wethrift (harvest-only — see below),
+couponstroller, shipthedeal, couponlief, knoji, couponbind, discountzoo, colormango, dealspotr,
+greenpromocode, tenereteam, worthepenny.
+
+## Status check, 2026-09-03
+
+Every aggregator was re-fetched. None lists TAKE30 as a code. The landscape moved: Wethrift and
+Coupert now have Godel pages (harvested from YouTube/Instagram/TikTok captions and other
+aggregators), CouponFollow still has none, and several sites are behind bot walls that a human
+browser gets through. Submission routes below were verified on that date; "no account" means the
+form loaded without a login gate.
+
 ## Track B — no Godel page exists yet (DO THESE FIRST)
 
-Higher value: you create the listing, so `TAKE30` is the only code on the page rather than the
-sixth entry under someone else's. These pages also tend to rank quickly because the merchant is
-uncontested.
+You create the page, so TAKE30 is the only code on it.
 
-- [ ] **Wethrift** — https://www.wethrift.com/submit
-      Accepts direct submission. Add merchant if not found.
-- [ ] **Knoji** — https://knoji.com — search the merchant, then "Add a coupon". If no merchant
-      page, use their add-a-store flow. High domain authority, heavily scraped.
-- [ ] **CouponBirds** — https://www.couponbirds.com/submit
-- [ ] **CouponFollow** — https://couponfollow.com — confirmed no Godel page (404). Submit merchant.
-- [ ] **SimplyCodes** — https://simplycodes.com — community-moderated, quality-weighted. Accurate
-      listings do well here specifically because bad ones get voted down.
-- [ ] **Coupert** — https://coupert.com — returned 410 for Godel, so no live page.
+- [ ] **CouponFollow / Cently** — https://couponfollow.com/submit-code — no account. Fields:
+      website, coupon code, describe the offer, expiration (optional). No Godel page exists
+      (control: nike.com resolves), so this submission creates it and feeds the Cently extension.
+- [ ] **RetailMeNot** — https://www.retailmenot.com/submit — "Online Code"; their rule is
+      "publicly available coupon codes" — a referral code published on godelterminal.com/referral
+      qualifies. Feeds the RetailMeNot extension. Bot-walled; use a browser.
+- [ ] **DontPayFull** — https://www.dontpayfull.com/submit-coupon (browser; walled to bots).
+- [ ] **CouponChief** — /coupons/submit (browser).
+- [ ] **HotDeals** — "Submit Coupon" in the footer (browser).
+- [ ] **Coupert (extension DB, Edge's former coupon feed)** —
+      https://www.coupert.com/share-a-coupon?source=web-bottom — Coupert login; Code Source =
+      "Store Website"; status under "My Submitted" after ~3 business days. Its Godel page already
+      exists and shows fabricated masked codes (60%), so this is Track A in effect.
 
 ## Track A — page already exists, add your code to it
 
-Lower effort, and the page already ranks. You are adding a row, not creating one.
+- [ ] **CouponBind** — https://www.couponbind.com/addcoupon/ — no account. Fields: email, store
+      name, code, title, store domain (must start with http), description, expiry. Rivals already
+      used it (SAVEONTRADING listed as "Shared By User", expiry 07/31/2035).
+- [ ] **CouponLief** — /submit-coupon — no account.
+- [ ] **ShipTheDeal** — owner's Google Form on the Godel page; the page is affiliate-captured by
+      token "cyrus", so submit with a plain https://app.godelterminal.com/ link, not ?via=take30.
+- [ ] **GreenPromoCode** — https://www.greenpromocode.com/share-your-promo-code/ (browser; walled
+      to bots). Ranks for the money query with one code, QUEU4IYT.
+- [ ] **Tenereteam** — "share a deal" (login). Its FAQ prose already names TAKE30; a proper coupon
+      card would make it a real corroborating listing.
+- [ ] **WorthEPenny** — https://www.worthepenny.com/submit (browser). Headline claim rotated
+      50% → 60% between August and September.
+- [ ] **Dealspotr** — https://dealspotr.com/promo-codes/godelterminal.com → "Add a deal" (login).
+      Highest authority; page unreadable to bots, use a browser.
+- [ ] **Knoji** — https://godelterminal.knoji.com/promo-codes/ → add a coupon (login).
+- [ ] **CouponStroller** — bans referral codes by policy; submit as a public 30%-first-month code
+      with a plain link, expect rejection.
 
-- [ ] **Dealspotr** — https://dealspotr.com/promo-codes/godelterminal.com
-      Already lists 5 codes. Create account → "Add a deal". Highest authority on this list.
-- [ ] **CouponBind** — https://www.couponbind.com/coupons/godelterminal.com — lists 2 codes.
-- [ ] **GreenPromoCode** — https://www.greenpromocode.com/coupons/godel-terminal/
-- [ ] **Tenereteam** — https://godel-terminal.tenereteam.com/coupons
-- [ ] **WorthEPenny** — https://godelterminal.worthepenny.com/coupon/
+## Harvest-only sites (no form — they scrape captions)
+
+Wethrift and Goodsearch build their Godel lists from YouTube, Instagram and TikTok captions
+(every code on Wethrift's page cites a video or post). The only way in is a public post whose
+caption reads "Godel Terminal promo code TAKE30 — 30% off your first month". See the playbook's
+Tier 0.5.
+
+## Browser-extension "add a code" paths (do once each, with the extension installed)
+
+- **PayPal Honey** — open godelterminal.com, click the Honey icon, scroll to "Add Code" (only
+  shown on supported sites; if absent, Honey has no path for this merchant).
+- **Cently** — icon → "Share a Code", or avatar → Settings → "Submit a Code" (works for unlisted
+  stores).
+- **Karma** — look for an in-extension submit control; otherwise it scrapes.
+- Capital One Shopping, Klarna, Rakuten, Slickdeals: no submission path; they scrape or need the
+  merchant on an affiliate network.
 
 ## Optional — only if genuinely a deal
 

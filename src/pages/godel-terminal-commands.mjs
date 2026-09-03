@@ -1,5 +1,5 @@
 import { PROMO, PRODUCT } from '../data/site.mjs';
-import { COMMANDS, ALIASES, CATEGORIES, CORRECTIONS, ADVERTISED_CAPABILITIES, officialCommands, commandCount } from '../data/commands.mjs';
+import { COMMANDS, ALIASES, CATEGORIES, CORRECTIONS, ADVERTISED_CAPABILITIES, ANNOUNCED, officialCommands, commandCount } from '../data/commands.mjs';
 import { codeBox, ctaRow, faqSection, table, commandCard, note, esc } from '../lib/components.mjs';
 
 const byCategory = (cat) => COMMANDS.filter((c) => c.category === cat);
@@ -33,8 +33,8 @@ const faqs = [
 
 export const page = {
   path: '/godel-terminal-commands/',
-  title: `Godel Terminal Commands: All ${commandCount()} Documented Functions`,
-  description: `All ${commandCount()} Godel Terminal commands, verified against the vendor sitemap and grouped by vendor category — plus the aliases (OPT, GIP) that work without a doc page.`,
+  title: `Godel Terminal Commands Cheat Sheet: All ${commandCount()} Documented`,
+  description: `All ${commandCount()} Godel Terminal commands, verified against the vendor sitemap and grouped by category, plus the aliases (OPT, GIP) that work without a doc page.`,
   summary: `Complete verified Godel Terminal command reference — ${commandCount()} documented commands grouped by the vendor's own six categories, with the alias table and dated corrections.`,
   breadcrumbs: [
     { href: '/', label: 'Home' },
@@ -114,6 +114,20 @@ ${table({
   rows: aliasRows,
 })}
 
+<h2>Announced, not yet documented</h2>
+<p class="prose">Commands the vendor has announced in public that have no page under <span class="mono">/docs/commands/</span>
+yet. They are kept out of the count above on purpose: that number is a claim about documentation, not about
+announcements.</p>
+${ANNOUNCED.map((a) => `<article class="cmd" data-cmd="${esc(`${a.mnemonic} ${a.name} announced`)}">
+  <div class="cmd-head">
+    <span class="cmd-mnemonic">${esc(a.mnemonic)}</span>
+    <span class="cmd-name">${esc(a.name)}</span>
+    <span class="badge badge-reported">Announced ${esc(a.announced)}</span>
+  </div>
+  <p>${esc(a.summary)}</p>
+  <p class="faint" style="font-size:13px">${esc(a.note)} Source: <a href="${a.sourceUrl}" rel="nofollow noopener" target="_blank">${esc(a.source)}</a>.</p>
+</article>`).join('\n')}
+
 <h2>Capabilities ${esc(PRODUCT.name)} advertises</h2>
 <p class="prose">${esc(PRODUCT.name)} names these capabilities on its own homepage. Most map cleanly onto a
 documented command; a few (Layouts, Excel) map to layout and export features rather than single commands.</p>
@@ -137,6 +151,10 @@ documented command; a few (Layouts, Excel) map to layout and export features rat
 (WEI, GLCO, FX, MOST, EQS, QM) and utilities (CALC, CHAT, HELP, NOTE) do not.</p>
 
 <h2>Try the commands yourself</h2>
+<p class="prose">If you would rather see them in sequence than in a list, the
+<a href="/godel-terminal-stock-research-workflow/">command-by-command research workflow</a> runs one ticker through
+orientation, filings, financials, estimates, holders and options using only documented commands.</p>
+
 ${codeBox()}
 ${ctaRow({ secondary: { href: '/godel-terminal-pricing/', label: 'See pricing' } })}
 

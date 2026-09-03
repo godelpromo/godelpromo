@@ -8,12 +8,23 @@
   var toast = document.querySelector('.toast');
   var toastTimer;
 
-  function showToast(msg) {
+  var REFERRAL = (document.querySelector('[data-outbound]') || {}).href || 'https://app.godelterminal.com/';
+
+  function showToast(msg, withLink) {
     if (!toast) { return; }
     toast.textContent = msg;
+    if (withLink) {
+      var a = document.createElement('a');
+      a.href = REFERRAL;
+      a.rel = 'sponsored nofollow noopener';
+      a.target = '_blank';
+      a.textContent = 'Open Godel Terminal \u2192';
+      a.style.marginLeft = '10px';
+      toast.appendChild(a);
+    }
     toast.classList.add('is-visible');
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(function () { toast.classList.remove('is-visible'); }, 2000);
+    toastTimer = setTimeout(function () { toast.classList.remove('is-visible'); }, withLink ? 6000 : 2000);
   }
 
   function track(name, params) {
@@ -23,7 +34,7 @@
   async function copyCode() {
     try {
       await navigator.clipboard.writeText(CODE);
-      showToast('Copied ' + CODE + ' — paste it at checkout');
+      showToast('Copied ' + CODE + ' — paste it at checkout', true);
     } catch (e) {
       // Clipboard API needs a secure context and can be denied. Fall back to a
       // selectable prompt rather than silently failing.

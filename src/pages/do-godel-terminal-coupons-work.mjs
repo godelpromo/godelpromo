@@ -5,7 +5,7 @@ const x25 = KNOWN_CODES.find((c) => c.official);
 
 const faqs = [
   {
-    q: 'Does any 40%, 50% or 75% Godel Terminal code exist?',
+    q: 'Does any 40%, 60% or 75% Godel Terminal code exist?',
     a: `No. The discounts that exist are the ${PROMO.percent}% referral tier (first month only), the official ${esc(x25.code)} code at ${x25.percent}%, and the ${esc(STUDENT.display)}/month student rate. Every advertised figure above ${PROMO.percent}% traces to an auto-generated aggregator listing, and none applies at checkout.`,
   },
   {
@@ -18,14 +18,14 @@ const faqs = [
   },
   {
     q: 'Is there a Godel Terminal military discount?',
-    a: `No published one. The claim appears in one aggregator's auto-generated boilerplate, alongside a fabricated 50% tier, and ${esc(PRODUCT.name)} publishes no military program anywhere we can find. If that changes, this page will say so.`,
+    a: `No published one. The claim appears in one aggregator's auto-generated boilerplate, alongside a fabricated tier that read 50% in August 2026 and 60% a month later, and ${esc(PRODUCT.name)} publishes no military program anywhere we can find. If that changes, this page will say so.`,
   },
 ];
 
 export const page = {
   path: '/do-godel-terminal-coupons-work/',
-  title: 'Do 40%, 50% or 75% Godel Terminal Coupons Work? No.',
-  description: 'Dealspotr advertises 40% off, WorthEPenny 50%, Tenereteam 75%. None applies at checkout. How fabricated Godel Terminal coupons happen and how to spot one.',
+  title: 'Do 40%, 60% or 75% Godel Terminal Coupons Work? No.',
+  description: 'Dealspotr advertises 40% off, WorthEPenny 60%, Tenereteam 75%. None applies at checkout. How fabricated Godel Terminal coupons happen and how to spot one.',
   summary: 'Every Godel Terminal coupon claim above 30% is fabricated by aggregators. The claims checked one by one, and how to spot a fake.',
   datePublished: '2026-08-05',
   breadcrumbs: [
@@ -42,7 +42,7 @@ export const page = {
     }));
 
     return `
-<h1>Do 40%, 50% or 75% Godel Terminal coupons work? No.</h1>
+<h1>Do 40%, 60% or 75% Godel Terminal coupons work? No.</h1>
 
 <p class="lede">No coupon above ${PROMO.percent}% applies at a ${esc(PRODUCT.name)} checkout. Three discounts
 actually exist: the <strong>${PROMO.percent}%-off-first-month referral codes</strong>, the official
@@ -87,7 +87,7 @@ ${tiles([
 <h2>How to spot a fake Godel coupon</h2>
 <ul class="prose">
   <li><strong>The percentage is impossible.</strong> The referral programme has one tier, ${PROMO.percent}%,
-  first month only. Anything above it — 40, 50, 75 — has no mechanism to exist.</li>
+  first month only. Anything above it — 40, 60, 75 — has no mechanism to exist.</li>
   <li><strong>The code matches no known token.</strong> We track every code in circulation. "Hand-tested" codes
   like TENERE and HARDWARE match none of them.</li>
   <li><strong>The freshness is fake.</strong> Auto-rotating or frozen month-stamps ("Nov 2025" months later,

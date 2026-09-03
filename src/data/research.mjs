@@ -92,6 +92,10 @@ export const API_FACTS = {
   roadmapNote:
     'A February 2025 post on the official subreddit listed "data APIs" in the pipeline. Community-posted, no commitment or date.',
   roadmapTier: 'community',
+  /** The vendor's own pricing-page FAQ, September 2026: "Is there an API? Coming soon.
+   *  If you'd like to beta test it or join the waitlist, talk to us." */
+  vendorStatus: 'Coming soon — beta testers and a waitlist via sales',
+  vendorStatusSource: 'godelterminal.com/pricing FAQ, checked 2026-09-03',
   communityDemand:
     'Asked repeatedly — e.g. r/GodelTerminal (January 2025) "Is it possible to download data or access via API?", and an r/algotrading user in February 2025 praising the news feed speed while noting the lack of API access.',
   exportNote:
@@ -254,6 +258,7 @@ export const CODE_SITES = {
       'Quotes a $60/month base price, two price changes out of date.',
       'Carries an unattributed "hedge fund manager" testimonial.',
       'Every button routes through a cloaked redirect (foxly.link) rather than a visible referral link.',
+      'As of September 2026 that foxly.link domain no longer resolves, so the page’s signup buttons are dead: the code may still work if typed at checkout, but nothing on the page gets you there.',
     ],
   },
   PROMO30: {
@@ -261,6 +266,7 @@ export const CODE_SITES = {
     facts: [
       'Review-styled single-page site; sitemap contains one URL.',
       'Uses the same cloaked foxly.link redirect as the GET30 site — the two are almost certainly run by the same operator.',
+      'That redirect domain stopped resolving by September 2026, so its signup buttons lead nowhere.',
     ],
   },
   NEWUSER: {
@@ -296,6 +302,17 @@ export const CODE_SITES = {
  * equities, charting v2, backtesting, a mobile app, economic calendars and
  * data APIs. Community-posted, no dates, no commitments.
  */
+/**
+ * The vendor's own "In Godel today / Working on" list, published on the pricing
+ * page. Vendor tier — the first roadmap statement with a primary source.
+ */
+export const ROADMAP_VENDOR = {
+  tier: 'vendor',
+  today: ['QM real-time quotes', 'N news', 'CF SEC filings', 'FA standardized financials', 'HDS holders and 13F', 'HMS peer comparison'],
+  workingOn: ['PORT portfolio analytics', 'MEMB index membership', 'EQS deeper screening (v2 and v3)', 'GF and EQRV time series', 'ETFs and mutual funds', 'More private-company data', 'Podcasts'],
+  source: 'godelterminal.com/pricing, checked 2026-09-03',
+};
+
 export const ROADMAP = {
   tier: 'community',
   items: ['International equities', 'Charting v2', 'Backtesting', 'Mobile app', 'Economic calendars', 'Data APIs'],

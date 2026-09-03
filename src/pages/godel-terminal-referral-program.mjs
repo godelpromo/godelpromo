@@ -1,5 +1,5 @@
 import { PROMO, PRODUCT, REFERRAL_CODES, REFERRAL, DISCLOSURE } from '../data/site.mjs';
-import { ctaRow, faqSection, table, note, esc } from '../lib/components.mjs';
+import { ctaRow, faqSection, table, note, esc, longDate } from '../lib/components.mjs';
 
 const faqs = [
   {
@@ -26,8 +26,8 @@ const faqs = [
 
 export const page = {
   path: '/godel-terminal-referral-program/',
-  title: `How the Godel Terminal Referral Program Actually Works`,
-  description: `Every Godel Terminal promo code is a referral token in the same program: one ${PROMO.percent}% first-month tier, attribution follows the code entered at checkout, not the link.`,
+  title: 'Godel Terminal Referral & Affiliate Program: How It Works',
+  description: `Every Godel Terminal promo code is a referral token in one program: a single ${PROMO.percent}% first-month tier, and attribution follows the code typed at checkout.`,
   summary: 'How the Godel Terminal referral program works: one 30%-first-month tier, code-based attribution, and what that means about every promo site.',
   datePublished: '2026-08-05',
   breadcrumbs: [
@@ -92,13 +92,22 @@ debunk on <a href="/do-godel-terminal-coupons-work/">do the big-percentage coupo
 site's link last week and type a different site's code today, the code wins. Practically, this means the promo field
 on the checkout screen is the entire mechanism — everything else is decoration.</p>
 
+<p class="prose">The vendor's own referral FAQ is explicit about it. It tells affiliates to share the
+<em>code</em> rather than the Rewardful link, because "ad blockers and browser settings may block tracking if only
+the link is used", and that referred users "must use the code at checkout for it to count". In other words, no
+link auto-applies the discount: if the field is empty when you pay, nobody's discount applies. The same FAQ names
+a separate <span class="mono">${esc(REFERRAL.exampleCoupon)}</span> "coupon code" as an example of something the
+referral discount cannot be combined with — evidence that vendor-issued coupons exist outside the referral
+programme, none of them published on the pricing page.</p>
+
 ${note(`This is also why every promo site pushes so hard to get its code into your clipboard. The click is worth
 nothing; the code is worth the commission.`)}
 
 <h2>What this means for you as a buyer</h2>
 
-<p class="prose">Pick any code in the table above; the price is identical. There is no better deal to hunt for, no
-stacking, no exclusive tier hiding on another site. The only checkout mistake available to you is paying without any
+<p class="prose">The price is identical whichever code in the table you pick, so pick the one that is verified:
+${esc(PROMO.code)}, last verified at checkout on ${esc(longDate(PROMO.lastVerified))}. There is no better deal
+to hunt for, no stacking, no exclusive tier hiding on another site. The only checkout mistake available to you is paying without any
 code at all — that forfeits the ${PROMO.percent}% and enriches no one. The
 <a href="/how-to-redeem/">redemption walkthrough →</a> shows exactly where the field is and how to confirm the
 discount applied.</p>

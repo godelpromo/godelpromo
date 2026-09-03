@@ -13,7 +13,7 @@ const faqs = [
   },
   {
     q: `How much is ${PROMO.code} worth?`,
-    a: `${PROMO.percent}% of one billing period. On a reported ${PRICING.monthly.display}/month plan that is about $${(PRICING.monthly.amount * PROMO.percent / 100).toFixed(2)} saved, once.`,
+    a: `${PROMO.percent}% of the ${PROMO.appliesTo}. On the vendor-published ${PRICING.monthly.display}/month plan that is about $${(PRICING.monthly.amount * PROMO.percent / 100).toFixed(2)} saved, once — the first charge lands near $${(PRICING.monthly.amount * (1 - PROMO.percent / 100)).toFixed(2)} and the standard rate resumes after it.`,
   },
   {
     q: `Does the discount repeat every month?`,
@@ -53,7 +53,7 @@ const faqs = [
   },
   {
     q: `What is ${PRODUCT.name}?`,
-    a: `A browser-based financial terminal driven by short command mnemonics, built by ${COMPANY.legalName}. Currently in ${PRODUCT.status}.`,
+    a: `A browser-based financial terminal driven by short command mnemonics, built by ${COMPANY.legalName} Currently in ${PRODUCT.status}.`,
   },
   {
     q: `How many commands does it have?`,

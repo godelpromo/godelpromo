@@ -23,7 +23,7 @@ const faqs = [
 export const page = {
   path: '/godel-terminal-student-discount/',
   title: 'Godel Terminal Student Discount: The Official $5/Month Rate',
-  description: 'Godel Terminal announced a $5/month student rate: .edu signup plus a student ID. How the official program works, whether it is still live, and how to check.',
+  description: 'Godel Terminal announced a $5/month student rate: .edu signup plus a student ID. How the official program works, whether it is still live, and how to check',
   summary: 'The official Godel Terminal student program — $5 a month with a .edu email and a student ID — and why it beats every promo code in circulation.',
   datePublished: '2026-08-05',
   breadcrumbs: [
@@ -99,7 +99,7 @@ month, and even the vendor's own social promo code is smaller:
 
 ${codeBox({ note: `${PROMO.percent}% off your first month — the biggest discount for anyone who is not a student.` })}
 
-<p class="prose">And if you run into a site advertising 40%, 50% or 75% off instead, it is fabricated —
+<p class="prose">And if you run into a site advertising 40%, 60% or 75% off instead, it is fabricated —
 <a href="/do-godel-terminal-coupons-work/">we checked every such claim →</a></p>
 
 ${faqSection(faqs)}

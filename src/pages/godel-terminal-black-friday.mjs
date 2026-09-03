@@ -26,7 +26,7 @@ const faqs = [
 export const page = {
   path: '/godel-terminal-black-friday/',
   title: `Godel Terminal Black Friday & Cyber Monday: The Honest Deal`,
-  description: `BLACKFRIDAY and CYBERMONDAY are Godel Terminal referral codes, not seasonal sales. What actually discounts in November, and why ${PROMO.percent}% off month one is the ceiling.`,
+  description: `BLACKFRIDAY and CYBERMONDAY are Godel Terminal referral codes, not seasonal sales. What actually discounts in November, and why ${PROMO.percent}% off is the ceiling.`,
   summary: 'Why the BLACKFRIDAY and CYBERMONDAY codes are ordinary year-round referral tokens, and what is actually known about Godel Terminal seasonal sales.',
   datePublished: '2026-08-05',
   breadcrumbs: [

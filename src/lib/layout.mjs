@@ -64,38 +64,63 @@ function buildGraph({ url, title, description, breadcrumbs, faqs, datePublished,
 
   // The product this whole site is about. Offer carries the discount so the
   // code itself is machine-readable, not just prose in a heading.
+  // Product AND SoftwareApplication: the second type carries the category a
+  // software-aware parser looks for, and neither type contradicts the other.
   const product = {
-    '@type': 'Product',
+    '@type': ['Product', 'SoftwareApplication'],
     '@id': productId,
     name: PRODUCT.name,
     description: PRODUCT.positioning,
     url: PRODUCT.officialUrl,
     category: 'Financial data terminal',
+    applicationCategory: 'FinanceApplication',
+    operatingSystem: 'Web browser',
     brand: { '@type': 'Brand', name: PRODUCT.name },
     manufacturer: { '@type': 'Organization', name: COMPANY.legalName },
   };
 
-  if (includeOffer) {
-    product.offers = {
+  // Two offers on every page: the vendor's list price, and the promo code as
+  // data rather than prose. The code offer is what makes "TAKE30 = 30% off the
+  // first month" machine-readable instead of something a parser has to infer
+  // from a heading. Prices are the vendor's own, so nothing here can drift
+  // from the visible copy.
+  const firstMonth = Math.round(PRICING.monthly.amount * (1 - PROMO.percent / 100) * 100) / 100;
+  product.offers = [
+    {
       '@type': 'Offer',
       '@id': `${SITE.origin}/#offer`,
-      url: SITE.origin + '/',
+      name: `${PRODUCT.name} annual plan`,
+      url,
       priceCurrency: PRICING.currency,
       price: PRICING.annual.amount,
       priceSpecification: {
         '@type': 'UnitPriceSpecification',
         price: PRICING.annual.amount,
         priceCurrency: PRICING.currency,
-        referenceQuantity: {
-          '@type': 'QuantitativeValue',
-          value: 1,
-          unitText: 'seat per year',
-        },
+        referenceQuantity: { '@type': 'QuantitativeValue', value: 1, unitText: 'seat per year' },
       },
       availability: 'https://schema.org/InStock',
       seller: { '@type': 'Organization', name: COMPANY.legalName },
-    };
-  }
+    },
+    {
+      '@type': 'Offer',
+      '@id': `${SITE.origin}/#offer-${PROMO.code.toLowerCase()}`,
+      name: `${PROMO.code} — ${PROMO.percent}% off the ${PROMO.appliesTo} of ${PRODUCT.name}`,
+      description: `Promo code ${PROMO.code} takes ${PROMO.percent}% off the ${PROMO.appliesTo} of a ${PRODUCT.name} subscription: ${PRICING.monthly.display} becomes $${firstMonth} for the first billing period, then the standard rate applies. Entered at checkout. Last verified at checkout ${PROMO.lastVerified}.`,
+      url: PROMO.referralLink,
+      priceCurrency: PRICING.currency,
+      price: firstMonth,
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        price: firstMonth,
+        priceCurrency: PRICING.currency,
+        referenceQuantity: { '@type': 'QuantitativeValue', value: 1, unitText: 'first month' },
+      },
+      availability: 'https://schema.org/InStock',
+      validFrom: PROMO.lastVerified,
+      seller: { '@type': 'Organization', name: COMPANY.legalName },
+    },
+  ];
   graph.push(product);
 
   if (breadcrumbs?.length) {
@@ -147,7 +172,7 @@ function header(currentPath) {
       <div class="promo-pill">
         <span class="promo-pill-label">Promo code</span>
         <strong class="promo-pill-code" data-code>${esc(PROMO.code)}</strong>
-        <button class="btn btn-sm" type="button" data-copy>Copy</button>
+        <button class="btn btn-sm" type="button" data-copy aria-label="Copy promo code ${esc(PROMO.code)}">Copy</button>
       </div>
 
       <nav class="site-nav" aria-label="Primary">
@@ -198,7 +223,7 @@ function analytics() {
           send_to: '${ANALYTICS.conversionLabel}',
           value: 1.0, currency: 'USD', event_callback: go
         });
-        setTimeout(go, 900);
+        setTimeout(go, 300);
       } catch(e){ go(); }
       return false;
     }
@@ -249,15 +274,13 @@ export function renderPage({
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="dark light">
+<meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#070b14">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <meta name="robots" content="${noindex ? 'noindex,nofollow' : 'index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1'}">
-<link rel="canonical" href="${url}">
-<link rel="icon" href="/favicon.ico" sizes="any">
+${noindex ? '' : `<link rel="canonical" href="${url}">\n`}<link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="stylesheet" href="/assets/site.css">
-<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="${esc(SITE.name)}">
 <meta property="og:title" content="${esc(title)}">

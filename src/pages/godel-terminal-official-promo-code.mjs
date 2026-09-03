@@ -1,5 +1,5 @@
 import { PROMO, PRODUCT, REFERRAL, KNOWN_CODES, REFERRAL_CODES } from '../data/site.mjs';
-import { codeBox, ctaRow, faqSection, table, note, esc } from '../lib/components.mjs';
+import { codeBox, ctaRow, faqSection, table, note, esc, longDate } from '../lib/components.mjs';
 
 const x25 = KNOWN_CODES.find((c) => c.official);
 
@@ -89,8 +89,9 @@ ${table({
   rows,
 })}
 
-<p class="prose faint">All ${REFERRAL_CODES.length} referral codes are interchangeable — same offer, different
-affiliate getting paid. The full comparison, including the discount claims that are fabricated outright, is on
+<p class="prose faint">All ${REFERRAL_CODES.length} referral codes deliver the same offer and differ only in which
+affiliate gets paid — which is why we recommend the one we actually verify at checkout, ${esc(PROMO.code)}
+(last verified at checkout ${esc(longDate(PROMO.lastVerified))}). The full comparison, including the discount claims that are fabricated outright, is on
 our <a href="/promo-codes/">promo codes page</a>.</p>
 
 <h2>Why an official code and referral codes both exist</h2>
@@ -109,8 +110,9 @@ our <a href="/promo-codes/">promo codes page</a>.</p>
 
 <h2>What we do not know about ${esc(x25.code)}</h2>
 <p class="prose">Our source for ${esc(x25.code)} is the official @GodelTerminal X account, and that post is the
-extent of the published terms. What the ${x25.percent}% applies to — one month, or something else — is not
-stated in the source we track, and social-promo codes can be withdrawn at any time. As always, the number that
+extent of the published terms. The account's profile bio (checked September 2026) reads "25% off on your first
+payment", so the scope is the first payment, the same as the referral tier's; social-promo codes can be withdrawn
+at any time. As always, the number that
 matters is the one on the checkout screen. If a code has not changed the total, it has not applied.</p>
 
 <p class="prose">Seen a code claiming more than ${PROMO.percent}%? It is not official and it is not real —

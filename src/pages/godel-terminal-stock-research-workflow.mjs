@@ -48,7 +48,7 @@ const faqs = [
 export const page = {
   path: '/godel-terminal-stock-research-workflow/',
   title: 'Godel Terminal Stock Research Workflow, Command by Command',
-  description: 'A complete stock-research pass using only documented Godel Terminal commands — orient with DES, verify with CF and FA, then estimates, ownership and options.',
+  description: 'A complete stock-research pass using only documented Godel Terminal commands: orient with DES, verify with CF and FA, then estimates, holders and options.',
   summary: 'A full command-by-command stock research workflow built entirely from documented Godel Terminal commands.',
   datePublished: '2026-08-06',
   breadcrumbs: [

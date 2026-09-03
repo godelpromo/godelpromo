@@ -5,7 +5,7 @@ import { ctaRow, faqSection, esc } from '../lib/components.mjs';
 const faqs = [
   {
     q: 'Are you affiliated with Godel Terminal?',
-    a: `No. ${SITE.name} is independent. ${PRODUCT.name} is built by ${COMPANY.legalName}. We participate in their public referral programme, which anyone can join.`,
+    a: `No. ${SITE.name} is independent. ${PRODUCT.name} is built by ${COMPANY.legalName} We participate in their public referral programme, which anyone can join.`,
   },
   {
     q: 'How do you make money?',

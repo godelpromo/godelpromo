@@ -107,10 +107,25 @@ export const PRICING = {
    * (June 2026 build). The most current pricing lever and bigger than any code
    * for eligible users — no competitor page covers it.
    */
+  /**
+   * Two different evidence tiers in one offer, kept apart deliberately.
+   *
+   * The ELIGIBILITY TEST is documented on the vendor's own AUM command page:
+   * hold over $5,000 across linked brokerages and make at least one eligible
+   * trade in the past month, and the Personal tab shows the threshold as met.
+   * That is a live vendor doc, checked 2026-09-03.
+   *
+   * The PRICE the threshold unlocks is not on any vendor page — $80/month, and
+   * $10 off for locked-in accounts, come from archived in-app copy. Do not
+   * promote the price to the same tier as the threshold.
+   */
   brokerageDiscount: {
-    note: 'Accounts with a connected brokerage holding at least $5,000 and at least one eligible trade in the trailing month may qualify for a discounted rate — $118 to $80/month for new accounts, $10 off for locked-in accounts. Organizations and prepaid accounts are excluded.',
-    source: 'vendor in-app changelog v4.2.7 and June 2026 app build (archived)',
-    attributed: false,
+    threshold: 'Hold over $5,000 (or equivalent) across brokerages linked through BROK, and make at least one eligible trade in the past month. The AUM command\'s Personal tab shows whether the threshold is met.',
+    thresholdSource: 'godelterminal.com/docs/commands/aum, checked September 2026',
+    thresholdAttributed: false,
+    note: 'Accounts with a connected brokerage holding over $5,000 and at least one eligible trade in the past month meet the documented discount threshold. The rate it unlocks is reported as $118 to $80/month for new accounts, and $10 off for locked-in accounts, with organizations and prepaid accounts excluded — that price is from archived in-app copy, not from a vendor page.',
+    source: 'threshold: godelterminal.com/docs/commands/aum (September 2026); price: vendor in-app changelog v4.2.7 and June 2026 app build (archived)',
+    attributed: true,
   },
   /**
    * Price history. Explains why so many third-party reviews quote $60 or $80
@@ -142,7 +157,7 @@ export const STUDENT = {
   ],
   source: 'Official @GodelTerminal X account, November 2024',
   sourceUrl: 'https://x.com/GodelTerminal/status/1860073008397975569',
-  note: 'Announced on the official X account and implemented in-app in November 2024, but never listed on the pricing page — and archived app builds from mid-2026 no longer show the in-app Student Discount button. The program may have been discontinued. Email student@godelterminal.com to confirm it is still live before planning around it.',
+  note: 'Announced on the official X account and implemented in-app in November 2024, but never listed on the pricing page — and archived app builds from mid-2026 no longer show the in-app Student Discount button. The program may have been discontinued or repriced: a user comment in October 2024 said it had been discontinued, and r/GodelTerminal posts in August 2026 quote a $10/month student rate rather than $5. Email student@godelterminal.com to confirm the current terms before planning around it.',
   statusUncertain: true,
 };
 
@@ -153,8 +168,12 @@ export const REFERRAL = {
   platform: 'Rewardful',
   payout: 'PayPal',
   combinable: false,
+  /** The referral FAQ's own example of a non-combinable vendor coupon. Percent never published. */
+  exampleCoupon: 'NVDA',
+  /** Quoted from the referral FAQ: why the vendor tells affiliates to share the code, not the link. */
+  linkWarning: 'Ad blockers and browser settings may block tracking if only the link is used. Your friends must use the code at checkout for it to count.',
   url: 'https://godelterminal.com/referral',
-  source: 'godelterminal.com/referral, August 2026',
+  source: 'godelterminal.com/referral, checked 2026-09-03',
 };
 
 /**
@@ -178,12 +197,25 @@ export const KNOWN_CODES = [
   { code: 'PROMO30', percent: 30, ours: false, source: 'godelterminal.webflow.io' },
   { code: 'SHKRELI', percent: 30, ours: false, source: 'godelterminaldiscounts.com' },
   { code: 'GUIDE', percent: 30, ours: false, source: 'godelguide.com' },
-  { code: 'JERA', percent: 30, ours: false, source: 'listed by godelguide.com' },
+  { code: 'JERA', percent: 30, ours: false, source: 'findmymoat.com (per godelguide.com’s code table; findmymoat itself could not be fetched)' },
   { code: 'SAVEONTRADING', percent: 30, ours: false, source: 'saveontrading.com' },
+  { code: 'PC30', percent: 30, ours: false, source: 'LinkedIn newsletter “Godel Terminal promo code PC30”' },
+  { code: 'CODE30', percent: 30, ours: false, source: 'LinkedIn newsletter “Godel Terminal discount CODE30”' },
+  { code: 'JENY', percent: 30, ours: false, source: 'jenova.ai shared-answer page' },
+  { code: 'FUNDEDPROGRAM', percent: 30, ours: false, source: 'thetrade-reviews.com' },
+  { code: 'SHKRELIPLANET', percent: 30, ours: false, source: 'Shkreli Planet YouTube channel' },
+  { code: 'THESHKRELIPILL', percent: 30, ours: false, source: 'The Shkreli Pill YouTube channel' },
+  { code: 'SUMMER', percent: 30, ours: false, source: 'godelterminaldiscounts.com' },
+  { code: '2025', percent: 30, ours: false, source: 'godelterminaldiscounts.com' },
+  { code: 'GODEL', percent: 30, ours: false, source: 'r/GodelTerminal moderator update posts (2024–2025)' },
+  { code: 'SAVE', percent: 30, ours: false, source: 'r/GodelTerminal pinned megathread (2026)' },
+  { code: 'THANKS', percent: 30, ours: false, source: 'r/GodelTerminal changelog post, November 2024' },
+  { code: 'GODEL30', percent: 30, ours: false, source: 'Reddit comments (r/quant, r/hedgefund, r/Trading), 2024–2026' },
+  { code: 'LIFESTYLE', percent: 30, ours: false, source: 'Reddit comments (r/ValueInvesting and others), 2025' },
   { code: 'BLOOMBERG', percent: 30, ours: false, source: 'godelterminaldiscounts.com' },
   { code: 'BLACKFRIDAY', percent: 30, ours: false, source: 'godelterminaldiscounts.com' },
   { code: 'CYBERMONDAY', percent: 30, ours: false, source: 'godelterminaldiscounts.com' },
-  { code: 'X25', percent: 25, ours: false, official: true, source: 'official @GodelTerminal X account' },
+  { code: 'X25', percent: 25, ours: false, official: true, source: 'official @GodelTerminal X account (profile bio: “25% off on your first payment”)' },
 ];
 
 /** Referral codes only — the interchangeable 30% tokens. Most copy about
@@ -202,9 +234,9 @@ export const FABRICATED_CLAIMS = [
     reality: 'No sitewide discount exists — there is nothing "sitewide" about a single-subscription product. The referral tier is 30% off the first month. The listing title has been frozen at "Nov 2025" for months.',
   },
   {
-    claim: '50% off, plus a military discount',
+    claim: '60% off "storewide", plus a military discount',
     where: 'WorthEPenny',
-    reality: 'No 50% tier exists, and no military program is published by Godel Terminal anywhere we can find. Both claims are auto-generated boilerplate.',
+    reality: 'No 60% tier exists. The same listing said 50% in August 2026 and 60% by September, with no vendor change in between — the number is rotated by template. No military program is published by Godel Terminal anywhere we can find.',
   },
   {
     claim: '75% off, with "hand-tested" codes TENERE and HARDWARE',
@@ -215,6 +247,11 @@ export const FABRICATED_CLAIMS = [
     claim: '40% off (5 active codes)',
     where: 'Knoji',
     reality: 'Auto-generated listing, stale since September 2025. The real tier is 30%, first month only.',
+  },
+  {
+    claim: 'Up to 80% off (twelve unnamed offers)',
+    where: 'Goodsearch',
+    reality: 'Twelve offers with no code strings, headlined at 80%. Nothing in the referral programme or on the vendor pricing page supports any figure above 30%, and the listing exposes no code that could be tested.',
   },
   {
     claim: 'Average saving 34%',

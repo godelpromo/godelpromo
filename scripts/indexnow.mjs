@@ -36,12 +36,30 @@ if (!/^[a-zA-Z0-9-]{8,128}$/.test(key)) {
 }
 
 const sitemap = await readFile(path.join(root, 'dist/sitemap.xml'), 'utf8');
-const urlList = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
 
-if (!urlList.length) {
+if (!sitemapUrls.length) {
   console.error('No URLs found in dist/sitemap.xml — run the build first.');
   process.exit(1);
 }
+
+/**
+ * Legacy pre-clean-URL paths, submitted alongside the live pages.
+ *
+ * These are not in the sitemap and never will be — they 301 to their new
+ * homes. But Bing still holds several of them with pre-rebuild titles
+ * (/redeem.html, /faq.html, /privacy.html were all still in the index in
+ * September 2026), and a redirect is only consumed when the old URL is
+ * fetched again. Submitting them is the only way to force that fetch; a
+ * sitemap cannot list a URL that 301s.
+ */
+const legacyUrls = [
+  '/index.html', '/redeem.html', '/pricing.html', '/starter-guide.html',
+  '/commands-cheatsheet.html', '/alternatives.html', '/faq.html', '/about.html',
+  '/privacy.html', '/terms.html',
+].map((p) => `https://${HOST}${p}`);
+
+const urlList = [...sitemapUrls, ...legacyUrls];
 
 const body = {
   host: HOST,
@@ -60,7 +78,7 @@ const res = await fetch(ENDPOINT, {
 // 403 means the key file is not reachable at keyLocation yet — that is the
 // usual failure right after a first deploy, and it resolves on the next run.
 const text = await res.text().catch(() => '');
-console.log(`IndexNow: HTTP ${res.status} for ${urlList.length} URLs`);
+console.log(`IndexNow: HTTP ${res.status} for ${urlList.length} URLs (${sitemapUrls.length} live + ${legacyUrls.length} legacy redirects)`);
 if (text) { console.log(text.slice(0, 300)); }
 
 if (res.status === 403) {

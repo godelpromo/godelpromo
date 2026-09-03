@@ -21,7 +21,7 @@ const faqs = [
 
 export const page = {
   path: '/starter-guide/',
-  title: `Godel Terminal Starter Guide: Your First 30 Minutes`,
+  title: 'How to Use Godel Terminal: Starter Guide (First 30 Minutes)',
   description: `A practical first session using only documented commands, in the order that actually reveals whether Godel Terminal fits your workflow.`,
   summary: 'Practical first-session walkthrough of Godel Terminal using documented commands.',
   breadcrumbs: [

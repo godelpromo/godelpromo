@@ -1,7 +1,13 @@
 import { PROMO, PRODUCT, PRICING, KNOWN_CODES, REFERRAL_CODES, FABRICATED_CLAIMS, STUDENT } from '../data/site.mjs';
-import { codeBox, ctaRow, faqSection, table, note, esc } from '../lib/components.mjs';
+import { codeBox, ctaRow, faqSection, table, note, esc, longDate } from '../lib/components.mjs';
 
 const others = REFERRAL_CODES.filter((c) => !c.ours);
+
+/** The fabricated-claim table lives on /do-godel-terminal-coupons-work/ and only
+ *  there. Rendering the same rows on three pages made a quarter of this page
+ *  identical to that one, which is what a doorway page looks like from outside. */
+const CLAIMS_CHECKED = '3 September 2026';
+const claimRange = '40% to 80% off';
 
 const faqs = [
   {
@@ -37,7 +43,7 @@ const faqs = [
 export const page = {
   path: '/promo-codes/',
   title: `Godel Terminal Promo Codes: Every Code Compared ${new Date().getFullYear()}`,
-  description: `Every Godel Terminal promo code compared honestly. TAKE30, NEWUSER, GET30, SHKRELI and GUIDE all deliver the same 30% off the first month.`,
+  description: `Use TAKE30 for 30% off your first month of Godel Terminal, verified at checkout. Every rival code compared, and why the 40-80% claims are fabricated.`,
   summary: 'Honest comparison of every Godel Terminal promo code in circulation and what each one actually discounts.',
   breadcrumbs: [
     { href: '/', label: 'Home' },
@@ -58,10 +64,6 @@ export const page = {
       ],
     }));
 
-    const falseClaims = [
-      ...FABRICATED_CLAIMS.map((f) => ({ cells: [esc(f.claim), esc(f.where), esc(f.reality)] })),
-      { cells: ['"Free trial + 30% off stacked"', 'Various', 'A trial has no charge to discount. The code applies to the first paid period.'] },
-    ];
 
     return `
 <h1>Every Godel Terminal promo code, compared honestly</h1>
@@ -78,8 +80,9 @@ subscription. Almost every code you will find is one of these referral tokens, a
 paid. The one exception: <span class="mono">X25</span>, posted by ${esc(PRODUCT.name)}'s own X account, which gives
 25% — <a href="/godel-terminal-official-promo-code/">smaller than the referral codes</a>.</p>
 
-${note(`No code in circulation gives more than ${PROMO.percent}% off, and none extends past the
-${esc(PROMO.appliesTo)}. Anyone claiming otherwise is guessing. The deeper discounts are not codes at all:
+${note(`No code you can actually find gives more than ${PROMO.percent}% off, and none extends past the
+${esc(PROMO.appliesTo)}. Anyone claiming otherwise is guessing. (One code we cannot price: the vendor's referral
+FAQ mentions a coupon called NVDA without saying what it is worth. It is not in circulation on any site we track.) The deeper discounts are not codes at all:
 an announced <a href="/godel-terminal-student-discount/">${esc(STUDENT.display)}/month student rate</a> (.edu email;
 confirm it is still live), and an in-app brokerage-linked rate — connect a brokerage holding $5,000+ with a
 recent trade and the vendor's own app copy offers $80/month instead of ${PRICING.monthly.display}.`)}
@@ -100,15 +103,35 @@ codes people search for most: <a href="/godel-terminal-newuser-code/">NEWUSER</a
 <a href="/godel-terminal-black-friday/">Black Friday codes</a>, and
 <a href="/godel-terminal-promo-code-reddit/">what Reddit says</a>.</p>
 
-<h2>Discount claims that are not real</h2>
-<p class="prose">Coupon aggregators generate listings automatically, including discount percentages. For a product
-like ${esc(PRODUCT.name)}, with no record of any sitewide sale, the results are fiction. Some examples currently
-live — with more detail on our <a href="/do-godel-terminal-coupons-work/">dedicated debunk page</a>:</p>
+<p class="prose">Depending on what you actually searched for, one of these may be the page you want:
+<a href="/godel-terminal-discount-code/">every discount ranked by size</a> (the codes are not the biggest one),
+<a href="/godel-terminal-coupon-code/">what the coupon aggregators list</a> and why almost none of it applies at
+checkout, or <a href="/cheapest-way-to-get-godel-terminal/">the cheapest route over twelve months</a>.</p>
 
-${table({
-  head: ['Claim', 'Where it appears', 'Reality'],
-  rows: falseClaims,
-})}
+<h2>Why ${esc(PROMO.code)} rather than another identical code</h2>
+<p class="prose">If the discount is the same, the only honest tie-breaker is whether anyone has checked that the code
+still applies. Three things distinguish ${esc(PROMO.code)}, and all three are checkable:</p>
+<ul class="prose">
+  <li><strong>A real verification date.</strong> ${esc(PROMO.code)} was last verified at a ${esc(PRODUCT.name)} checkout on
+  <strong>${esc(longDate(PROMO.lastVerified))}</strong>. That date moves only when the test is repeated; it is not a
+  freshness knob. Rival pages carry "updated" stamps that rotate on a template, or none at all.</li>
+  <li><strong>One code, ever.</strong> Some sites push six tokens at once, with referral links that do not match the
+  code on the page. ${esc(PROMO.code)} is the only code this site has promoted since it launched.</li>
+  <li><strong>A public ledger.</strong> When a code stops applying, or an aggregator's claim inflates (WorthEPenny went
+  from 50% to 60% in a month with no vendor change), it is recorded here rather than quietly edited.</li>
+</ul>
+
+<h2>Discount claims that are not real</h2>
+<p class="prose">Coupon aggregators generate listings automatically, discount percentages included. For a product
+like ${esc(PRODUCT.name)} — one subscription, one price sheet, no record of any sitewide sale — the results are
+fiction. As of ${esc(CLAIMS_CHECKED)} the live claims run from ${esc(claimRange)}, across
+${FABRICATED_CLAIMS.length} aggregators. None of them corresponds to an offer that exists, and none applies at
+checkout.</p>
+
+<p class="prose">One of them is worth knowing about in detail, because it shows how the numbers are produced:
+WorthEPenny advertised 50% off in August 2026 and 60% off a month later, with nothing changing at
+${esc(PRODUCT.name)} in between. The figure is not a discount that moved; it is a template output.
+<a href="/do-godel-terminal-coupons-work/">Every fabricated claim, checked one by one →</a></p>
 
 <h2>How to tell if a code actually applied</h2>
 <p class="prose">The only thing that matters is the number on the checkout screen. Before you pay:</p>

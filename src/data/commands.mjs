@@ -319,6 +319,7 @@ export const COMMANDS = [
     category: 'Market Data & Surveillance',
     docUrl: DOC('imap'),
     facts: [],
+    beta: true,
   },
   {
     mnemonic: 'HMAP',
@@ -531,6 +532,7 @@ export const COMMANDS = [
     category: 'Portfolio & Risk',
     docUrl: DOC('eqs'),
     facts: ['Valuation, fundamentals, size and classification criteria', 'Exports to Excel CSV or JSON'],
+    beta: true,
   },
   {
     mnemonic: 'OMON',
@@ -872,6 +874,23 @@ export const ALIASES = [
  * change is recorded here with a date instead of being silently edited away.
  * Rendered on /godel-terminal-commands-that-dont-exist/.
  */
+/**
+ * Commands the vendor has announced that do not yet have a documentation page.
+ * Kept out of COMMANDS on purpose: commandCount() is a claim about documented
+ * pages, and an announced command is a different tier of evidence.
+ */
+export const ANNOUNCED = [
+  {
+    mnemonic: 'SPLC',
+    name: 'Supply Chain',
+    announced: '2026-08-27',
+    source: 'Official @GodelTerminal X account, 27 August 2026',
+    sourceUrl: 'https://x.com/GodelTerminal/status/2093009167011233890',
+    summary: 'Maps a company\'s suppliers, customers, competitors and partners from a single name; the launch post claims thousands of companies mapped with global coverage.',
+    note: 'Announced on X; no page under /docs/commands/ at the time of checking, so it is listed here rather than in the documented set.',
+  },
+];
+
 export const CORRECTIONS = [
   {
     date: '2026-08-05',

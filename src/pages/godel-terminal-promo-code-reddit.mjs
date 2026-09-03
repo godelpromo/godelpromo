@@ -1,6 +1,6 @@
 import { PROMO, PRODUCT, PRICING, REFERRAL, REFERRAL_CODES } from '../data/site.mjs';
 import { SENTIMENT } from '../data/research.mjs';
-import { codeBox, ctaRow, faqSection, note, esc } from '../lib/components.mjs';
+import { codeBox, ctaRow, faqSection, note, esc, longDate } from '../lib/components.mjs';
 
 const faqs = [
   {
@@ -17,14 +17,14 @@ const faqs = [
   },
   {
     q: 'Should I trust a promo code I found in a Reddit comment?',
-    a: `It will almost certainly work — referral tokens are interchangeable, so the risk is not a scam code, it is expecting the code to be special. Whatever code you enter, the test is the same: the total on the checkout screen must update before you pay.`,
+    a: `It will almost certainly work — referral tokens all resolve to the same ${PROMO.percent}% tier, so the risk is not a scam code, it is expecting the code to be special. Whatever code you enter, the test is the same: the total on the checkout screen must update before you pay. If you would rather use one that has actually been tested, ${PROMO.code} was last verified at a real checkout on ${longDate(PROMO.lastVerified)}.`,
   },
 ];
 
 export const page = {
   path: '/godel-terminal-promo-code-reddit/',
   title: 'Godel Terminal Promo Code Reddit Threads, Fact-Checked',
-  description: 'What Reddit actually says about Godel Terminal discount codes, and the fact every thread converges on: every referral code gives the same 30% off month one.',
+  description: 'What Reddit actually says about Godel Terminal discount codes, and the fact every thread converges on: every referral code gives the same 30% off.',
   summary: 'What Reddit actually says about Godel Terminal promo codes: thin organic discussion, referral tokens in comments, and one converging fact.',
   datePublished: '2026-08-05',
   breadcrumbs: [
@@ -73,13 +73,13 @@ ${esc(REFERRAL.referrerCommission)}, so a code dropped into a thread is an adver
 one or not. It still works — attribution follows the code entered at checkout, and your ${PROMO.percent}% is
 the same — but "found it on Reddit" is not evidence a code is special. No code is special.</p>
 
-${note(`Also distrust any Reddit-surfaced claim of 40%, 50% or 75% off. Those figures come from coupon
+${note(`Also distrust any Reddit-surfaced claim of 40%, 60% or 75% off. Those figures come from coupon
 aggregators, not from ${esc(PRODUCT.name)}, and none applies at checkout —
 <a href="/do-godel-terminal-coupons-work/">every fabricated claim, checked →</a>`, { warn: true })}
 
 <h2>The verified version of what Reddit tells you</h2>
-<p class="prose">Every referral code is the same, so use whichever is in front of you — this one was last
-tested at checkout on ${esc(PROMO.lastVerified)}:</p>
+<p class="prose">Every referral code gives the same ${PROMO.percent}%, so the sensible tie-breaker is verification.
+Use ${esc(PROMO.code)} — last verified at checkout on ${esc(longDate(PROMO.lastVerified))}:</p>
 
 ${codeBox()}
 

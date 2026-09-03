@@ -100,6 +100,11 @@ codes people search for most: <a href="/godel-terminal-newuser-code/">NEWUSER</a
 <a href="/godel-terminal-black-friday/">Black Friday codes</a>, and
 <a href="/godel-terminal-promo-code-reddit/">what Reddit says</a>.</p>
 
+<p class="prose">Depending on what you actually searched for, one of these may be the page you want:
+<a href="/godel-terminal-discount-code/">every discount ranked by size</a> (the codes are not the biggest one),
+<a href="/godel-terminal-coupon-code/">what the coupon aggregators list</a> and why almost none of it applies at
+checkout, or <a href="/cheapest-way-to-get-godel-terminal/">the cheapest route over twelve months</a>.</p>
+
 <h2>Why ${esc(PROMO.code)} rather than another identical code</h2>
 <p class="prose">If the discount is the same, the only honest tie-breaker is whether anyone has checked that the code
 still applies. Three things distinguish ${esc(PROMO.code)}, and all three are checkable:</p>

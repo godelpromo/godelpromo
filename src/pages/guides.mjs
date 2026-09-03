@@ -12,6 +12,8 @@ const GROUPS = [
     heading: 'Codes and deals',
     items: [
       { href: '/promo-codes/', label: 'Every promo code compared', blurb: 'Every circulating code, and why the referral ones are identical.' },
+      { href: '/godel-terminal-discount-code/', label: 'Every discount, ranked by size', blurb: 'Student, brokerage, annual, code and ORG — largest saving first.' },
+      { href: '/godel-terminal-coupon-code/', label: 'Coupon codes and the aggregators', blurb: 'What the coupon sites list, and why almost none of it applies.' },
       { href: '/how-to-redeem/', label: 'How to redeem TAKE30', blurb: 'Step-by-step checkout walkthrough with troubleshooting.' },
       { href: '/godel-terminal-student-discount/', label: 'Student discount', blurb: 'The official $5/month rate — bigger than any code.' },
       { href: '/godel-terminal-official-promo-code/', label: 'The official code, X25', blurb: 'Real, official — and smaller than the referral codes.' },
@@ -29,6 +31,9 @@ const GROUPS = [
     items: [
       { href: '/godel-terminal-pricing/', label: 'Pricing breakdown', blurb: 'Every figure sourced, including the FINRA surcharge.' },
       { href: '/godel-terminal-monthly-vs-annual/', label: 'Monthly vs annual', blurb: 'The arithmetic, and where the promo code lands in it.' },
+      { href: '/cheapest-way-to-get-godel-terminal/', label: 'The cheapest route', blurb: 'Twelve-month totals for every path, by reader type.' },
+      { href: '/is-godel-terminal-free/', label: 'Is it free?', blurb: 'The trial, the free-tier question, and what the pricing page shows.' },
+      { href: '/godel-terminal-price-lock/', label: 'Price lock and price history', blurb: 'What "locked-in" means, and what $40 to $118 implies.' },
       { href: '/godel-terminal-free-trial/', label: 'Free trial', blurb: 'Vendor-published terms, and how the trial interacts with the code.' },
       { href: '/how-to-cancel-godel-terminal/', label: 'How to cancel', blurb: 'What the terms publish, and the refund policy that is not published.' },
       { href: '/cost-calculator/', label: 'Cost calculator', blurb: 'Multi-seat, multi-year comparison against five rivals.' },
@@ -46,6 +51,8 @@ const GROUPS = [
       { href: '/godel-terminal-excel/', label: 'Excel integration', blurb: 'Export exists; a live plugin does not.' },
       { href: '/godel-terminal-api/', label: 'API access', blurb: 'No public API — the full sourced answer.' },
       { href: '/godel-terminal-desktop-and-mobile/', label: 'Desktop & mobile', blurb: 'What exists, what does not, and the unofficial wrapper.' },
+      { href: '/godel-terminal-brokerage-link/', label: 'Connecting a brokerage', blurb: 'BROK, read-only by design, and the rate it can unlock.' },
+      { href: '/godel-terminal-supply-chain/', label: 'Supply chain (SPLC)', blurb: 'The August 2026 launch, and what has not been published about it.' },
     ],
   },
   {

@@ -44,7 +44,7 @@ const faqs = [
   },
   {
     q: 'Why does searching Reddit for Godel Terminal return so little?',
-    a: `The volume genuinely is small: ${esc(SENTIMENT.caveat)} Reddit's own search for the term also surfaces referral spam rather than the subreddit, so web search is the practical way in.`,
+    a: `The volume genuinely is small. ${esc(SENTIMENT.caveat)} Reddit's own search for the term also surfaces referral spam rather than the subreddit, so web search is the practical way in.`,
   },
 ];
 
@@ -66,7 +66,7 @@ export const page = {
     return `
 <h1>Godel Terminal Reddit: what the threads actually say</h1>
 
-<p class="lede">Almost all ${esc(PRODUCT.name)} discussion on Reddit sits in one place, r/GodelTerminal, and
+<p class="lede">Most ${esc(PRODUCT.name)} discussion on Reddit sits in one place, r/GodelTerminal, and
 that subreddit works more like a release-notes channel than a forum. The single most useful thing to know
 before you read it: the promo codes posted there sit directly beneath company announcements, which makes them
 look official. They are not. They are ordinary referral tokens, worth the same
@@ -79,8 +79,8 @@ rather than the subreddit, and general search results are dominated by affiliate
 ${esc(PRODUCT.name)} accounts — u/SpeculatingFarmer, u/GodelOps and u/Godel-Staff — announcing features such as
 ${link(T.splc, 'the SPLC supply-chain command')} on 27 August 2026 or a rebuilt DES on 20 August 2026. The other
 14 came from users: nine how-to questions, bug reports or feature requests, five about price or account
-transfers. There is no long-running review thread and nothing like the volume the search results imply. What
-there is, is specific and datable.</p>
+transfers. No long-running review thread, and nothing like the volume the search results imply — but what is
+there is specific and datable.</p>
 
 ${codeBox()}
 

@@ -86,14 +86,13 @@ export const page = {
   render() {
     const claimRows = [
       ...FABRICATED_CLAIMS.map((f) => ({
-        cells: [esc(f.claim), esc(f.where), esc(f.reality), esc(STATUS_2026_09_03[f.where] || 'Not re-checked.')],
+        cells: [esc(f.claim), esc(f.where), esc(STATUS_2026_09_03[f.where] || 'Not re-checked.')],
       })),
       {
         cells: [
           esc('Up to 60% off, four codes "Worked just now"'),
           'Coupert',
-          esc(`No 60% tier exists. The four entries all "expire" 30 September 2026 and show only the fragments ${COUPERT_FRAGMENTS.join(', ')} behind a "Show Code" button. The page also promises free shipping and 30-day returns on a browser subscription.`),
-          esc('Not retrievable on 3 September 2026 — coupert.com returned 404 for /coupon/godelterminal.com and 410 Gone for /store/godelterminal.com. The claim stands as last recorded, including an extension advert lower on the same page reading "Save Up to 30%" against the headline above it.'),
+          esc(`Not retrievable on 3 September 2026 — coupert.com returned 404 for /coupon/godelterminal.com and 410 Gone for /store/godelterminal.com. As last recorded the four entries all "expire" 30 September 2026 and show only the fragments ${COUPERT_FRAGMENTS.join(', ')} behind a "Show Code" button, the page promises free shipping and 30-day returns on a browser subscription, and an advert lower down reads "Save Up to 30%" against the 60% headline above it.`),
         ],
       },
     ];
@@ -147,7 +146,7 @@ are the standing record of each claim; the last is what the listing returned whe
 Where a listing blocked the fetch, the table says so rather than pretending it was re-verified.</p>
 
 ${table({
-  head: ['The claim', 'Where', 'Reality', 'Status, 3 September 2026'],
+  head: ['The claim advertised', 'Where', 'What the page returned on 3 September 2026'],
   rows: claimRows,
 })}
 

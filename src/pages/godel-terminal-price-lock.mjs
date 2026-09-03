@@ -155,12 +155,45 @@ The brokerage-linked rate covered below is reported from archived in-app copy, n
 
 <ul class="prose">
   <li><strong>Lifetime plan:</strong> not published. The pricing page lists Monthly, Annual and Team &amp; Enterprise, nothing else.</li>
-  <li><strong>Price lock or grandfathering for existing subscribers:</strong> not published. The terms reserve the right to change prices and commit only to communicating changes.</li>
+  <li><strong>Price lock for existing subscribers:</strong> one existed, and it closed. A moderator of the official
+  subreddit — the account that posts the release notes — describes a "Godel price-lock window" that has "ended", and
+  runs a pinned thread for people trading the accounts that got in. No vendor page has ever described it.</li>
+  <li><strong>Grandfathering:</strong> not published as a policy. The terms reserve the right to change prices and
+  commit only to communicating changes.</li>
   <li><strong>Annual billing:</strong> fixes the current year at ${PRICING.annual.display}, because it is paid up front. It says nothing about the year after.</li>
   <li><strong>A promo code:</strong> discounts one payment. ${esc(PROMO.code)} takes ${PROMO.percent}% off the ${esc(PROMO.appliesTo)} and then the standard rate applies.</li>
 </ul>
 
 ${codeBox({ note: `${PROMO.percent}% off your ${PROMO.appliesTo}. It discounts one payment; it does not lock a rate.` })}
+
+<h2>The price-lock window existed, and it is closed</h2>
+
+<p class="prose">This is the part no vendor page mentions and every other guide misses. In r/GodelTerminal, the
+moderator account that publishes ${esc(PRODUCT.name)}'s release notes maintains a pinned thread titled
+<a href="https://www.reddit.com/r/GodelTerminal/comments/1myawt3/mega_thread_buyselltrade_existing_godel_price/" rel="nofollow noopener" target="_blank">"[MEGA THREAD] Buy/Sell/Trade Existing Godel Price Locked Accounts"</a>,
+last updated April 2026. Its opening explains why it exists:</p>
+
+<blockquote class="note">"Since the Godel price-lock window ended, multiple standalone posts have popped up about
+buying or selling existing price locks. To keep the feed tidy and make it easy to match buyers and sellers, all
+price-lock discussions belong here."
+<br><span class="faint">— u/SpeculatingFarmer, r/GodelTerminal, updated April 2026</span></blockquote>
+
+<p class="prose">Three things follow, and they are worth more than any inference from the terms of service.
+A price lock <strong>did</strong> exist. The window to get one has <strong>ended</strong>, so it is not something
+you can obtain by asking. And the accounts that hold one are <strong>durable enough to have a resale market</strong>
+— the thread carries offers naming a "price-locked acct $60/mo cap", which matches the late-2024 price in the
+history below.</p>
+
+<p class="prose">The vendor is not distant from that market. The same post directs traders to "contact the Godel
+Team via the chat function at godelterminal.com" and to a "#marketplace chatroom", and a second account,
+u/GodelOps, replies that there is "lots of activity going on there around account transfers". Read that as you
+like: it is a company-adjacent channel facilitating transfers of a rate the company no longer sells.</p>
+
+${note(`None of this is on a vendor page, and none of it is a commitment to you. Treat it as what it is — the
+company's own moderator describing a closed programme in public. If a fixed rate matters, the question to put to
+support is whether any lock is still available, not whether one ever existed. And be careful with the resale
+market: buying someone's account is a transfer the vendor's terms do not describe, and this site cannot tell you
+it is safe.`, { warn: true })}
 
 <h2>What the terms say about price changes</h2>
 

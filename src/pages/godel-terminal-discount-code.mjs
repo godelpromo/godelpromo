@@ -31,15 +31,15 @@ const verified = longDate(PROMO.lastVerified);
 const faqs = [
   {
     q: `Is there a ${PRODUCT.name} discount code?`,
-    a: `Yes. <strong>${PROMO.code}</strong> takes ${PROMO.percent}% off your ${PROMO.appliesTo} — ${firstMonthWithCode} instead of ${PRICING.monthly.display} on the monthly plan — and was last applied at a real checkout on ${verified}. The vendor's own social code, ${esc(x25.code)}, is also real but smaller at ${x25.percent}%. No code in circulation is worth more than ${PROMO.percent}%.`,
+    a: `Yes. <strong>${PROMO.code}</strong> takes ${PROMO.percent}% off your ${PROMO.appliesTo} — ${firstMonthWithCode} instead of ${PRICING.monthly.display} on the monthly plan — and was last applied at a real checkout on ${verified}. The vendor's own social code, ${esc(x25.code)}, is genuine — the vendor publishes it in its own X profile bio — but smaller at ${x25.percent}%, and this site has not applied it at a checkout. No code with a published percentage is worth more than ${PROMO.percent}%: every referral token is ${PROMO.percent}%, ${esc(x25.code)} is ${x25.percent}%, and the one vendor coupon the referral page names carries no published rate.`,
   },
   {
     q: `What is the biggest ${PRODUCT.name} discount?`,
-    a: `Not a code. If you have a .edu email and the student program is still live, the announced <a href="/godel-terminal-student-discount/">${esc(STUDENT.display)}/month student rate</a> saves $${studentSaving} a month. Next is the brokerage-linked rate the vendor's in-app copy offers to accounts with a connected brokerage holding ${BROKERAGE_MIN_HOLDING}+ and a recent trade — $${BROKERAGE_MONTHLY}/month for new accounts. Then annual billing, which the pricing page itself describes as about ${annualPct}% cheaper than monthly. ${PROMO.code} comes fourth: the biggest discount that is a code, and the only one everyone qualifies for.`,
+    a: `Not a code. If you have a .edu email and the student program is still live, the announced <a href="/godel-terminal-student-discount/">${esc(STUDENT.display)}/month student rate</a> saves $${studentSaving} a month. Next is the brokerage-linked rate. The vendor's AUM command doc sets the test — hold over ${BROKERAGE_MIN_HOLDING} across brokerages linked through BROK and make at least one eligible trade in the past month — but no vendor page prints the price it unlocks; archived in-app copy puts that at $${BROKERAGE_MONTHLY}/month for new accounts. Then annual billing, which the pricing page itself describes as about ${annualPct}% cheaper than monthly. ${PROMO.code} comes fourth: the largest rate any code carries, open to anyone, and the only code this site has applied at a checkout (${verified}). Annual billing and ${esc(x25.code)} are open to anyone as well; the two rates above them are not.`,
   },
   {
     q: `Is a ${PRODUCT.name} discount code the same as a promo code?`,
-    a: `Yes. "Discount code", "promo code", "coupon" and "referral code" all describe the same thing at a ${esc(PRODUCT.name)} checkout: a referral token that takes ${PROMO.percent}% off the first payment. The vendor's referral page calls it a referral code; searchers call it whatever they searched. There is one field on the checkout screen, and every one of these words points at it.`,
+    a: `As words, yes: "discount code", "promo code" and "referral code" all point at one field on the ${esc(PRODUCT.name)} checkout screen, and what you type into it is either a referral token — ${PROMO.percent}% off the ${esc(PROMO.appliesTo)} — or the vendor's own ${esc(x25.code)} at ${x25.percent}%. "Coupon" is the exception: the referral page uses it for a different kind of code, naming "coupon code ${esc(REFERRAL.exampleCoupon)}" as something a referral discount "cannot be combined with", and that coupon's percentage is not published.`,
   },
   {
     q: `Is there a ${PRODUCT.name} discount for the annual plan?`,
@@ -85,7 +85,7 @@ export const page = {
           '<strong>Brokerage-linked rate</strong>',
           `$${BROKERAGE_MONTHLY}/month for new accounts; $${BROKERAGE_LOCKED_OFF} off for locked-in accounts`,
           `$${brokerageSaving}/month, recurring`,
-          `Holding over ${BROKERAGE_MIN_HOLDING} in linked brokerages <em>and</em> one eligible trade in the past month; not organizations or prepaid accounts`,
+          `Linked brokerages holding over ${BROKERAGE_MIN_HOLDING} <em>and</em> at least one eligible trade in the past month; not organizations or prepaid accounts`,
           'Threshold: vendor AUM doc. Price: archived in-app copy.',
         ],
       },
@@ -122,7 +122,7 @@ export const page = {
           '<strong>ORG plan</strong>',
           `${ORG_PERCENT}% per seat at two or more seats`,
           `About ${orgSeatSaving}/seat/month against list, recurring`,
-          'Teams of 2+; the pricing page quotes by seat count',
+          'Teams of 2+; the pricing page publishes no ORG percentage',
           'In-app ORG copy (archived build); vendor pricing page, September 2026',
         ],
       },
@@ -153,7 +153,7 @@ export const page = {
       {
         cells: [
           '<strong>Coupon code</strong>',
-          `The vendor's own word for codes it issues directly. Its referral FAQ names "coupon code ${esc(REFERRAL.exampleCoupon)}" as an example of something a referral discount cannot be combined with; that coupon's percentage is not published anywhere. Coupon <em>aggregators</em> use the same word for listings they generate — see below.`,
+          `The vendor's own word for a code that is not a referral token. Its referral FAQ names "coupon code ${esc(REFERRAL.exampleCoupon)}" as an example of something a referral discount cannot be combined with; who issues that coupon, and what percentage it carries, is not published. Coupon <em>aggregators</em> use the same word for listings they generate — see below.`,
         ],
       },
       {

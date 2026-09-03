@@ -139,8 +139,8 @@ disconnect-then-reconnect cycle.</p>
 <p class="prose">IBKR gets its own section on the doc because it does not use a password. You generate a Query ID
 (Client Portal, Performance &amp; Reports, Flex Queries) and a Token (Account Settings, Configure Flex Web Service),
 then submit both on IBKR's site after SnapTrade redirects you there. Supported regions per the doc: US, Europe,
-Australia, India, Canada. Per the doc, the Flex Query integration pulls account and portfolio data and "does not
-support placing trades".
+Australia, India, Canada. The doc adds that the Flex Query integration pulls account and portfolio data and "does
+not support placing trades".
 You can also cut the link from the IBKR side by revoking the token, though the doc notes the BROK card may still
 show as connected until the next poll.</p>
 

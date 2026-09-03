@@ -31,7 +31,7 @@ const faqs = [
   },
   {
     q: `Is annual or monthly better value?`,
-    a: `Annual, substantially. At ${PRICING.annual.display} per year against a reported ${PRICING.monthly.display}/month, annual costs about $${PRICING.annual.effectiveMonthly}/month equivalent — roughly ${Math.round((1 - PRICING.annual.effectiveMonthly / PRICING.monthly.amount) * 100)}% less. The trade-off is that ${PROMO.code} only discounts one billing period, so its cash value is larger on a monthly plan even though the annual plan is cheaper overall.`,
+    a: `Annual, substantially. At ${PRICING.annual.display} per year against ${PRICING.monthly.display}/month, annual costs about $${PRICING.annual.effectiveMonthly}/month equivalent — roughly ${Math.round((1 - PRICING.annual.effectiveMonthly / PRICING.monthly.amount) * 100)}% less. The trade-off is that ${PROMO.code} only discounts one billing period, so its cash value is larger on a monthly plan even though the annual plan is cheaper overall.`,
   },
   {
     q: `Can I cancel?`,

@@ -192,9 +192,10 @@ vendor page. Archived in-app copy and the vendor changelog (v4.2.7, June 2026 bu
 to $80 a month for new accounts, and $10 off for locked-in accounts, with organizations and prepaid accounts
 excluded. No verbatim vendor wording for that line is published anywhere this site can cite.</p>
 
-<p class="prose">Two things follow from that line, and only two. First, the vendor's own billing distinguishes
-"new accounts" from "locked-in accounts", which is consistent with some existing subscribers paying
-something other than the list price — though "locked-in" could as easily mean locked into a term as locked to a rate. Second, the copy does not define "locked-in",
+<p class="prose">Two things can be said about that line, and only two. First, the vendor's own billing distinguishes
+new accounts from locked-in accounts, which is consistent with some existing subscribers paying something other than
+the list price — though "locked-in" could as easily mean locked into a term as locked to a rate. Second, the copy
+does not define "locked-in",
 "new" or "prepaid", so it cannot tell you who qualifies, at what rate, or whether the status survives a plan change,
 a lapse or the next increase. It is evidence that non-list rates exist, not a policy. The discount itself is
 covered on <a href="/godel-terminal-brokerage-link/">the brokerage-link page →</a></p>

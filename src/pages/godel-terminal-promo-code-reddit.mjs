@@ -73,7 +73,7 @@ ${esc(REFERRAL.referrerCommission)}, so a code dropped into a thread is an adver
 one or not. It still works — attribution follows the code entered at checkout, and your ${PROMO.percent}% is
 the same — but "found it on Reddit" is not evidence a code is special. No code is special.</p>
 
-${note(`Also distrust any Reddit-surfaced claim of 40%, 50% or 75% off. Those figures come from coupon
+${note(`Also distrust any Reddit-surfaced claim of 40%, 60% or 75% off. Those figures come from coupon
 aggregators, not from ${esc(PRODUCT.name)}, and none applies at checkout —
 <a href="/do-godel-terminal-coupons-work/">every fabricated claim, checked →</a>`, { warn: true })}
 

@@ -180,6 +180,10 @@ export const KNOWN_CODES = [
   { code: 'GUIDE', percent: 30, ours: false, source: 'godelguide.com' },
   { code: 'JERA', percent: 30, ours: false, source: 'listed by godelguide.com' },
   { code: 'SAVEONTRADING', percent: 30, ours: false, source: 'saveontrading.com' },
+  { code: 'PC30', percent: 30, ours: false, source: 'LinkedIn newsletter “Godel Terminal promo code PC30”' },
+  { code: 'CODE30', percent: 30, ours: false, source: 'LinkedIn newsletter “Godel Terminal discount CODE30”' },
+  { code: 'JENY', percent: 30, ours: false, source: 'jenova.ai shared-answer page' },
+  { code: 'FUNDEDPROGRAM', percent: 30, ours: false, source: 'thetrade-reviews.com' },
   { code: 'BLOOMBERG', percent: 30, ours: false, source: 'godelterminaldiscounts.com' },
   { code: 'BLACKFRIDAY', percent: 30, ours: false, source: 'godelterminaldiscounts.com' },
   { code: 'CYBERMONDAY', percent: 30, ours: false, source: 'godelterminaldiscounts.com' },
@@ -202,9 +206,9 @@ export const FABRICATED_CLAIMS = [
     reality: 'No sitewide discount exists — there is nothing "sitewide" about a single-subscription product. The referral tier is 30% off the first month. The listing title has been frozen at "Nov 2025" for months.',
   },
   {
-    claim: '50% off, plus a military discount',
+    claim: '60% off "storewide", plus a military discount',
     where: 'WorthEPenny',
-    reality: 'No 50% tier exists, and no military program is published by Godel Terminal anywhere we can find. Both claims are auto-generated boilerplate.',
+    reality: 'No 60% tier exists. The same listing said 50% in August 2026 and 60% by September, with no vendor change in between — the number is rotated by template. No military program is published by Godel Terminal anywhere we can find.',
   },
   {
     claim: '75% off, with "hand-tested" codes TENERE and HARDWARE',

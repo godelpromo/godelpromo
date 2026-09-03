@@ -99,7 +99,7 @@ month, and even the vendor's own social promo code is smaller:
 
 ${codeBox({ note: `${PROMO.percent}% off your first month — the biggest discount for anyone who is not a student.` })}
 
-<p class="prose">And if you run into a site advertising 40%, 50% or 75% off instead, it is fabricated —
+<p class="prose">And if you run into a site advertising 40%, 60% or 75% off instead, it is fabricated —
 <a href="/do-godel-terminal-coupons-work/">we checked every such claim →</a></p>
 
 ${faqSection(faqs)}

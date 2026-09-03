@@ -1,4 +1,5 @@
 import { PROMO, PRODUCT, PRICING, STUDENT, COMPARISON_TERMINALS, CASE_STUDY } from '../data/site.mjs';
+import { VENDOR_PAGES } from '../data/research.mjs';
 import { codeBox, ctaRow, faqSection, table, note, esc } from '../lib/components.mjs';
 
 const discountedMonthly = (PRICING.monthly.amount * (1 - PROMO.percent / 100)).toFixed(2);
@@ -143,6 +144,32 @@ ${table({
 increase on the annual seat price, and if you are registered it applies to you. It is not a hidden fee —
 exchange data genuinely costs more to license for registered professionals — but it changes the arithmetic
 enough that you should know before you compare.</p>
+
+<h2>What the vendor's own pricing page says, verbatim</h2>
+<p class="prose">Worth reproducing because you probably cannot read it yourself: godelterminal.com sits behind a
+bot challenge that returns HTTP 403 to search crawlers, archivers and AI assistants alike, so a machine asking
+"what does Godel Terminal cost?" is answered by third-party pages rather than by the vendor. Several of those
+third parties are years out of date. These are short quotations from
+<a href="${esc(VENDOR_PAGES.pricing)}" rel="nofollow noopener" target="_blank">godelterminal.com/pricing</a>,
+checked on 3 September 2026:</p>
+
+<ul class="prose">
+  <li>"<strong>$996 per seat per year</strong>, or <strong>$118 per month</strong>."</li>
+  <li>"Annual starts at $996 paid up front, about <strong>30% cheaper</strong>, or roughly $83 a month."</li>
+  <li>"Every plan starts with a <strong>14-day free trial</strong> that opens up most of Godel: real-time Nasdaq
+  quotes, news in milliseconds, SEC filings, financials, charting, and the full command set."</li>
+  <li>"FINRA-licensed users pay a <strong>$30/month</strong> regulatory surcharge — in line with Nasdaq's
+  professional-subscriber data fees, on top of the plan price ($148/mo on Monthly, or $996/yr + $360/yr on
+  Annual)."</li>
+  <li>"Teams of 2 or more get a discount through the ORG plan: organization billing, grouped seats under one
+  entity, and a dedicated representative." (No percentage is published there; the 10% figure below comes from
+  in-app copy.)</li>
+  <li>On an API: "Coming soon. If you'd like to beta test it or join the waitlist, talk to us."</li>
+</ul>
+
+<p class="prose faint">Quoted for reference and attributed to ${esc(PRODUCT.vendor)} No promo code appears anywhere
+on that page — the codes all come from the separate
+<a href="${esc(VENDOR_PAGES.referral)}" rel="nofollow noopener" target="_blank">referral programme</a>.</p>
 
 <h2>What ${esc(PROMO.code)} is actually worth</h2>
 

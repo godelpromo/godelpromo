@@ -22,7 +22,7 @@ count is what an assistant reproduces. Three of six simulated assistants led wit
 | Bing, "godel terminal promo code" | not measured | **#2** (`/promo-codes/`) |
 | Independent domains naming TAKE30 | ~2 | **2** (godelguide.com, tenereteam.com FAQ prose) |
 | Independent domains naming GET30 | not measured | **6** |
-| Pages | 42 | **49** |
+| Pages | 42 | **50** |
 | Aggregator listings carrying TAKE30 | 0 | **0** |
 
 The August baseline counted jenova.ai as a corroborator. Its indexed page now pushes GET30
@@ -66,8 +66,9 @@ The site was absent from every "discount code" and "coupon" SERP on Google, and 
 informational queries — review, pricing, commands, vs Bloomberg — despite having exact-match
 pages for seven of them. It ranked only for "promo code" phrasings.
 
-Seven pages added this month, all from sourced facts: discount code, coupon code, cheapest way
-to get it, is it free, price lock, brokerage link, and the SPLC supply-chain launch. Chosen
+Eight pages added this month, all from sourced facts: discount code, coupon code, cheapest way
+to get it, is it free, price lock, brokerage link, the SPLC supply-chain launch, and what
+r/GodelTerminal actually says. Chosen
 because each has real autocomplete demand, can be written entirely from the data modules or
 fetched vendor pages, and several answer honestly in the negative.
 
@@ -100,7 +101,7 @@ retrieval system can read them.
 - Checkout verification date on every code box, and in the structured data.
 - TAKE30 encoded as a schema.org `Offer` with the first-month price on every page; product node
   typed `Product` and `SoftwareApplication`.
-- Seven new intent pages; all wired into the guides hub and cross-linked.
+- Eight new intent pages; all wired into the guides hub and cross-linked.
 - The 404 page was printing JavaScript source; five pages rendered "DL Software Inc.."; two
   lowercased "RIAs". The validator now fails the build on all three classes.
 - `/promo-codes/` was reproducing five rival code names in its Bing snippet, because they were
@@ -115,6 +116,43 @@ retrieval system can read them.
   IMAP and EQS beta flags, and SPLC recorded as announced-not-documented.
 - Fifteen newly discovered rival codes tracked, and WorthEPenny's tier going 50% → 60% in a
   month with no vendor change is now cited as evidence the number is template-rotated.
+
+## Two things the verification pass turned up on its own
+
+**A price lock existed and the window closed.** Checking the Reddit citations on the new
+`/godel-terminal-reddit/` page surfaced a pinned thread in r/GodelTerminal, maintained by the
+moderator account that publishes Godel's release notes: "[MEGA THREAD] Buy/Sell/Trade Existing
+Godel Price Locked Accounts", last updated April 2026. Its opening line reads "Since the Godel
+price-lock window ended…", and the thread carries live offers for a "price-locked acct $60/mo
+cap" — the late-2024 price. The same post routes traders to "the Godel Team via the chat function
+at godelterminal.com" and a "#marketplace chatroom", and a second company-adjacent account
+confirms "lots of activity going on there around account transfers".
+
+No vendor page mentions any of this. The price-lock page had been answering "not published" from
+the terms of service alone; it now answers the question properly, with the caveat that a closed
+programme described by a moderator is not a commitment to anyone.
+
+**The brokerage discount is better sourced than we thought.** Verifying a quote on the new
+brokerage page turned up godelterminal.com/docs/commands/aum, which documents the eligibility test
+directly: hold over $5,000 across linked brokerages *and* make at least one eligible trade in the
+past month. We had been citing archived in-app copy for the whole offer. The price it unlocks is
+still only in archived copy, so the two halves now carry separate sources everywhere they appear —
+and several pages had been stating the test as balance-only, dropping the trade requirement.
+
+## What the adversarial pass cost and caught
+
+Ten verifier passes over the five pages that shipped unchecked found one blocker and 23 major
+problems; 48 corrections were applied. The blocker was self-inflicted: rewriting a note in
+`site.mjs` turned a quotation on the price-lock page into the site's own words presented as vendor
+copy. The recurring faults are worth naming because they will recur:
+
+- Stating the brokerage eligibility as a balance test, dropping the trade requirement.
+- Pricing the code at "one billing period", which on the annual plan reads as 30% off $996.
+- Absolutes the pages' own tables contradicted — "the only discount everyone qualifies for" when
+  X25 and annual billing also qualify anyone.
+- Claiming no code beats 30% when the vendor's referral FAQ names a coupon, NVDA, whose
+  percentage it never publishes. That one had propagated into `llms.txt` and the AI fact sheet,
+  where a model would have repeated it.
 
 ## What only Justin can do
 

@@ -16,6 +16,10 @@ const faqs = [
     a: `Use <strong>${PROMO.code}</strong>. In discount terms they are identical — every one of these codes is a referral token in ${PRODUCT.name}'s affiliate programme, and every one delivers ${PROMO.percent}% off the ${PROMO.appliesTo} — so the tie-breaker is verification: ${PROMO.code} was last applied at a real checkout on ${longDate(PROMO.lastVerified)}, and it is the only code this site has ever promoted. No code in circulation gives more — even <a href="/godel-terminal-official-promo-code/">X25, the code from ${PRODUCT.name}'s own X account</a>, is smaller at 25% — and anyone advertising 40%, 75% or "up to 80% off" is describing a discount that does not exist. One genuine exception: ${PRODUCT.name} announced an official <a href="/godel-terminal-student-discount/">$5/month student rate</a> (.edu signup) that beats every code — confirm it is still live before counting on it.`,
   },
   {
+    q: `Is the Reddit code GODEL or SAVE better than ${PROMO.code}?`,
+    a: `No — same offer. The codes posted in r/GodelTerminal update threads (GODEL, SAVE, THANKS) and in comments (GODEL30, LIFESTYLE) are referral tokens for the identical ${PROMO.percent}%-off-first-payment tier; the subreddit posts them alongside release notes, which makes them look official, but the vendor's own referral FAQ describes one tier for every code. ${PROMO.code} carries a checkout verification date (${longDate(PROMO.lastVerified)}); the Reddit codes carry none. <a href="/godel-terminal-promo-code-reddit/">The Reddit codes, fact-checked</a>.`,
+  },
+  {
     q: `How much does ${PRODUCT.name} cost?`,
     a: `${PRODUCT.name}'s own pricing page lists <strong>${PRICING.annual.display} per ${PRICING.annual.unit}</strong> or ${PRICING.monthly.display}/month, with a ${PRICING.freeTrial.days}-day free trial on every plan (as of August 2026). FINRA-licensed users pay a ${PRICING.finraSurcharge.display}/month surcharge. See our <a href="/godel-terminal-pricing/">pricing breakdown</a>.`,
   },

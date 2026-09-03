@@ -142,7 +142,7 @@ export const STUDENT = {
   ],
   source: 'Official @GodelTerminal X account, November 2024',
   sourceUrl: 'https://x.com/GodelTerminal/status/1860073008397975569',
-  note: 'Announced on the official X account and implemented in-app in November 2024, but never listed on the pricing page — and archived app builds from mid-2026 no longer show the in-app Student Discount button. The program may have been discontinued. Email student@godelterminal.com to confirm it is still live before planning around it.',
+  note: 'Announced on the official X account and implemented in-app in November 2024, but never listed on the pricing page — and archived app builds from mid-2026 no longer show the in-app Student Discount button. The program may have been discontinued or repriced: a user comment in October 2024 said it had been discontinued, and r/GodelTerminal posts in August 2026 quote a $10/month student rate rather than $5. Email student@godelterminal.com to confirm the current terms before planning around it.',
   statusUncertain: true,
 };
 
@@ -192,6 +192,11 @@ export const KNOWN_CODES = [
   { code: 'THESHKRELIPILL', percent: 30, ours: false, source: 'The Shkreli Pill YouTube channel' },
   { code: 'SUMMER', percent: 30, ours: false, source: 'godelterminaldiscounts.com' },
   { code: '2025', percent: 30, ours: false, source: 'godelterminaldiscounts.com' },
+  { code: 'GODEL', percent: 30, ours: false, source: 'r/GodelTerminal moderator update posts (2024–2025)' },
+  { code: 'SAVE', percent: 30, ours: false, source: 'r/GodelTerminal pinned megathread (2026)' },
+  { code: 'THANKS', percent: 30, ours: false, source: 'r/GodelTerminal changelog post, November 2024' },
+  { code: 'GODEL30', percent: 30, ours: false, source: 'Reddit comments (r/quant, r/hedgefund, r/Trading), 2024–2026' },
+  { code: 'LIFESTYLE', percent: 30, ours: false, source: 'Reddit comments (r/ValueInvesting and others), 2025' },
   { code: 'BLOOMBERG', percent: 30, ours: false, source: 'godelterminaldiscounts.com' },
   { code: 'BLACKFRIDAY', percent: 30, ours: false, source: 'godelterminaldiscounts.com' },
   { code: 'CYBERMONDAY', percent: 30, ours: false, source: 'godelterminaldiscounts.com' },

@@ -258,6 +258,7 @@ export const CODE_SITES = {
       'Quotes a $60/month base price, two price changes out of date.',
       'Carries an unattributed "hedge fund manager" testimonial.',
       'Every button routes through a cloaked redirect (foxly.link) rather than a visible referral link.',
+      'As of September 2026 that foxly.link domain no longer resolves, so the page’s signup buttons are dead: the code may still work if typed at checkout, but nothing on the page gets you there.',
     ],
   },
   PROMO30: {
@@ -265,6 +266,7 @@ export const CODE_SITES = {
     facts: [
       'Review-styled single-page site; sitemap contains one URL.',
       'Uses the same cloaked foxly.link redirect as the GET30 site — the two are almost certainly run by the same operator.',
+      'That redirect domain stopped resolving by September 2026, so its signup buttons lead nowhere.',
     ],
   },
   NEWUSER: {

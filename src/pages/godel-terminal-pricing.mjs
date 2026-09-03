@@ -40,7 +40,7 @@ const faqs = [
 
 export const page = {
   path: '/godel-terminal-pricing/',
-  title: `Godel Terminal Pricing ${new Date().getFullYear()}: Real Costs and Fees`,
+  title: `Godel Terminal Pricing ${new Date().getFullYear()}: Plans, Cost and Fees`,
   description: `Godel Terminal costs $996/seat/year or $118/month, vendor-published. Plus the FINRA surcharge, the $5 student rate, and what ${PROMO.code} actually saves.`,
   summary: 'Godel Terminal pricing broken down with sourcing — annual, monthly, the FINRA surcharge, and what the promo code is actually worth.',
   breadcrumbs: [

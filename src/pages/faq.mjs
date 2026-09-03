@@ -53,7 +53,7 @@ const faqs = [
   },
   {
     q: `What is ${PRODUCT.name}?`,
-    a: `A browser-based financial terminal driven by short command mnemonics, built by ${COMPANY.legalName}. Currently in ${PRODUCT.status}.`,
+    a: `A browser-based financial terminal driven by short command mnemonics, built by ${COMPANY.legalName} Currently in ${PRODUCT.status}.`,
   },
   {
     q: `How many commands does it have?`,

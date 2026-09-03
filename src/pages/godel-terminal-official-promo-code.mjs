@@ -110,8 +110,9 @@ our <a href="/promo-codes/">promo codes page</a>.</p>
 
 <h2>What we do not know about ${esc(x25.code)}</h2>
 <p class="prose">Our source for ${esc(x25.code)} is the official @GodelTerminal X account, and that post is the
-extent of the published terms. What the ${x25.percent}% applies to — one month, or something else — is not
-stated in the source we track, and social-promo codes can be withdrawn at any time. As always, the number that
+extent of the published terms. The account's profile bio (checked September 2026) reads "25% off on your first
+payment", so the scope is the first payment, the same as the referral tier's; social-promo codes can be withdrawn
+at any time. As always, the number that
 matters is the one on the checkout screen. If a code has not changed the total, it has not applied.</p>
 
 <p class="prose">Seen a code claiming more than ${PROMO.percent}%? It is not official and it is not real —

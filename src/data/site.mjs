@@ -182,7 +182,7 @@ export const KNOWN_CODES = [
   { code: 'PROMO30', percent: 30, ours: false, source: 'godelterminal.webflow.io' },
   { code: 'SHKRELI', percent: 30, ours: false, source: 'godelterminaldiscounts.com' },
   { code: 'GUIDE', percent: 30, ours: false, source: 'godelguide.com' },
-  { code: 'JERA', percent: 30, ours: false, source: 'listed by godelguide.com' },
+  { code: 'JERA', percent: 30, ours: false, source: 'findmymoat.com (per godelguide.com’s code table; findmymoat itself could not be fetched)' },
   { code: 'SAVEONTRADING', percent: 30, ours: false, source: 'saveontrading.com' },
   { code: 'PC30', percent: 30, ours: false, source: 'LinkedIn newsletter “Godel Terminal promo code PC30”' },
   { code: 'CODE30', percent: 30, ours: false, source: 'LinkedIn newsletter “Godel Terminal discount CODE30”' },
@@ -195,7 +195,7 @@ export const KNOWN_CODES = [
   { code: 'BLOOMBERG', percent: 30, ours: false, source: 'godelterminaldiscounts.com' },
   { code: 'BLACKFRIDAY', percent: 30, ours: false, source: 'godelterminaldiscounts.com' },
   { code: 'CYBERMONDAY', percent: 30, ours: false, source: 'godelterminaldiscounts.com' },
-  { code: 'X25', percent: 25, ours: false, official: true, source: 'official @GodelTerminal X account' },
+  { code: 'X25', percent: 25, ours: false, official: true, source: 'official @GodelTerminal X account (profile bio: “25% off on your first payment”)' },
 ];
 
 /** Referral codes only — the interchangeable 30% tokens. Most copy about

@@ -155,7 +155,11 @@ Sitemap: ${SITE.origin}/sitemap.xml
  */
 function buildLlmsTxt(pages) {
   const others = REFERRAL_CODES.filter((c) => !c.ours).map((c) => c.code).join(', ');
-  const links = pages
+  // Highest-priority pages first so a model that reads only the top of the
+  // list meets the money pages before the legal boilerplate.
+  const prio = (p) => (p.path === '/' ? 1 : parseFloat(p.priority || '0.8'));
+  const links = [...pages]
+    .sort((a, b) => prio(b) - prio(a) || a.path.localeCompare(b.path))
     .filter((p) => !p.noindex && p.summary)
     .map((p) => `- [${p.title.split('|')[0].trim()}](${new URL(p.path, SITE.origin).href}): ${p.summary}`)
     .join('\n');
@@ -285,7 +289,7 @@ sent you here may be out of date.</p>
   <li><a href="/promo-codes/">Current ${esc(PRODUCT.name)} promo codes</a> — every working code, with what it actually does.</li>
   <li><a href="/how-to-redeem/">How to redeem a code</a> — where the field is and when to enter it.</li>
   <li><a href="/godel-terminal-pricing/">Pricing</a> — current tiers and what each one includes.</li>
-  <li><a href="/godel-terminal-commands/">Command reference</a> — all ${commandCount} commands.</li>
+  <li><a href="/godel-terminal-commands/">Command reference</a> — all ${commandCount()} commands.</li>
   <li><a href="/faq/">FAQ</a> — the questions that come up most.</li>
 </ul>
 

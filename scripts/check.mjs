@@ -72,6 +72,13 @@ for (const file of files) {
   // --- title / description ---
   const title = html.match(/<title>([^<]*)<\/title>/)?.[1];
   if (!title) { problems.push(`${route}: missing <title>`); }
+
+  // --- copy defects that AI systems quote verbatim ---
+  const visible = html.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<[^>]+>/g, ' ');
+  if (/(?<![.])\.\.(?![.])\s/.test(visible)) { problems.push(`${route}: doubled full stop ("..") in visible text`); }
+  if (/\brias\b/.test(visible)) { problems.push(`${route}: "RIAs" rendered in lowercase`); }
+  const descLen = (html.match(/<meta name="description" content="([^"]*)"/)?.[1] || '').replace(/&[a-z#0-9]+;/g, 'x').length;
+  if (descLen > 155) { warnings.push(`${route}: description is ${descLen} chars (>155 gets truncated in SERPs)`); }
   else {
     if (titles.has(title)) { problems.push(`${route}: duplicate title, also on ${titles.get(title)}`); }
     titles.set(title, route);
@@ -89,8 +96,10 @@ for (const file of files) {
 
   // --- canonical ---
   const canonical = html.match(/<link rel="canonical" href="([^"]*)"/)?.[1];
-  if (!canonical) { problems.push(`${route}: missing canonical`); }
-  else if (!canonical.endsWith(route)) { problems.push(`${route}: canonical mismatch — ${canonical}`); }
+  const isNoindex = /<meta name="robots" content="noindex/.test(html);
+  if (!canonical && !isNoindex) { problems.push(`${route}: missing canonical`); }
+  else if (canonical && isNoindex) { problems.push(`${route}: noindex page should not declare a canonical`); }
+  else if (canonical && !canonical.endsWith(route)) { problems.push(`${route}: canonical mismatch — ${canonical}`); }
 
   // --- exactly one h1 ---
   const h1s = html.match(/<h1[^>]*>/g) || [];

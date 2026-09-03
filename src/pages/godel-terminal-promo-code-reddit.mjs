@@ -24,7 +24,7 @@ const faqs = [
 export const page = {
   path: '/godel-terminal-promo-code-reddit/',
   title: 'Godel Terminal Promo Code Reddit Threads, Fact-Checked',
-  description: 'What Reddit actually says about Godel Terminal discount codes, and the fact every thread converges on: every referral code gives the same 30% off month one.',
+  description: 'What Reddit actually says about Godel Terminal discount codes, and the fact every thread converges on: every referral code gives the same 30% off.',
   summary: 'What Reddit actually says about Godel Terminal promo codes: thin organic discussion, referral tokens in comments, and one converging fact.',
   datePublished: '2026-08-05',
   breadcrumbs: [

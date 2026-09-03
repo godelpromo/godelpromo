@@ -25,7 +25,7 @@ const faqs = [
   },
   {
     q: `Is this the official ${PRODUCT.name} site?`,
-    a: `No. godelpromo.com is an independent guide. ${PRODUCT.name} is built by ${esc(PRODUCT.vendor)}. We earn a referral commission if you subscribe, which never changes your price.`,
+    a: `No. godelpromo.com is an independent guide. ${PRODUCT.name} is built by ${esc(PRODUCT.vendor)} We earn a referral commission if you subscribe, which never changes your price.`,
   },
   {
     q: `What if the code does not work?`,
@@ -36,7 +36,7 @@ const faqs = [
 export const page = {
   path: '/',
   title: `${PROMO.code}: Godel Terminal Promo Code — ${PROMO.percent}% Off First Month`,
-  description: `Promo code ${PROMO.code} gets ${PROMO.percent}% off your first month of Godel Terminal. Verified at checkout, with real pricing, the full command list and every rival code compared.`,
+  description: `Promo code ${PROMO.code} gets ${PROMO.percent}% off your first month of Godel Terminal. Verified at checkout, with real pricing, all commands and every rival code compared.`,
   summary: `The ${PROMO.code} promo code, what it actually discounts, and how it compares to every other Godel Terminal code.`,
   breadcrumbs: [{ href: '/', label: 'Home' }],
   faqs,
@@ -125,7 +125,7 @@ export const page = {
 
   <p class="prose">${esc(COMPANY.legalName)} is a ${esc(COMPANY.incorporation)} with ${esc(COMPANY.funding)},
   backed by ${COMPANY.investors.slice(0, 2).map(esc).join(' and ')} among others. Its published customer base skews
-  institutional: ${COMPANY.customerTypes.map((c) => esc(c.toLowerCase())).join(', ')}.</p>
+  institutional: ${COMPANY.customerTypes.map((c) => esc(c)).join(', ')}.</p>
 
   ${tiles(cmdTiles)}
 

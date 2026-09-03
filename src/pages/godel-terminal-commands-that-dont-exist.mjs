@@ -30,7 +30,7 @@ const faqs = [
 export const page = {
   path: '/godel-terminal-commands-that-dont-exist/',
   title: `Godel Terminal Commands That “Don’t Exist”: An Update`,
-  description: `Five commands we once flagged as phantom now have official doc pages, and OPT and GIP turn out to be working aliases. The dated corrections ledger, in public.`,
+  description: `Five commands we once flagged as phantom now have official doc pages, and OPT and GIP are working aliases. The dated corrections ledger, in public.`,
   summary: `Public corrections ledger: five formerly-"phantom" Godel Terminal commands now have official doc pages, and OPT/GIP work as documented aliases.`,
   datePublished: '2026-08-05',
   breadcrumbs: [

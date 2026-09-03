@@ -28,7 +28,7 @@ const faqs = [
 export const page = {
   path: '/godel-terminal-free-trial/',
   title: `Godel Terminal Free Trial: What Is Actually Confirmed`,
-  description: `Godel Terminal's ${PRICING.freeTrial.days}-day free trial is vendor-published: every plan starts with one, and the account is not charged until upgraded. How it interacts with ${PROMO.code}.`,
+  description: `Godel Terminal's ${PRICING.freeTrial.days}-day free trial is vendor-published: every plan starts with one and nothing is charged until you upgrade. How it works with ${PROMO.code}.`,
   summary: 'What is actually known about the Godel Terminal free trial, and how it interacts with the promo code.',
   breadcrumbs: [
     { href: '/', label: 'Home' },

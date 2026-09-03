@@ -41,7 +41,7 @@ with ${esc(PRODUCT.name)} before relying on it</strong>, particularly prices, di
 
 <h2>Promo codes</h2>
 
-<p class="prose">Discount codes are issued and controlled by ${esc(COMPANY.legalName)}. We do not create them,
+<p class="prose">Discount codes are issued and controlled by ${esc(COMPANY.legalName)} We do not create them,
 cannot guarantee they will work, and cannot reinstate one that has been withdrawn. A code failing at checkout is
 between you and ${esc(PRODUCT.name)}.</p>
 
@@ -63,7 +63,7 @@ We do not control those sites and are not responsible for their content, terms o
 
 <h2>Trademarks</h2>
 
-<p class="prose">${esc(PRODUCT.name)} and related marks are the property of ${esc(COMPANY.legalName)}.
+<p class="prose">${esc(PRODUCT.name)} and related marks are the property of ${esc(COMPANY.legalName)}
 Bloomberg, FactSet, LSEG, Koyfin and TradingView marks belong to their respective owners.
 Their use here is nominative — to identify the products being discussed — and does not imply any endorsement
 or affiliation.</p>

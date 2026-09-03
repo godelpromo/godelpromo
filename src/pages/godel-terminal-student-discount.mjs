@@ -23,7 +23,7 @@ const faqs = [
 export const page = {
   path: '/godel-terminal-student-discount/',
   title: 'Godel Terminal Student Discount: The Official $5/Month Rate',
-  description: 'Godel Terminal announced a $5/month student rate: .edu signup plus a student ID. How the official program works, whether it is still live, and how to check.',
+  description: 'Godel Terminal announced a $5/month student rate: .edu signup plus a student ID. How the official program works, whether it is still live, and how to check',
   summary: 'The official Godel Terminal student program — $5 a month with a .edu email and a student ID — and why it beats every promo code in circulation.',
   datePublished: '2026-08-05',
   breadcrumbs: [

@@ -26,8 +26,8 @@ const faqs = [
 
 export const page = {
   path: '/godel-terminal-referral-program/',
-  title: `How the Godel Terminal Referral Program Actually Works`,
-  description: `Every Godel Terminal promo code is a referral token in the same program: one ${PROMO.percent}% first-month tier, attribution follows the code entered at checkout, not the link.`,
+  title: 'Godel Terminal Referral & Affiliate Program: How It Works',
+  description: `Every Godel Terminal promo code is a referral token in one program: a single ${PROMO.percent}% first-month tier, and attribution follows the code typed at checkout.`,
   summary: 'How the Godel Terminal referral program works: one 30%-first-month tier, code-based attribution, and what that means about every promo site.',
   datePublished: '2026-08-05',
   breadcrumbs: [

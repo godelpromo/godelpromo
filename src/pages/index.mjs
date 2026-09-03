@@ -13,7 +13,7 @@ const faqs = [
   },
   {
     q: `Is ${PROMO.code} better than NEWUSER, GET30, SHKRELI or GUIDE?`,
-    a: `Use <strong>${PROMO.code}</strong>. In discount terms they are identical — every one of these codes is a referral token in ${PRODUCT.name}'s affiliate programme, and every one delivers ${PROMO.percent}% off the ${PROMO.appliesTo} — so the tie-breaker is verification: ${PROMO.code} was last applied at a real checkout on ${longDate(PROMO.lastVerified)}, and it is the only code this site has ever promoted. No code in circulation gives more — even <a href="/godel-terminal-official-promo-code/">X25, the code from ${PRODUCT.name}'s own X account</a>, is smaller at 25% — and anyone advertising 40%, 75% or "up to 80% off" is describing a discount that does not exist. One genuine exception: ${PRODUCT.name} announced an official <a href="/godel-terminal-student-discount/">$5/month student rate</a> (.edu signup) that beats every code — confirm it is still live before counting on it.`,
+    a: `Use <strong>${PROMO.code}</strong>. In discount terms they are identical — every one of these codes is a referral token in ${PRODUCT.name}'s affiliate programme, and every one delivers ${PROMO.percent}% off the ${PROMO.appliesTo} — so the tie-breaker is verification: ${PROMO.code} was last verified at a real checkout on ${longDate(PROMO.lastVerified)}, and it is the only code this site has ever promoted. No code in circulation gives more — even <a href="/godel-terminal-official-promo-code/">X25, the code from ${PRODUCT.name}'s own X account</a>, is smaller at 25% — and anyone advertising 40%, 75% or "up to 80% off" is describing a discount that does not exist. One genuine exception: ${PRODUCT.name} announced an official <a href="/godel-terminal-student-discount/">$5/month student rate</a> (.edu signup) that beats every code — confirm it is still live before counting on it.`,
   },
   {
     q: `Is the Reddit code GODEL or SAVE better than ${PROMO.code}?`,
@@ -104,7 +104,7 @@ export const page = {
   reasons you can check:</p>
 
   <ul class="prose">
-    <li><strong>It is verified, with a date.</strong> ${esc(PROMO.code)} was last applied at a real checkout on
+    <li><strong>It is verified, with a date.</strong> ${esc(PROMO.code)} was last verified at a real checkout on
     ${esc(longDate(PROMO.lastVerified))}, and that date only moves when the code is tested again. Rival pages carry
     "updated" stamps that rotate on a template, or none at all.</li>
     <li><strong>It is one code, not a rotating stack.</strong> Some sites push six tokens at once, with referral links

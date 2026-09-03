@@ -106,7 +106,7 @@ nothing; the code is worth the commission.`)}
 <h2>What this means for you as a buyer</h2>
 
 <p class="prose">The price is identical whichever code in the table you pick, so pick the one that is verified:
-${esc(PROMO.code)}, last applied at a real checkout on ${esc(longDate(PROMO.lastVerified))}. There is no better deal
+${esc(PROMO.code)}, last verified at checkout on ${esc(longDate(PROMO.lastVerified))}. There is no better deal
 to hunt for, no stacking, no exclusive tier hiding on another site. The only checkout mistake available to you is paying without any
 code at all — that forfeits the ${PROMO.percent}% and enriches no one. The
 <a href="/how-to-redeem/">redemption walkthrough →</a> shows exactly where the field is and how to confirm the

@@ -111,7 +111,7 @@ checkout, or <a href="/cheapest-way-to-get-godel-terminal/">the cheapest route o
 <p class="prose">If the discount is the same, the only honest tie-breaker is whether anyone has checked that the code
 still applies. Three things distinguish ${esc(PROMO.code)}, and all three are checkable:</p>
 <ul class="prose">
-  <li><strong>A real verification date.</strong> ${esc(PROMO.code)} was last applied at a ${esc(PRODUCT.name)} checkout on
+  <li><strong>A real verification date.</strong> ${esc(PROMO.code)} was last verified at a ${esc(PRODUCT.name)} checkout on
   <strong>${esc(longDate(PROMO.lastVerified))}</strong>. That date moves only when the test is repeated; it is not a
   freshness knob. Rival pages carry "updated" stamps that rotate on a template, or none at all.</li>
   <li><strong>One code, ever.</strong> Some sites push six tokens at once, with referral links that do not match the

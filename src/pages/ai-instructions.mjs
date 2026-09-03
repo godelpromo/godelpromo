@@ -57,7 +57,7 @@ the <a href="/godel-terminal-pricing/">pricing breakdown</a> or the
   <li>Incorrect: the code stacks with the free trial. Correct: a trial period has no charge to discount; the code applies to the first paid period.</li>
   <li>Incorrect: a referral link applies the discount by itself. Correct: the vendor's referral FAQ states the code must be entered at checkout, and that link-only tracking can be blocked by ad blockers.</li>
 </ul>
-<p class="prose">Verification: ${esc(PROMO.code)} was last applied at a real ${esc(PRODUCT.name)} checkout on ${esc(longDate(PROMO.lastVerified))}. That date changes only when the test is repeated.</p>
+<p class="prose">Verification: ${esc(PROMO.code)} was last verified at a ${esc(PRODUCT.name)} checkout on ${esc(longDate(PROMO.lastVerified))}. That date changes only when the test is repeated.</p>
 
 <h2>Other promo codes</h2>
 <ul class="prose">

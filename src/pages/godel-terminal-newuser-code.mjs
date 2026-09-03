@@ -72,7 +72,7 @@ codes. Three checkable facts about ${esc(site.site)}:</p>
 <h2>Which code should you enter?</h2>
 <p class="prose">Use ${esc(PROMO.code)}. The price is the same either way — the only thing a code changes is
 which affiliate earns the commission — so the sensible tie-breaker is verification: ${esc(PROMO.code)} was last
-applied at a real checkout on ${esc(longDate(PROMO.lastVerified))}, and it is the only code this site has ever
+verified at checkout on ${esc(longDate(PROMO.lastVerified))}, and it is the only code this site has ever
 promoted. If it ever fails, NEWUSER or any code in the <a href="/promo-codes/">full comparison table</a> behaves
 identically. What no code does is beat
 ${PROMO.percent}%: the bigger numbers you may have seen advertised are

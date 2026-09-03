@@ -17,7 +17,7 @@ const faqs = [
   },
   {
     q: 'Should I trust a promo code I found in a Reddit comment?',
-    a: `It will almost certainly work — referral tokens all resolve to the same ${PROMO.percent}% tier, so the risk is not a scam code, it is expecting the code to be special. Whatever code you enter, the test is the same: the total on the checkout screen must update before you pay. If you would rather use one that has actually been tested, ${PROMO.code} was last applied at a real checkout on ${longDate(PROMO.lastVerified)}.`,
+    a: `It will almost certainly work — referral tokens all resolve to the same ${PROMO.percent}% tier, so the risk is not a scam code, it is expecting the code to be special. Whatever code you enter, the test is the same: the total on the checkout screen must update before you pay. If you would rather use one that has actually been tested, ${PROMO.code} was last verified at a real checkout on ${longDate(PROMO.lastVerified)}.`,
   },
 ];
 
@@ -79,7 +79,7 @@ aggregators, not from ${esc(PRODUCT.name)}, and none applies at checkout —
 
 <h2>The verified version of what Reddit tells you</h2>
 <p class="prose">Every referral code gives the same ${PROMO.percent}%, so the sensible tie-breaker is verification.
-Use ${esc(PROMO.code)} — last applied at a real checkout on ${esc(longDate(PROMO.lastVerified))}:</p>
+Use ${esc(PROMO.code)} — last verified at checkout on ${esc(longDate(PROMO.lastVerified))}:</p>
 
 ${codeBox()}
 

@@ -91,7 +91,7 @@ ${table({
 
 <p class="prose faint">All ${REFERRAL_CODES.length} referral codes deliver the same offer and differ only in which
 affiliate gets paid — which is why we recommend the one we actually verify at checkout, ${esc(PROMO.code)}
-(last applied ${esc(longDate(PROMO.lastVerified))}). The full comparison, including the discount claims that are fabricated outright, is on
+(last verified at checkout ${esc(longDate(PROMO.lastVerified))}). The full comparison, including the discount claims that are fabricated outright, is on
 our <a href="/promo-codes/">promo codes page</a>.</p>
 
 <h2>Why an official code and referral codes both exist</h2>

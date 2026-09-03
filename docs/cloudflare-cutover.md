@@ -144,6 +144,23 @@ on Pages. `_redirects` maps every old URL to its new home. GitHub Pages is disab
 
 ---
 
+## The pages.dev hostname — record it (noted 2026-09-03)
+
+`wrangler.jsonc` names our Pages project `godelpromo`, but **`godelpromo.pages.dev` is not ours**.
+It serves `godeldiscount.com` — a rival Godel Terminal affiliate site pushing the code NEWUSER —
+byte for byte, canonical and all. That operator created a Cloudflare Pages project called
+`godelpromo` before we did, so Cloudflare will have assigned our project a suffixed hostname
+(`godelpromo-<something>.pages.dev`).
+
+Two things to do in the dashboard, since neither can be determined from outside:
+
+1. Workers & Pages → the `godelpromo` project → copy the actual `*.pages.dev` hostname and write
+   it here. Nobody has ever recorded it, which is why this was mistaken for our own deployment.
+2. Check that hostname either 301s to `www.godelpromo.com` or serves `X-Robots-Tag: noindex`, so
+   the preview host cannot be indexed as a duplicate of the real site.
+
+Do not link to `godelpromo.pages.dev` from anywhere. It is a competitor's deployment.
+
 ## Rollback
 
 **GitHub Pages is no longer a rollback path** — it is disabled and the legacy files are

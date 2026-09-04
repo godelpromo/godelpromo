@@ -118,34 +118,32 @@ const faqs = [
     a: `No, on both counts. Queried ${esc(longDate(CHECKED))}, GitHub's API returns 404 for
     <span class="mono">${GITHUB.missingAccounts.join('</span>, <span class="mono">')}</span>, and the
     <span class="mono">${GITHUB.org}</span> organisation's ${GITHUB.orgRepoCount} public repositories are a profile repo, a
-    jobs repo and three unrelated forks. The PyPI package <span class="mono">${esc(PYPI.name)}</span> is unverified
-    third-party code, not a vendor SDK.`,
+    jobs repo and three unrelated forks.`,
   },
   {
     q: 'What licence is OpenBB released under?',
-    a: `The repository's LICENSE file is the GNU Affero General Public License version 3, copyright line "Copyright (c)
-    2021-2025 OpenBB Inc.", read ${esc(longDate(CHECKED))}. GitHub's API classifies the repo as "Other", so read the file,
-    not the metadata. The ${esc(OPENBB.relicenceDate)} post promising a "permissive license" names none and gives no date —
-    and is the post announcing that OpenBB is winding the company down.`,
+    a: `AGPLv3, per the LICENSE file read ${esc(longDate(CHECKED))} — GitHub's API classifies the repo as "Other", so read
+    the file, not the metadata. The ${esc(OPENBB.relicenceDate)} post promising a "permissive license" names none, and is
+    the post announcing that OpenBB is winding the company down.`,
   },
   {
     q: 'Is OpenBB free?',
-    a: `Partly, and not the part most people assume. The Open Data Platform is AGPLv3 and installs with
-    <span class="mono">pip install openbb</span>, but on the pricing page (${esc(longDate(CHECKED))}) the free Community
-    Edition is <strong>cloud-hosted by OpenBB</strong> and the <strong>self-hosted</strong> tiers are the paid ones.`,
+    a: `Partly. The Open Data Platform is AGPLv3 and installs with <span class="mono">pip install openbb</span>, but on the
+    pricing page (${esc(longDate(CHECKED))}) the free Community Edition is <strong>cloud-hosted by OpenBB</strong> and the
+    <strong>self-hosted</strong> tiers are the paid ones.`,
   },
   {
     q: `Can OpenBB replace ${PRODUCT.name}?`,
-    a: `It depends where your data comes from. OpenBB is an integration layer — its README calls it a toolset to "integrate
-    proprietary, licensed, and public data sources". ${esc(PRODUCT.name)} sells the opposite: entitlements arrive with the
-    seat (<a href="/godel-terminal-data-coverage/">coverage page</a>). If the feeds are what you are buying, OpenBB cannot
+    a: `It depends where your data comes from. OpenBB's README calls it a toolset to "integrate proprietary, licensed, and
+    public data sources"; ${esc(PRODUCT.name)} sells entitlements with the seat
+    (<a href="/godel-terminal-data-coverage/">coverage page</a>). If the feeds are what you are buying, OpenBB cannot
     replace it.`,
   },
   {
     q: `Does ${PRODUCT.name} have an API like OpenBB's?`,
     a: `No public one. Its pricing-page FAQ puts it at ${esc(API_FACTS.vendorStatus)}
-    (${esc(API_FACTS.vendorStatusSource)}), its terms prohibit scraping, and the documented route out is file export —
-    <a href="/godel-terminal-api/">the API page</a> has the detail.`,
+    (${esc(API_FACTS.vendorStatusSource)}); the documented route out is file export
+    (<a href="/godel-terminal-api/">the API page</a>).`,
   },
 ];
 
@@ -174,8 +172,8 @@ export const page = {
     return `
 <h1>Godel Terminal vs OpenBB: open source against a hosted seat</h1>
 
-<p class="lede">This is a licensing question more than a feature comparison. OpenBB publishes its Open Data Platform as
-source anyone can read, fork and install; the repository's LICENSE file is the GNU Affero General Public License v3.
+<p class="lede">This is a licensing question more than a feature comparison. OpenBB publishes its Open Data Platform in
+a repository anyone can read, fork and install, under the GNU Affero General Public License v3.
 ${esc(PRODUCT.name)} publishes no source at all — no repository, no source licence, no self-hosted build, no public API.
 Two corrections keep the rest honest: "open source" does not make OpenBB's self-hosted product free, and the
 ${esc(OPENBB.relicenceDate)} post usually cited for its licence plans is the one announcing that OpenBB is winding the
@@ -186,19 +184,19 @@ ${note(`<strong>Sourcing:</strong> OpenBB figures were read on ${esc(longDate(CH
 <a href="${OPENBB.pricing}" rel="nofollow noopener" target="_blank">its pricing page</a>, the
 <a href="${OPENBB.repo}" rel="nofollow noopener" target="_blank">repository</a> and its
 <a href="${OPENBB.licenseFile}" rel="nofollow noopener" target="_blank">LICENSE file</a>, plus the posts linked below;
-GitHub and PyPI facts come from those services' public APIs the same day. ${esc(PRODUCT.name)} prices are vendor-stated
-on godelterminal.com; the 2024 price history comes from archived vendor documentation and app builds.`)}
+GitHub and PyPI facts from those services' public APIs the same day. ${esc(PRODUCT.name)} prices are vendor-stated on
+godelterminal.com; the 2024 price history from archived vendor documentation and app builds.`)}
 
 <h2>The two products, side by side</h2>
 
 ${table({
   head: ['', PRODUCT.name, 'OpenBB'],
   rows: [
-    { cells: ['What it is', 'Hosted, command-driven terminal', `Open Data Platform plus a Workspace UI — "${esc(OPENBB.repoDescription)}"`] },
+    { cells: ['What it is', 'Hosted, command-driven terminal', `A Workspace UI over the repo's "${esc(OPENBB.repoDescription)}"`] },
     { cells: ['Source code', 'None published', `Public repository since ${esc(OPENBB.repoCreated)}: ${OPENBB.stars} stars, ${OPENBB.forks} forks`] },
     { cells: ['Licence', 'Proprietary; terms of service only', 'AGPLv3 per the LICENSE file; permissive relicence announced, not delivered'] },
-    { cells: ['Where it runs', 'Vendor-hosted browser app', 'Free tier vendor-hosted; self-hosting is a paid tier'] },
-    { cells: ['Where the data comes from', 'Included with the seat', 'You bring it — teams "bring their data"'] },
+    { cells: ['Where it runs', 'Vendor-hosted browser app', 'Free tier vendor-hosted; self-hosting is paid'] },
+    { cells: ['Data', 'Included with the seat', 'You bring it — teams "bring their data"'] },
     { cells: ['Programmatic access', 'No public API; CSV/JSON export', `Python package (<span class="mono">pip install openbb</span>), REST API, MCP servers, CLI`] },
     { cells: ['Price', `${PRICING.monthly.display}/month or ${PRICING.annual.display}/year per seat`, 'Free individual tier; $2,400/year list for Lite; Pro on quote'] },
   ],
@@ -206,13 +204,12 @@ ${table({
 
 <h2>The licence, verified rather than assumed</h2>
 
-<p class="prose">The LICENSE file at the head of the OpenBB repository is the GNU Affero General Public License,
-Version 3, copyright line <em>Copyright (c) 2021-2025 OpenBB Inc.</em> That is copyleft, not permissive: the network
-clause is what matters if you modify it and serve it to others. GitHub's licence detector returns "Other" through its
-API and the About panel offers only a generic "License" link, while the AGPLv3 label sits in the README body — so read
-the file, not the metadata.</p>
+<p class="prose">The LICENSE file in the OpenBB repository is the GNU Affero General Public License, Version 3,
+copyright line <em>Copyright (c) 2021-2025 OpenBB Inc.</em> That is copyleft, not permissive: the network clause is what
+matters if you modify it and serve it to others. GitHub's detector returns "Other" through its API and the About panel
+offers only a generic "License" link; the AGPLv3 label sits in the README body, so read the file, not the metadata.</p>
 
-<p class="prose">It has moved before, and another move is promised.
+<p class="prose">It has moved before, and moves again.
 <a href="${OPENBB.agplPost}" rel="nofollow noopener" target="_blank">"License Change: OpenBB Platform Goes AGPL"</a>
 dates the current licence to May 2024. On ${esc(OPENBB.relicenceDate)},
 <a href="${OPENBB.relicencePost}" rel="nofollow noopener" target="_blank">"OpenBB belongs to everyone"</a> from founder
@@ -221,10 +218,10 @@ and CEO Didier Lopes said "${esc(OPENBB.relicenceQuote)}", but named no licence 
 
 <p class="prose">That same post is also a wind-down notice. It says: "${esc(OPENBB.windDownQuote)}", recognises the
 people who "carried OpenBB to the very end", and adds: "${esc(OPENBB.hostedTimelineQuote)}" No closing date is given, so
-the prices below are what openbb.co published on ${esc(longDate(CHECKED))}, not a forecast that they stay purchasable.
-The AGPL grant already in the repository is unaffected; the hosted side is where the uncertainty sits.</p>
+the prices below are what openbb.co published on ${esc(longDate(CHECKED))}, not a promise they stay purchasable. The
+repository's AGPL grant is unaffected; the uncertainty sits on the hosted side.</p>
 
-<h2>"Free" and "self-hosted" are different rows of the pricing table</h2>
+<h2>"Free" and "self-hosted" are different rows</h2>
 
 ${table({
   head: ['OpenBB edition', 'Price', 'Hosting', 'Stated for'],
@@ -233,79 +230,78 @@ ${table({
 })}
 
 <p class="prose">That table runs backwards from the usual assumption. The edition that costs nothing is the one
-<strong>OpenBB hosts</strong>: "${esc(OPENBB.communityLine)}" It caps Copilot at 20 queries a day and collects usage
-analytics; the editions you deploy yourself are the paid ones. What is unambiguously free is the Open Data Platform, a
-repository you can clone and <span class="mono">pip install openbb</span>. So if your reason for preferring open source
-is <em>my data never leaves my infrastructure</em>, that is the library plus a Lite or Pro licence, not the free
-Workspace tier — and the cost moves into engineering time and the feeds you licence.</p>
+<strong>OpenBB hosts</strong>: "${esc(OPENBB.communityLine)}" It caps Copilot at 20 queries a day and collects usage analytics; the editions you deploy
+yourself are paid. What is unambiguously free is the Open Data Platform itself: clone it,
+<span class="mono">pip install openbb</span>. So if your reason for preferring open source is <em>my data never leaves my
+infrastructure</em>, that is the library plus a Lite or Pro licence, not the free Workspace tier; the cost moves into
+engineering time and the feeds you licence.</p>
 
-<h2>The r/openBB thread, and what has changed since</h2>
+<h2>The r/openBB thread, and what changed since</h2>
 
 <p class="prose">r/openBB carries one post arguing the comparison directly: "${esc(THREAD.title)}", posted by
 ${esc(THREAD.author)} on ${esc(THREAD.date)}, scoring ${THREAD.score} points. Its price argument —
 "${esc(THREAD.priceQuote)}" — was correct when written and is now two increases out of date, at
-${PRICING.monthly.display}/month today (<a href="/godel-terminal-pricing/">price history</a>), so the gap it describes
-is about twice as wide now. The rest argues customisation, community and flexibility, closing with
-"${esc(THREAD.closingQuote)}" One person's opinion, in OpenBB's own subreddit, predating the workspace-and-MCP
-positioning openbb.co leads with today.</p>
+${PRICING.monthly.display}/month today (<a href="/godel-terminal-pricing/">price history</a>), roughly doubling the gap
+it describes. The rest argues customisation, community and flexibility, closing
+"${esc(THREAD.closingQuote)}" One person's opinion in OpenBB's own subreddit, predating the workspace-and-MCP positioning
+openbb.co leads with today.</p>
 
 <p class="prose">The one substantive reply is more useful than the post. A user running ${esc(PRODUCT.name)} listed what
 they opened it for — the news headline component, ratio analysis for long/short pairs, options chains next to charts —
-then asked the question this comparison turns on: "${esc(THREAD.replyQuote)}" No reply follows it. That comment closes
-with a referral link of its own, and the three others are all links into the product — a GODEL30 code, a referral link
-posted as an "updated coupon code", and the author's own free-trial link; our
-<a href="/promo-codes/">code comparison</a> covers what those codes are and are not.</p>
+then asked what this comparison turns on: "${esc(THREAD.replyQuote)}" No reply follows. That comment closes with a
+referral link of its own, and the three others are all links into the product: a GODEL30 code, a referral link posted as
+an "updated coupon code", and the author's own free-trial link (our <a href="/promo-codes/">code comparison</a> covers
+what those codes are and are not).</p>
 
-<h2>Is ${esc(PRODUCT.name)} on GitHub? What is actually out there</h2>
+<h2>Is ${esc(PRODUCT.name)} on GitHub?</h2>
 
-<p class="prose">Queried on ${esc(longDate(CHECKED))}, GitHub's API returns 404 for
-<span class="mono">${GITHUB.missingAccounts.join('</span>, <span class="mono">')}</span>. A
-<span class="mono">${GITHUB.org}</span> organisation exists, created ${esc(GITHUB.orgCreated)}, whose profile links to
-${esc(GITHUB.orgProfileLink)}, the vendor's company domain — but its ${GITHUB.orgRepoCount} public repositories are
+<p class="prose">Queried ${esc(longDate(CHECKED))}, GitHub's API returns 404 for
+<span class="mono">${GITHUB.missingAccounts.join('</span>, <span class="mono">')}</span>. The
+<span class="mono">${GITHUB.org}</span> organisation, created ${esc(GITHUB.orgCreated)}, links to
+${esc(GITHUB.orgProfileLink)} — the vendor's domain — but its ${GITHUB.orgRepoCount} public repositories are
 ${esc(GITHUB.orgRepos)}. GitHub's repository search for "godel terminal" returned 12 the same day: none under that
-organisation, all under personal accounts, none above three stars. The five aimed at the terminal itself:</p>
+organisation, all under personal accounts, none above three stars. Five of them:</p>
 
 ${table({
   head: ['Repository', 'Its own description'],
   rows: repoRows,
-  caption: `Five of the 12 results for "godel terminal", ${longDate(CHECKED)}. All sit under personal accounts; none states a vendor affiliation.`,
+  caption: `Five of the 12 results for "godel terminal", ${longDate(CHECKED)}; all under personal accounts, none claiming vendor affiliation.`,
 })}
 
-${note(`Three of those describe reverse-engineering the terminal's endpoints or driving it with Selenium. The vendor's
-terms prohibit scraping and automated retrieval, so this page records that they exist and stops there — reasoning on
-<a href="/godel-terminal-api/">the API page</a>.`, { warn: true })}
+${note(`Three describe reverse-engineering the terminal's endpoints or driving it with Selenium. The vendor's terms
+prohibit scraping and automated retrieval, so this page records that they exist and stops there (reasoning on
+<a href="/godel-terminal-api/">the API page</a>).`, { warn: true })}
 
-<p class="prose">The PyPI package named <span class="mono">${esc(PYPI.name)}</span> is in the same category: version
-${PYPI.version}, summarised "${esc(PYPI.summary)}", declaring the ${PYPI.declaredLicence} licence, uploaded
-${esc(PYPI.uploaded)} with ${esc(PYPI.empties)}, and nothing published tying it to ${esc(PRODUCT.vendor)}</p>
+<p class="prose">Same category: the PyPI package <span class="mono">${esc(PYPI.name)}</span>, version ${PYPI.version},
+summarised "${esc(PYPI.summary)}", declaring the ${PYPI.declaredLicence} licence, uploaded ${esc(PYPI.uploaded)} with
+${esc(PYPI.empties)}, and nothing published tying it to ${esc(PRODUCT.vendor)}</p>
 
 <h2>Programmatic access is where they are furthest apart</h2>
 
 <p class="prose">If you arrived from a scripting requirement, it is already decided. OpenBB ships a Python package, a
-REST API, a CLI and MCP servers for AI agents — those surfaces are the product. ${esc(PRODUCT.name)} publishes no public
-API; its pricing-page FAQ puts it at ${esc(API_FACTS.vendorStatus)} (${esc(API_FACTS.vendorStatusSource)}), a waitlist
-rather than a date, and the route out is file export from documented commands:
-<a href="/godel-terminal-api/">the API page</a> has the whole story, <a href="/godel-terminal-excel/">the Excel page</a>
-the spreadsheet route.</p>
+REST API, a CLI and MCP servers for agents — those surfaces are the product. ${esc(PRODUCT.name)} publishes no public
+API; its pricing-page FAQ puts it at ${esc(API_FACTS.vendorStatus)} (${esc(API_FACTS.vendorStatusSource)}), and the
+route out is file export from documented commands — detail on <a href="/godel-terminal-api/">the API page</a> and
+<a href="/godel-terminal-excel/">the Excel page</a>.</p>
 
 <h2>Who each one suits</h2>
 
 <ol class="prose">
   <li><strong>OpenBB</strong> if you write code or employ someone who does, you already licence the data you need, or
-  your constraint is that data cannot leave your environment — weighed against a vendor winding down.</li>
-  <li><strong>${esc(PRODUCT.name)}</strong> if you want the data and the interface to arrive together — real-time US
-  markets, options chains, wire news and filings, itemised on
-  <a href="/godel-terminal-data-coverage/">the coverage page</a> — driven by commands rather than a pipeline you
-  maintain (<a href="/godel-terminal-commands/">command reference</a>).</li>
+  data cannot leave your environment — weighed against a vendor winding down.</li>
+  <li><strong>${esc(PRODUCT.name)}</strong> if you want data and interface to arrive together — real-time US markets,
+  options chains, wire news and filings, itemised on <a href="/godel-terminal-data-coverage/">the coverage page</a> —
+  driven by commands rather than a pipeline you maintain
+  (<a href="/godel-terminal-commands/">command reference</a>).</li>
   <li><strong>Neither, yet</strong> if the real question is hosted-but-cheaper rather than open-versus-closed:
   <a href="/godel-terminal-vs-koyfin/">Koyfin</a> is the closest rival on price,
   <a href="/godel-terminal-alternatives/">the alternatives page</a> the wider field.</li>
 </ol>
 
-<p class="prose">Nothing here makes them mutually exclusive: the Open Data Platform costs nothing to install next to a
-terminal seat, and the ${PRICING.freeTrial.days}-day trial nothing to run next to an OpenBB deployment. If the
+<p class="prose">The two are not exclusive: the Open Data Platform costs nothing to install next to a terminal seat,
+and the ${PRICING.freeTrial.days}-day trial nothing to run beside an OpenBB deployment. If the
 terminal side wins, ${esc(PROMO.code)} takes ${PROMO.percent}% off the ${esc(PROMO.appliesTo)} — the code this site
-promotes, and the only one here carrying a checkout verification date, ${esc(longDate(PROMO.lastVerified))}. A one-off
+promotes, and the only one here carrying a checkout verification date, ${esc(longDate(PROMO.lastVerified))}: a one-off
 discount on the first bill, not a standing rate.</p>
 
 ${codeBox()}

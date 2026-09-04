@@ -280,6 +280,8 @@ export function renderPage({
 <meta name="description" content="${esc(description)}">
 <meta name="robots" content="${noindex ? 'noindex,nofollow' : 'index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1'}">
 ${noindex ? '' : `<link rel="canonical" href="${url}">\n`}<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="alternate" type="text/plain" href="/llms.txt" title="Machine-readable summary">
+<link rel="alternate" type="text/plain" href="/llms-full.txt" title="Full text of every page">
 <link rel="stylesheet" href="/assets/site.css">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="${esc(SITE.name)}">

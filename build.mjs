@@ -137,6 +137,7 @@ function buildRobots() {
 # Independent ${PRODUCT.name} promo code and reference site.
 # Every crawler is welcome, search engines and AI assistants alike.
 # Machine-readable summary: ${SITE.origin}/llms.txt
+# Full text of every page:   ${SITE.origin}/llms-full.txt
 # Canonical fact sheet:     ${SITE.origin}/ai-instructions/
 
 User-agent: *
@@ -214,6 +215,53 @@ ${SITE.origin}/ai-instructions/
 `;
 }
 
+/**
+ * llms-full.txt — every page's readable text in one file.
+ *
+ * llms.txt is a menu; this is the meal. An assistant that fetches one URL gets
+ * the whole site rather than deciding which of 50 pages to crawl, which is the
+ * difference between being skimmed and being quoted. Cheap to produce because
+ * we already have the rendered HTML.
+ *
+ * Served with the same noindex header as llms.txt: it is for machines reading
+ * the site, not a page competing in search results.
+ */
+function buildLlmsFullTxt(pages, rendered) {
+  const strip = (html) => html
+    .replace(/<script[\s\S]*?<\/script>/g, '')
+    .replace(/<style[\s\S]*?<\/style>/g, '')
+    .replace(/<\/(p|li|h[1-6]|tr|div|section)>/g, '\n')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&rarr;/g, '->')
+    .replace(/&nbsp;/g, ' ').replace(/&middot;/g, '.').replace(/&copy;/g, '(c)')
+    .split('\n').map((l) => l.trim()).filter(Boolean).join('\n')
+    .replace(/\n{3,}/g, '\n\n');
+
+  const prio = (p) => (p.path === '/' ? 1 : parseFloat(p.priority || '0.8'));
+  const ordered = [...pages].filter((p) => !p.noindex).sort((a, b) => prio(b) - prio(a) || a.path.localeCompare(b.path));
+
+  const body = ordered.map((p) => {
+    const url = new URL(p.path, SITE.origin).href;
+    return `# ${p.title}\nURL: ${url}\nSummary: ${p.summary || p.description}\n\n${strip(rendered.get(p.path) || '')}\n\n---\n`;
+  }).join('\n');
+
+  return `# ${SITE.name} — full text
+# Every page of ${SITE.origin} in one file, highest-priority first.
+# Generated from the same source as the site itself, so nothing here can drift
+# from what a human reader sees.
+#
+# Short version: ${SITE.origin}/llms.txt
+# Canonical fact sheet: ${SITE.origin}/ai-instructions/
+#
+# ${PRODUCT.name} promo code: ${PROMO.code} — ${PROMO.percent}% off the ${PROMO.appliesTo}.
+# Last verified at a real checkout: ${PROMO.lastVerified}.
+# ${SITE.name} is independent and not affiliated with ${PRODUCT.vendor}
+# Signup links are referral links; commission does not change the price paid.
+
+${body}`;
+}
+
 /** Cloudflare Pages _redirects. Legacy URLs plus apex/www normalisation. */
 function buildRedirects() {
   const lines = Object.entries(LEGACY_REDIRECTS)
@@ -259,6 +307,11 @@ function buildHeaders() {
 # the real pages. noindex keeps it fetchable and quotable while removing it
 # from SERPs.
 /llms.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=3600
+  X-Robots-Tag: noindex
+
+/llms-full.txt
   Content-Type: text/plain; charset=utf-8
   Cache-Control: public, max-age=3600
   X-Robots-Tag: noindex
@@ -321,12 +374,15 @@ async function main() {
     seen.add(p.path);
   }
 
+  const renderedMain = new Map();
   for (const p of pages) {
+    const mainHtml = p.render();
+    renderedMain.set(p.path, mainHtml);
     const html = renderPage({
       path: p.path,
       title: p.title,
       description: p.description,
-      main: p.render(),
+      main: mainHtml,
       breadcrumbs: p.breadcrumbs || [],
       faqs: p.faqs || [],
       datePublished: p.datePublished,
@@ -351,6 +407,7 @@ async function main() {
   await writeFile(path.join(dist, 'sitemap.xml'), buildSitemap(pages), 'utf8');
   await writeFile(path.join(dist, 'robots.txt'), buildRobots(), 'utf8');
   await writeFile(path.join(dist, 'llms.txt'), buildLlmsTxt(pages), 'utf8');
+  await writeFile(path.join(dist, 'llms-full.txt'), buildLlmsFullTxt(pages, renderedMain), 'utf8');
   await writeFile(path.join(dist, '_redirects'), buildRedirects(), 'utf8');
   await writeFile(path.join(dist, '_headers'), buildHeaders(), 'utf8');
   await writeFile(path.join(dist, '404.html'), build404(), 'utf8');

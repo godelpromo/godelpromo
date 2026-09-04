@@ -16,7 +16,14 @@ Work top to bottom. Items are ordered by impact per unit of effort.
 
 ## Blockers found 2026-09-03 (fix these before anything below)
 
-1. **Cloudflare is rewriting our robots.txt.** The live file starts with a Cloudflare-managed block
+1. ~~**Cloudflare is rewriting our robots.txt.**~~ **FIXED 2026-09-03.** Turned off via
+   `PUT /zones/{zone}/bot_management` with `is_robots_txt_managed: false`. The live file went from
+   2942 bytes with nine `Disallow: /` groups to 1106 with none. Note for next time: the dashboard's
+   "Configure AI bot policies" card was already set to Allow and was NOT the cause — the culprit was
+   the separate legacy "Manage your robots.txt" setting, and reading the API config was the only way
+   to see which of the two was on. `scripts/verify-live.mjs` now fails the deploy if it returns.
+
+   The original diagnosis, kept for the record: the live file started with a Cloudflare-managed block
    that says `Disallow: /` for GPTBot, ClaudeBot, Google-Extended, CCBot, meta-externalagent,
    Amazonbot, Applebot-Extended and Bytespider, and sets `Content-Signal: ai-train=no`. Our own
    allow-all rules come *after* it. Every competitor serves a clean allow-all. Dashboard for zone
@@ -28,11 +35,18 @@ Work top to bottom. Items are ordered by impact per unit of effort.
    installed on the godelpromo org, so every commit/PR attempt 403s and the entry is lost. Install
    it with write access at https://github.com/apps/claude/installations/select_target (or reconnect
    GitHub at https://claude.ai/customize/connectors).
-3. **Re-verify TAKE30 at checkout and bump `PROMO.lastVerified`.** The date now renders on every
+3. **Archive the site in the Wayback Machine, by hand.** Save Page Now rate-limits
+   scripted saves from this machine (429 on every attempt, twice). The archive still
+   holds only the February 2026 GitHub Pages version, so the current 50-page site has no
+   public provenance record. Paste each URL into `https://web.archive.org/save/` in a
+   browser, signed in to an archive.org account. Ten minutes, and only worth doing for the
+   money pages: `/`, `/promo-codes/`, `/godel-terminal-pricing/`, `/robots.txt`,
+   `/llms.txt`, `/godel-terminal-commands/`.
+4. **Re-verify TAKE30 at checkout and bump `PROMO.lastVerified`.** The date now renders on every
    code box and in the JSON-LD Offer; it reads 2026-07-30. Open a trial account's upgrade screen,
    apply the code, confirm the total drops to $82.60, do not pay, then change the date in
    `src/data/site.mjs`.
-4. **Bing Webmaster Tools is still unverified** (no `BING_API_KEY` anywhere). Bing already ranks
+5. **Bing Webmaster Tools is still unverified** (no `BING_API_KEY` anywhere). Bing already ranks
    /promo-codes/ #2 for "promo code" with zero effort and returns *nothing* coupon-related for
    "discount code" / "coupon" — the niche is empty there. Verify the site, submit the sitemap,
    request indexing on the money pages.

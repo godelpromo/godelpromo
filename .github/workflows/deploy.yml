@@ -78,6 +78,13 @@ jobs:
         env:
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
 
+      - name: Verify the live site
+        # Checks what the edge SERVES, not what we build. Cloudflare's managed
+        # robots.txt setting silently prepended "Disallow: /" for GPTBot,
+        # ClaudeBot, Google-Extended and CCBot for months; every local check
+        # passed the whole time because the file in dist/ was correct.
+        run: node scripts/verify-live.mjs
+
       - name: Google
         # Google retired the sitemap ping endpoint. Discovery happens via the
         # sitemap registered in Search Console — no automated step exists.

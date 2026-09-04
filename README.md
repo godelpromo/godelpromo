@@ -9,6 +9,7 @@ Built from source modules into `dist/`. Deployed on Cloudflare Pages.
 ```bash
 node build.mjs        # build into dist/
 node scripts/check.mjs # validate the build
+node scripts/verify-live.mjs # validate the LIVE site
 npm run serve         # build + serve on http://localhost:4321
 ```
 
@@ -24,6 +25,7 @@ src/pages/*.mjs          One module per page — exports `page`
 assets/                  CSS, JS, OG image (copied verbatim)
 build.mjs                Renders pages, generates sitemap/robots/llms.txt/_redirects/_headers
 scripts/check.mjs        Post-build validation — fails CI on broken links or bad schema
+scripts/verify-live.mjs  Post-deploy validation of what the EDGE serves, not what we build
 scripts/indexnow.mjs     Pushes URLs to Bing/Yandex/Seznam/Naver
 scripts/make-og.sh       Regenerates the 1200x630 Open Graph card
 ```

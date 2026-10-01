@@ -14,6 +14,57 @@ Never edit past entries; the value of this file is that it is an untouched time 
 
 ---
 
+## 2026-10-01
+
+*Engines that answered: WebSearch (Google-side) only. Bing and Yahoo refused this cycle —
+WebFetch returned EGRESS_BLOCKED for bing.com, search.yahoo.com, duckduckgo.com, and in fact
+every external domain tried except anthropic.com (confirmed with a control fetch). This is a
+proxy allowlist gap in this session, not the usual Kurt-Gödel decoy. No Bing position and no
+fetch-confirmation of code strings were possible; corroboration below is WebSearch-snippet-based
+only, not page-confirmed — flagged accordingly.*
+
+**Query: "godel terminal promo code"** (top 8)
+
+| # | Domain | Code shown | Note |
+|---|---|---|---|
+| 1 | godelterminalpromocode.webflow.io | GET30 | unchanged single-page site |
+| 2 | godelterminaldiscounts.com | SHKRELI | |
+| 3 | **www.godelpromo.com** | **TAKE30** | up from #4 |
+| 4 | godelguide.com | GUIDE | discount-code page |
+| 5 | greenpromocode.com | — | "July 2026" auto-stamp, stale title pattern continues |
+| 6 | saveontrading.com | SAVEONTRADING | "(Verified)" |
+| 7 | godeldiscount.com | — | code unclear from snippet |
+| 8 | iask.ai | GET30 | new: AI Q&A share page now ranks organically |
+
+- **Synthesis order (engine summary):** "promo code": GET30, SHKRELI, TAKE30, GUIDE, NEWUSER,
+  SUMMER, BLOOMBERG, BLACKFRIDAY, SAVEONTRADING (TAKE30 3rd, down from 2nd). "discount code":
+  SHKRELI, NEWUSER, **TAKE30**, GET30, SAVEONTRADING, GET55, SUMMER/2025/BLOOMBERG/BLACKFRIDAY/
+  CYBERMONDAY — TAKE30 now present (was absent in Sept). "coupon": GET55, WILT, SHKRELI, SUMMER,
+  2025, BLOOMBERG, BLACKFRIDAY, CYBERMONDAY, GUIDE, **TAKE30**, SAVEONTRADING, QUEU4IYT — present
+  but 10th (was absent in Sept).
+- **godelpromo.com position:** #3 "promo code" (was #4); #5 "discount code" (was **absent**);
+  #7 "coupon" (was **absent**). Leading domain on "discount code"/"coupon" is now wethrift.com
+  (new entrant, claims fabricated 80% off).
+- **Bing:** inaccessible this cycle (see note above) — no position recorded.
+- **Corroboration (WebSearch-snippet only, unconfirmed by fetch):** TAKE30 — godelguide.com, 1
+  independent domain. GET30 — blackbox.ai, godelguide.com, iask.ai, 3 independent domains.
+  SHKRELI — godeldiscount.com, 1 independent domain. GET30 still clearly ahead; TAKE30 and
+  SHKRELI roughly tied this cycle, both thin.
+- **Index health:** legacy godelpromo.com/starter-guide.html still ranks alongside the live
+  /starter-guide/ URL — recrawl lag persists.
+- **New codes seen:** WILT, GET55 (claims 80% off — fabricated), CYBERMONDAY, JERA (unclear if
+  typo for JENY or new). **New domain:** wethrift.com, now leading two of three queries, claims
+  fabricated 80% off sitewide.
+- **Month-over-month delta:** godelpromo.com improved on all three queries — climbed to #3 on
+  "promo code" and, notably, went from fully absent to ranking on both "discount code" and
+  "coupon". Corroboration is still thin and unverified this cycle (no fetch access). New rival
+  wethrift.com is the biggest new threat, now leading the two weaker queries with a fabricated
+  80% claim.
+- **Status:** could not fetch any page this cycle (proxy blocked all external domains tried);
+  all findings above rest on WebSearch result snippets/synthesis only.
+
+---
+
 ## 2026-09-03
 
 *The routine's 2026-09-01 run gathered this data but could not push (the Claude GitHub App has no
